@@ -1,0 +1,23 @@
+{
+  "name": "bayograff",
+  "version": "1.0.0",
+  "description": "online biographies, journales and chronologies",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GlosuU/bayograff.git"
+  },
+  "author": "GlosuU",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GlosuU/bayograff/issues"
+  },
+  "homepage": "https://github.com/GlosuU/bayograff#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}

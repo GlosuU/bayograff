@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3000/api/reporterms/";
+const url = "api/reporterms/";
 
 class ReportermService {
 	// Get all Reporterms

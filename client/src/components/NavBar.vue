@@ -1,0 +1,37 @@
+<template>
+	<div id="nav">
+		<b-navbar toggleable="lg" type="dark" variant="info">
+			<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+			<b-collapse id="nav-collapse" is-nav>
+				<b-navbar-nav>
+					<router-link to="/">Home</router-link>
+					<router-link to="/reporterms">Reporterms</router-link>
+					<router-link to="/about">Anecdaynotes</router-link>
+					<router-link to="/about">Factales</router-link>
+					<router-link to="/about">Print/Export</router-link>
+				</b-navbar-nav>
+			</b-collapse>
+		</b-navbar>
+	</div>
+</template>
+
+<script>
+	export default {};
+</script>
+
+<style>
+	#nav {
+		/* position: fixed */
+		padding-bottom: 10px;
+	}
+
+	#nav a {
+		font-weight: bold;
+		color: #ffffff;
+		padding-right: 10px;
+	}
+
+	/* #nav a.router-link-exact-active {
+  color: #ffea2e;
+} */
+</style>

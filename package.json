@@ -1,23 +1,68 @@
 {
-  "name": "bayograff",
-  "version": "1.0.1",
-  "description": "online biographies, journales and chronologies",
-  "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GlosuU/bayograff.git"
-  },
-  "author": "GlosuU",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GlosuU/bayograff/issues"
-  },
-  "homepage": "https://github.com/GlosuU/bayograff#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "nodemon": "^2.0.4"
-  }
+	"name": "bayograff",
+	"version": "1.0.0",
+	"description": "online biographies, journals and chronologies",
+	"private": true,
+	"main": "index.js",
+	"scripts": {
+		"start": "node server/index.js",
+		"server": "nodemon server/index.js",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"client": "vue-cli-service serve client/src/main.js",
+		"client-build": "vue-cli-service build client/src/main.js",
+		"client-lint": "vue-cli-service lint client/src/main.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/GlosuU/bayograff.git"
+	},
+	"author": "GlosuU",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/GlosuU/bayograff/issues"
+	},
+	"homepage": "https://github.com/GlosuU/bayograff#readme",
+	"dependencies": {
+		"axios": "^0.20.0",
+		"bootstrap": "^4.5.2",
+		"bootstrap-vue": "^2.16.0",
+		"core-js": "^3.6.5",
+		"vue": "^2.6.12",
+		"vue-router": "^3.2.0",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"mongodb": "^3.6.0"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "~4.5.0",
+		"@vue/cli-plugin-eslint": "~4.5.0",
+		"@vue/cli-plugin-router": "^4.5.4",
+		"@vue/cli-service": "~4.5.0",
+		"babel-eslint": "^10.1.0",
+		"eslint": "^6.7.2",
+		"eslint-plugin-vue": "^6.2.2",
+		"prettier": "2.1.1",
+		"vue-template-compiler": "^2.6.12",
+		"dotenv": "^8.2.0",
+		"nodemon": "^2.0.4"
+	},
+	"eslintConfig": {
+		"root": true,
+		"env": {
+			"node": true
+		},
+		"extends": [
+			"plugin:vue/essential",
+			"eslint:recommended"
+		],
+		"parserOptions": {
+			"parser": "babel-eslint"
+		},
+		"rules": {}
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not dead"
+	]
 }

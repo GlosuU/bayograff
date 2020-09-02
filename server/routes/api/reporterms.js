@@ -1,10 +1,10 @@
 const express = require("express");
 const mongodb = require("mongodb");
 
-if (process.env.NODE_ENV === "development") {
-	const dotenv = require("dotenv");
-	dotenv.config();
-}
+// if (process.env.NODE_ENV === "development") {
+// 	const dotenv = require("dotenv");
+// 	dotenv.config();
+// }
 
 const router = express.Router();
 const db_url =

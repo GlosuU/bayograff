@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
-
-dotenv.config();
+const path = require("path");
 
 const app = express();
 
@@ -17,10 +15,10 @@ app.use("/api/reporterms", reporterms);
 // Handle production
 if (process.env.NODE_ENV === "production") {
 	// Static directory
-	app.use(express.static(__dirname + "../client/public/dist/"));
+	app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
 	// Handle SPA
-	app.get(/.*/, (req, res) => res.sendFile(__dirname + "../client/public/dist/index.html"));
+	app.get(/.*/, (req, res) => res.sendFile(path.resolve(__dirname, "../client/dist/index.html")));
 }
 
 const port = process.env.PORT || 3000;

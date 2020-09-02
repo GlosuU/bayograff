@@ -2,7 +2,7 @@
 node_modules
 
 # Client builds
-/client/public/dist
+/client/dist
 
 # local dotenv environment variables files
 .env

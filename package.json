@@ -6,9 +6,10 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node server/index.js",
-		"server": "nodemon server/index.js",
+		"postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run client-build ; fi ",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"client": "vue-cli-service serve client/src/main.js",
+		"server-dev": "nodemon server/index.js",
+		"client-dev": "vue-cli-service serve client/src/main.js",
 		"client-build": "vue-cli-service build client/src/main.js",
 		"client-lint": "vue-cli-service lint client/src/main.js"
 	},
@@ -64,5 +65,8 @@
 		"> 1%",
 		"last 2 versions",
 		"not dead"
-	]
+	],
+	"engines": {
+		"node": "12.x"
+	}
 }

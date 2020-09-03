@@ -1,15 +1,15 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const reporterms = require("./routes/api/reporterms");
 
 const app = express();
 
-// Middlewares
+//// MIDDLEWARES
 app.use(express.json());
 app.use(cors());
 
-const reporterms = require("./routes/api/reporterms");
-
+// Reporterms routes
 app.use("/api/reporterms", reporterms);
 
 // Handle production

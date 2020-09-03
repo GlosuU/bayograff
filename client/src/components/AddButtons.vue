@@ -23,8 +23,9 @@
 			};
 		},
 		methods: {
-			searchText() {
-				console.log("Searching text: ", this.textToSearch);
+			searchText(evt) {
+				evt.preventDefault();
+				this.$emit("search-text", this.textToSearch);
 			},
 		},
 	};

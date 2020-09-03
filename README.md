@@ -1,27 +1,34 @@
 # bayograff
+
 Write an autobiography, a journal or a chronology online
 
 ## TODOS
-* Allow date input with text (maybe use npm install v-calendar)
-- min and max dates should be one day off maybe (will need to use computed I believe)
 
+-   After searching something, clicking Reporterms does not refresh to all reporterms
+-   Allow date input with text (maybe use npm install v-calendar)
+-   min and max dates should be one day off maybe (will need to use computed I believe)
 
 ## Project setup
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Run server in development mode
+
 ```
-npm run serve
+npm run server-dev
 ```
 
-### Compiles and minifies for production
+### Run client in development mode
+
 ```
-npm run build
+npm run client-dev
 ```
 
-### Lints and fixes files
+### Build the client and run server in production mode
+
 ```
-npm run lint
+npm run client-build
+npm run start
 ```

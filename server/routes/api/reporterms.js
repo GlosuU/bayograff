@@ -23,7 +23,20 @@ async function loadReportermsCollection() {
 // Get Reporterms
 router.get("/", async (req, res) => {
 	const reporterms = await loadReportermsCollection();
-	res.send(await reporterms.find({}).toArray());
+	if (req.query.search != null) {
+		res.send(
+			await reporterms
+				.find({
+					$or: [
+						{ title: { $regex: req.query.search, $options: "i" } },
+						{ content: { $regex: req.query.search, $options: "i" } },
+					],
+				})
+				.toArray()
+		);
+	} else {
+		res.send(await reporterms.find({}).toArray());
+	}
 });
 
 // Get single Reporterm

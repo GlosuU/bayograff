@@ -18,6 +18,7 @@ const routes = [
 		path: "/reporterms",
 		name: "ReportermsList",
 		component: ReportermsList,
+		props: (route) => ({ textToSearch: route.query.search }),
 	},
 	{
 		path: "/reporterms/new",

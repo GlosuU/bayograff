@@ -3,11 +3,15 @@ import axios from "axios";
 const url = "api/reporterms/";
 
 class ReportermService {
-	// Get all Reporterms
-	static getReporterms() {
+	// Get Reporterms
+	static getReporterms(searchQuery) {
+		let finalUrl = url;
+		if (searchQuery) {
+			finalUrl = url + "?search=" + searchQuery;
+		}
 		return new Promise((resolve, reject) => {
 			axios
-				.get(url)
+				.get(finalUrl)
 				.then((res) => {
 					const data = res.data;
 					resolve(

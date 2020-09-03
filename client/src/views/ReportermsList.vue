@@ -1,13 +1,13 @@
 <template>
 	<div id="ReportermsView">
-		<AddButtons />
+		<AddButtons @search-text="searchReporterms" />
 		<div class="clear"></div>
 		<div v-for="r in reporterms" :key="r._id" :reporterm="r">
 			<router-link :to="'/reporterms/' + r._id">
 				<ReportermCard :reporterm="r" />
 			</router-link>
 		</div>
-		<AddButtons />
+		<AddButtons @search-text="searchReporterms" />
 	</div>
 </template>
 
@@ -21,19 +21,31 @@
 			AddButtons,
 			ReportermCard,
 		},
+		props: {
+			textToSearch: {
+				type: String,
+				default: "",
+			},
+		},
 		data() {
 			return {
-				look: "",
 				reporterms: [],
+				// textToSearch: "",
 				err: "",
 			};
 		},
 		async created() {
 			try {
-				this.reporterms = await ReportermService.getReporterms();
+				this.reporterms = await ReportermService.getReporterms(this.textToSearch);
 			} catch (err) {
 				this.err = err;
 			}
+		},
+		methods: {
+			searchReporterms(searchText) {
+				this.$router.push({ query: { search: searchText } });
+				location.reload();
+			},
 		},
 	};
 </script>

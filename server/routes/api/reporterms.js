@@ -11,6 +11,8 @@ const db_url =
 	`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}` +
 	`@${process.env.DB_CLUSTER}.2bhrc.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
+console.log("db_url", db_url);
+
 async function loadReportermsCollection() {
 	const client = await mongodb.MongoClient.connect(db_url, {
 		useNewUrlParser: true,

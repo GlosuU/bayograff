@@ -1,5 +1,6 @@
 const express = require("express");
 const mongodb = require("mongodb");
+const path = require("path");
 
 if (process.env.NODE_ENV === "development") {
 	const dotenv = require("dotenv");
@@ -85,6 +86,11 @@ router.delete("/:id/", async (req, res) => {
 	const reporterms = await loadReportermsCollection();
 	await reporterms.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
 	res.status(200).send();
+});
+
+// Send Latex file
+router.get("/other/latex", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "../../public/example.tex"));
 });
 
 module.exports = router;

@@ -8,7 +8,7 @@
 		"start": "node server/index.js",
 		"postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run client-build ; fi ",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"server-dev": "nodemon server/index.js",
+		"server-dev": "NODE_ENV=development nodemon server/index.js",
 		"client-dev": "vue-cli-service serve client/src/main.js",
 		"client-build": "vue-cli-service build client/src/main.js",
 		"client-lint": "vue-cli-service lint client/src/main.js"

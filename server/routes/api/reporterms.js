@@ -1,16 +1,8 @@
 const express = require("express");
 const mongodb = require("mongodb");
-const path = require("path");
-
-if (process.env.NODE_ENV === "development") {
-	const dotenv = require("dotenv");
-	dotenv.config();
-}
+const { db_name, db_url } = require("../../config");
 
 const router = express.Router();
-const db_url =
-	`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}` +
-	`@${process.env.DB_CLUSTER}.2bhrc.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 async function loadReportermsCollection() {
 	const client = await mongodb.MongoClient.connect(db_url, {
@@ -18,7 +10,7 @@ async function loadReportermsCollection() {
 		useUnifiedTopology: true,
 	});
 
-	return client.db(process.env.DB_NAME).collection("reporterms");
+	return client.db(db_name).collection("reporterms");
 }
 
 // Get Reporterms
@@ -86,11 +78,6 @@ router.delete("/:id/", async (req, res) => {
 	const reporterms = await loadReportermsCollection();
 	await reporterms.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
 	res.status(200).send();
-});
-
-// Send Latex file
-router.get("/other/latex", (req, res) => {
-	res.sendFile(path.resolve(__dirname, "../../public/example.tex"));
 });
 
 module.exports = router;

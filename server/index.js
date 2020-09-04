@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const reporterms = require("./routes/api/reporterms");
+const exporter = require("./routes/api/exporter");
 
 const app = express();
 
@@ -11,6 +12,9 @@ app.use(cors());
 
 // Reporterms routes
 app.use("/api/reporterms", reporterms);
+
+// Exporter routes
+app.use("/api/export", exporter);
 
 // Handle production
 if (process.env.NODE_ENV === "production") {

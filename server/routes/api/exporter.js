@@ -131,21 +131,10 @@ router.get("/latex", async (req, res) => {
 
 // Send PDF file
 router.get("/pdf", async (req, res) => {
-	console.log(`${latex_online_url}${bayograff_latex_url}`);
-	res.redirect(`${latex_online_url}${bayograff_latex_url}`);
-	// const reporterms = await loadReportermsCollection();
-	// reporterms
-	// 	.find({})
-	// 	.toArray()
-	// 	.then((reps) => {
-	// 		const fileName = `latexoutput_${new Date().getTime()}`;
-	// 		collectionToLatex(reps, fileName, (err) => {
-	// 			if (err) throw err;
-	// 			console.log(`Saved to ${fileName}.tex`);
-	// 			res.redirect(path.resolve(__dirname, `../../public/latex/${fileName}.tex`));
-	// 		});
-	// 	})
-	// 	.catch((err) => console.log(err));
+	res.sendFile(path.resolve(__dirname, `../../public/latex/sample.tex`));
+
+	// console.log(`${latex_online_url}${bayograff_latex_url}`);
+	// res.redirect(`${latex_online_url}${bayograff_latex_url}`);
 });
 
 module.exports = router;

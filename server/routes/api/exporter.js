@@ -16,21 +16,52 @@ async function loadReportermsCollection() {
 	return client.db(db_name).collection("reporterms");
 }
 
-async function collectionToTxt() {
-	const reporterms = await loadReportermsCollection();
-	const textArray = reporterms.find({}).toArray();
-	console.log(textArray);
+function reportermToText(reporterm) {
+	const startDate = new Date(reporterm.startDate);
+	const endDate = new Date(reporterm.endDate);
 
-	fs.writeFile("../../public/text/output.txt", "Hello", (err) => {
-		if (err) throw err;
-		console.log("Saved!");
-	});
+	let repTxt = `${reporterm.title}\n${startDate.toLocaleDateString(undefined, {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	})} - ${endDate.toLocaleDateString(undefined, {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	})}\n\n${reporterm.content}\n\n`;
+
+	if (reporterm.image) {
+		repTxt += `IMAGE: ${reporterm.image}`;
+	}
+
+	return repTxt;
 }
 
-// Send Latex file
-router.get("/", (req, res) => {
-	collectionToTxt();
-	res.sendFile(path.resolve(__dirname, "../../public/text/output.txt"));
+function collectionToTxt(reporterms, fileName, next) {
+	let lines = "REPORTERMS:\n\n";
+	reporterms.forEach((r) => {
+		lines += `====================\n\n${reportermToText(r)}\n\n`;
+	});
+	lines += "====================";
+
+	fs.writeFile(`./server/public/text/${fileName}.txt`, lines, next);
+}
+
+// Send .txt file
+router.get("/", async (req, res) => {
+	const reporterms = await loadReportermsCollection();
+	reporterms
+		.find({})
+		.toArray()
+		.then((reps) => {
+			const fileName = `txtoutput_${new Date().getTime()}`;
+			collectionToTxt(reps, fileName, (err) => {
+				if (err) throw err;
+				console.log(`Saved to ${fileName}.txt`);
+				res.sendFile(path.resolve(__dirname, `../../public/text/${fileName}.txt`));
+			});
+		})
+		.catch((err) => console.log(err));
 });
 
 module.exports = router;

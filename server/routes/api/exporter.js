@@ -6,6 +6,7 @@ const { db_name, db_url } = require("../../config");
 
 const router = express.Router();
 const latex_online_url = "http://latexonline.cc/compile?url=";
+const bayograff_latex_url = "https://bayograff.herokuapp.com/api/export/latex";
 
 async function loadReportermsCollection() {
 	const client = await mongodb.MongoClient.connect(db_url, {
@@ -15,6 +16,8 @@ async function loadReportermsCollection() {
 
 	return client.db(db_name).collection("reporterms");
 }
+
+//// .TXT EXPORT
 
 function reportermToText(reporterm) {
 	const startDate = new Date(reporterm.startDate);
@@ -47,8 +50,53 @@ function collectionToTxt(reporterms, fileName, next) {
 	fs.writeFile(`./server/public/text/${fileName}.txt`, lines, next);
 }
 
+//// LATEX EXPORT
+
+function reportermToLatex(reporterm) {
+	const startDate = new Date(reporterm.startDate);
+	const endDate = new Date(reporterm.endDate);
+
+	let repLatex = `\\subsection{${reporterm.title}}\n${startDate.toLocaleDateString(undefined, {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	})} - ${endDate.toLocaleDateString(undefined, {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	})}\n\n${reporterm.content}\n\n`;
+
+	if (reporterm.image) {
+		repLatex += `\\externalfigure[${reporterm.image}]`;
+	}
+
+	return repLatex;
+}
+
+function collectionToLatex(reporterms, fileName, next) {
+	let lines = `\\documentclass[12pt, a4paper]{article}
+\\usepackage[utf8]{ inputenc }
+
+\\author{ GlosuU }
+\\title{ Bayograff - Latex Output }
+\\date{ Today }
+
+\\begin{ document }
+\\maketitle
+\\tableofcontents
+\\section{ Reporterms }\n\n`;
+	reporterms.forEach((r) => {
+		lines += `${reportermToLatex(r)}\n\n`;
+	});
+	lines += "\\end{document}";
+
+	fs.writeFile(`./server/public/latex/${fileName}.tex`, lines, next);
+}
+
+//// ROUTES
+
 // Send .txt file
-router.get("/", async (req, res) => {
+router.get("/txt", async (req, res) => {
 	const reporterms = await loadReportermsCollection();
 	reporterms
 		.find({})
@@ -62,6 +110,42 @@ router.get("/", async (req, res) => {
 			});
 		})
 		.catch((err) => console.log(err));
+});
+
+// Send Latex file
+router.get("/latex", async (req, res) => {
+	const reporterms = await loadReportermsCollection();
+	reporterms
+		.find({})
+		.toArray()
+		.then((reps) => {
+			const fileName = `latexoutput_${new Date().getTime()}`;
+			collectionToLatex(reps, fileName, (err) => {
+				if (err) throw err;
+				console.log(`Saved to ${fileName}.tex`);
+				res.sendFile(path.resolve(__dirname, `../../public/latex/${fileName}.tex`));
+			});
+		})
+		.catch((err) => console.log(err));
+});
+
+// Send PDF file
+router.get("/pdf", async (req, res) => {
+	console.log(`${latex_online_url}${bayograff_latex_url}`);
+	res.redirect(`${latex_online_url}${bayograff_latex_url}`);
+	// const reporterms = await loadReportermsCollection();
+	// reporterms
+	// 	.find({})
+	// 	.toArray()
+	// 	.then((reps) => {
+	// 		const fileName = `latexoutput_${new Date().getTime()}`;
+	// 		collectionToLatex(reps, fileName, (err) => {
+	// 			if (err) throw err;
+	// 			console.log(`Saved to ${fileName}.tex`);
+	// 			res.redirect(path.resolve(__dirname, `../../public/latex/${fileName}.tex`));
+	// 		});
+	// 	})
+	// 	.catch((err) => console.log(err));
 });
 
 module.exports = router;

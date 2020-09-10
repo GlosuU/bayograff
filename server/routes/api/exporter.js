@@ -66,25 +66,25 @@ function reportermToLatex(reporterm) {
 		day: "numeric",
 	})}\n\n${reporterm.content}\n\n`;
 
-	if (reporterm.image) {
-		repLatex += `\\externalfigure[${reporterm.image}]`;
-	}
+	// if (reporterm.image) {
+	// 	repLatex += `\\externalfigure[${reporterm.image}]`;
+	// }
 
 	return repLatex;
 }
 
 function collectionToLatex(reporterms, fileName, next) {
 	let lines = `\\documentclass[12pt, a4paper]{article}
-\\usepackage[utf8]{ inputenc }
+\\usepackage[utf8]{inputenc}
 
-\\author{ GlosuU }
-\\title{ Bayograff - Latex Output }
-\\date{ Today }
+\\author{GlosuU}
+\\title{Bayograff - Latex Output}
+\\date{Today}
 
-\\begin{ document }
+\\begin{document}
 \\maketitle
 \\tableofcontents
-\\section{ Reporterms }\n\n`;
+\\section{Reporterms}\n\n`;
 	reporterms.forEach((r) => {
 		lines += `${reportermToLatex(r)}\n\n`;
 	});
@@ -131,10 +131,12 @@ router.get("/latex", async (req, res) => {
 
 // Send PDF file
 router.get("/pdf", async (req, res) => {
-	res.sendFile(path.resolve(__dirname, `../../public/latex/sample.tex`));
+	res.redirect(`${latex_online_url}${bayograff_latex_url}`);
+});
 
-	// console.log(`${latex_online_url}${bayograff_latex_url}`);
-	// res.redirect(`${latex_online_url}${bayograff_latex_url}`);
+// Send PDF file
+router.get("/sample", async (req, res) => {
+	res.sendFile(path.resolve(__dirname, `../../public/latex/sample.tex`));
 });
 
 module.exports = router;

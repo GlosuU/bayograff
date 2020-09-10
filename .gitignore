@@ -5,7 +5,7 @@ node_modules
 /client/dist
 
 # Export files
-/server/public/text/*
+# /server/public/text/*
 
 # local dotenv environment variables files
 .env

@@ -4,6 +4,7 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
+-   Images can't be inserted into Latex :(
 -   After searching something, clicking Reporterms does not refresh to all reporterms
 -   Allow date input with text (maybe use npm install v-calendar)
 -   min and max dates should be one day off maybe (will need to use computed I believe)

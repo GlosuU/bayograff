@@ -134,7 +134,7 @@ router.get("/pdf", async (req, res) => {
 	res.redirect(`${latex_online_url}${bayograff_latex_url}`);
 });
 
-// Send PDF file
+// Send sample latex file
 router.get("/sample", async (req, res) => {
 	res.sendFile(path.resolve(__dirname, `../../public/latex/sample.tex`));
 });

@@ -5,6 +5,7 @@ import ReportermsList from "../views/ReportermsList";
 import ReportermNew from "../views/ReportermNew";
 import ReportermSingle from "../views/ReportermSingle";
 import ReportermEdit from "../views/ReportermEdit";
+import Export from "../views/Export";
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,11 @@ const routes = [
 		path: "/reporterms/:id/edit",
 		name: "ReportermEdit",
 		component: ReportermEdit,
+	},
+	{
+		path: "/export",
+		name: "Export",
+		component: Export,
 	},
 	{
 		path: "/about",

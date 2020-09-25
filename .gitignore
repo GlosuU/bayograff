@@ -3,6 +3,7 @@ node_modules
 
 # Client builds
 /client/dist
+/server/public/dist
 
 # Export files
 /server/public/text/*

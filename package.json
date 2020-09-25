@@ -32,7 +32,8 @@
 		"vue-router": "^3.2.0",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
-		"mongodb": "^3.6.0"
+		"mongodb": "^3.6.0",
+		"node-forge": ">=0.10.0"
 	},
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "~4.5.0",

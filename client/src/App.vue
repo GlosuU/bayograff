@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<Header />
-		<NavBar />
+		<NavBar v-if="$auth.isAuthenticated" />
 		<router-view />
 	</div>
 </template>
@@ -26,5 +26,10 @@
 		color: #2c3e50;
 		background-color: beige;
 		padding-bottom: 20px;
+	}
+
+	.clear {
+		clear: both;
+		margin: 20px;
 	}
 </style>

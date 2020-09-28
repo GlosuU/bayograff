@@ -24,16 +24,17 @@
 	},
 	"homepage": "https://github.com/GlosuU/bayograff#readme",
 	"dependencies": {
+		"@auth0/auth0-spa-js": "^1.12.1",
 		"axios": "^0.20.0",
 		"bootstrap": "^4.5.2",
 		"bootstrap-vue": "^2.16.0",
 		"core-js": "^3.6.5",
-		"vue": "^2.6.12",
-		"vue-router": "^3.2.0",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
 		"mongodb": "^3.6.0",
-		"node-forge": ">=0.10.0"
+		"node-forge": ">=0.10.0",
+		"vue": "^2.6.12",
+		"vue-router": "^3.2.0"
 	},
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "~4.5.0",

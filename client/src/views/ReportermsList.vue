@@ -1,7 +1,6 @@
 <template>
 	<div id="ReportermsView">
 		<AddButtons @search-text="searchReporterms" />
-		<div class="clear"></div>
 		<div v-for="r in reporterms" :key="r._id" :reporterm="r">
 			<router-link :to="'/reporterms/' + r._id">
 				<ReportermCard :reporterm="r" />
@@ -50,9 +49,4 @@
 	};
 </script>
 
-<style>
-	.clear {
-		clear: both;
-		margin: 20px;
-	}
-</style>
+<style></style>

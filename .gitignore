@@ -7,7 +7,10 @@ node_modules
 
 # Export files
 /server/public/text/*
-# /server/public/latex/*
+/server/public/latex/*
+
+### CONFIGURATION FILES
+/client/auth_config.json
 
 # local dotenv environment variables files
 .env

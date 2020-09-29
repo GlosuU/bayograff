@@ -9,6 +9,7 @@
 					<router-link to="/about">Anecdaynotes</router-link>
 					<router-link to="/about">Factales</router-link>
 					<router-link to="/export">Print/Export</router-link>
+					<router-link to="/profile">My Profile</router-link>
 				</b-navbar-nav>
 			</b-collapse>
 		</b-navbar>

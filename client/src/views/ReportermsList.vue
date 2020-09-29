@@ -35,7 +35,13 @@
 		},
 		async created() {
 			try {
-				this.reporterms = await ReportermService.getReporterms(this.textToSearch);
+				// Get the access token from the auth wrapper
+				const accessToken = await this.$auth.getTokenSilently();
+
+				this.reporterms = await ReportermService.getReporterms(
+					this.textToSearch,
+					accessToken
+				);
 			} catch (err) {
 				this.err = err;
 			}

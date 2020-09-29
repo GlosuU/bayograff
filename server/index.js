@@ -27,4 +27,8 @@ if (process.env.NODE_ENV === "production") {
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Bayograff Express server listening on port ${port}`));
+app.listen(port, () =>
+	console.log(
+		`Bayograff Express server in ${process.env.NODE_ENV} mode is listening on port ${port}`
+	)
+);

@@ -1,6 +1,7 @@
 const express = require("express");
 const mongodb = require("mongodb");
 const { db_name, db_url } = require("../../config");
+const checkJWT = require("../../middleware/auth");
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ async function loadReportermsCollection() {
 }
 
 // Get Reporterms
-router.get("/", async (req, res) => {
+router.get("/", checkJWT, async (req, res) => {
 	const reporterms = await loadReportermsCollection();
 	if (req.query.search != null) {
 		res.send(
@@ -33,13 +34,13 @@ router.get("/", async (req, res) => {
 });
 
 // Get single Reporterm
-router.get("/:id/", async (req, res) => {
+router.get("/:id/", checkJWT, async (req, res) => {
 	const reporterms = await loadReportermsCollection();
 	res.send(await reporterms.findOne({ _id: new mongodb.ObjectID(req.params.id) }));
 });
 
 // Add Reporterm
-router.post("/", async (req, res) => {
+router.post("/", checkJWT, async (req, res) => {
 	const reporterms = await loadReportermsCollection();
 	await reporterms.insertOne({
 		startDate: req.body.startDate,
@@ -54,7 +55,7 @@ router.post("/", async (req, res) => {
 });
 
 // Update Reporterm
-router.put("/:id/", async (req, res) => {
+router.put("/:id/", checkJWT, async (req, res) => {
 	const reporterms = await loadReportermsCollection();
 	await reporterms.updateOne(
 		{ _id: new mongodb.ObjectID(req.params.id) },
@@ -74,7 +75,7 @@ router.put("/:id/", async (req, res) => {
 });
 
 // Delete Reporterm
-router.delete("/:id/", async (req, res) => {
+router.delete("/:id/", checkJWT, async (req, res) => {
 	const reporterms = await loadReportermsCollection();
 	await reporterms.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
 	res.status(200).send();

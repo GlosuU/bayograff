@@ -3,6 +3,7 @@ const mongodb = require("mongodb");
 const path = require("path");
 const fs = require("fs");
 const { db_name, db_url } = require("../../config");
+// const checkJWT = require("../../middleware/auth");
 
 const router = express.Router();
 const latex_online_url = "http://latexonline.cc/compile?url=";

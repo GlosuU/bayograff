@@ -90,6 +90,7 @@ export const useAuth0 = ({
 				client_id: options.clientId,
 				audience: options.audience,
 				redirect_uri: redirectUri,
+				// scope: "openid",
 			});
 
 			try {

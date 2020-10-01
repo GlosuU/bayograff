@@ -16,6 +16,7 @@ async function loadReportermsCollection() {
 
 // Get Reporterms
 router.get("/", checkJWT, async (req, res) => {
+	// console.log("req.user.sub", req.user.sub);
 	const reporterms = await loadReportermsCollection();
 	if (req.query.search != null) {
 		res.send(

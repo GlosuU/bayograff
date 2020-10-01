@@ -1,6 +1,7 @@
 const express = require("express");
-const cors = require("cors");
 const path = require("path");
+const cors = require("cors");
+const morgan = require("morgan");
 const reporterms = require("./routes/api/reporterms");
 const exporter = require("./routes/api/exporter");
 
@@ -10,10 +11,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Reporterms routes
-app.use("/api/reporterms", reporterms);
+// Logging in dev mode with Morgan
+if (process.env.NODE_ENV === "development") {
+	app.use(morgan("dev"));
+}
 
-// Exporter routes
+//// ROUTES
+app.use("/api/reporterms", reporterms);
 app.use("/api/export", exporter);
 
 // Handle production
@@ -28,7 +32,5 @@ if (process.env.NODE_ENV === "production") {
 const port = process.env.PORT || 3000;
 
 app.listen(port, () =>
-	console.log(
-		`Bayograff Express server in ${process.env.NODE_ENV} mode is listening on port ${port}`
-	)
+	console.log(`Bayograff Express server running in ${process.env.NODE_ENV} mode on port ${port}`)
 );

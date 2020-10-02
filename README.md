@@ -4,9 +4,6 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Update DB models to include user as author (mongoose crash course). User can be accessed through req.user(.sub)
--   Secure export PDF
-
 -   Images can't be inserted into Latex :(
 -   After searching something, clicking Reporterms does not refresh to all reporterms
 -   Allow date input with text (maybe use npm install v-calendar)

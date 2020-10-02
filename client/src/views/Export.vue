@@ -12,15 +12,15 @@
 		<h2>Formats</h2>
 		<ul id="formats">
 			<li>
-				<b-button href="api/export/pdf" target="_blank">PDF</b-button>
+				<b-button @click="export2pdf" target="_blank">PDF</b-button>
 				- Recommended format. Biography ready to print.
 			</li>
 			<li>
-				<b-button href="api/export/latex" target="_blank">LaTeX</b-button>
+				<b-button @click="export2tex" target="_blank">LaTeX</b-button>
 				- If you prefer the uncompiled .tex file.
 			</li>
 			<li>
-				<b-button href="api/export/txt" target="_blank">Plain Text</b-button>
+				<b-button @click="export2txt" target="_blank">Plain Text</b-button>
 				- Get all the data in a simple .txt file.
 			</li>
 		</ul>
@@ -28,12 +28,42 @@
 </template>
 
 <script>
+	import ExporterService from "../ExporterService";
 	export default {
 		data() {
 			return {
 				name: "The author",
 				err: "",
 			};
+		},
+		methods: {
+			async export2pdf() {
+				try {
+					const accessToken = await this.$auth.getTokenSilently();
+
+					await ExporterService.export2pdf(accessToken);
+				} catch (err) {
+					this.err = err;
+				}
+			},
+			async export2tex() {
+				try {
+					const accessToken = await this.$auth.getTokenSilently();
+
+					await ExporterService.export2tex(accessToken);
+				} catch (err) {
+					this.err = err;
+				}
+			},
+			async export2txt() {
+				try {
+					const accessToken = await this.$auth.getTokenSilently();
+
+					await ExporterService.export2txt(accessToken);
+				} catch (err) {
+					this.err = err;
+				}
+			},
 		},
 	};
 </script>

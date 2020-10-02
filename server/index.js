@@ -23,6 +23,9 @@ if (environment === "development") {
 	app.use(morgan("dev"));
 }
 
+// Expose the public directory with static
+app.use("/public", express.static(path.resolve(__dirname, "./public")));
+
 //// ROUTES
 app.use("/api/reporterms", reporterms);
 app.use("/api/export", exporter);
@@ -36,7 +39,6 @@ if (environment === "production") {
 	app.get(/.*/, (req, res) => res.sendFile(path.resolve(__dirname, "./public/dist/index.html")));
 }
 
-const server_port = port || 3000;
-app.listen(server_port, () =>
-	console.log(`Bayograff Express server running in ${environment} mode on port ${server_port}`)
+app.listen(port, () =>
+	console.log(`Bayograff Express server running in ${environment} mode on port ${port}`)
 );

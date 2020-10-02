@@ -1,6 +1,6 @@
 const express = require("express");
-const Reporterm = require("../../models/Reporterm");
 const checkJWT = require("../../middleware/auth");
+const Reporterm = require("../../models/Reporterm");
 
 const router = express.Router();
 

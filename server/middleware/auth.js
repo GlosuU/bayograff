@@ -1,7 +1,7 @@
 // import dependencies
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
-const { audience, domain } = require("../config");
+const { audience, domain } = require("../config/config");
 
 // Middleware to validate the JWT using express-jwt
 const checkJwt = jwt({

@@ -37,6 +37,7 @@
 			try {
 				// Get the access token from the auth wrapper
 				const accessToken = await this.$auth.getTokenSilently();
+				// console.log("accessToken", accessToken);
 
 				this.reporterms = await ReportermService.getReporterms(
 					this.textToSearch,

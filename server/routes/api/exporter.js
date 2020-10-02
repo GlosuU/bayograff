@@ -2,7 +2,7 @@ const express = require("express");
 const mongodb = require("mongodb");
 const path = require("path");
 const fs = require("fs");
-const { db_name, db_url } = require("../../config");
+const { db_name, db_url } = require("../../config/config");
 // const checkJWT = require("../../middleware/auth");
 
 const router = express.Router();

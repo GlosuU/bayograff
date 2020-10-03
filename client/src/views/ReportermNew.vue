@@ -38,7 +38,9 @@
 		methods: {
 			async addNewReporterm(newReporterm) {
 				try {
-					await ReportermService.addReporterm(newReporterm);
+					const accessToken = await this.$auth.getTokenSilently();
+
+					await ReportermService.addReporterm(newReporterm, accessToken);
 				} catch (err) {
 					this.err = err;
 				}

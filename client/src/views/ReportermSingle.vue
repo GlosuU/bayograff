@@ -51,7 +51,12 @@
 		},
 		async created() {
 			try {
-				this.reporterm = await ReportermService.getSingleReporterm(this.$route.params.id);
+				const accessToken = await this.$auth.getTokenSilently();
+
+				this.reporterm = await ReportermService.getSingleReporterm(
+					this.$route.params.id,
+					accessToken
+				);
 			} catch (err) {
 				this.err = err;
 			}
@@ -59,7 +64,9 @@
 		methods: {
 			async deleteReporterm() {
 				try {
-					await ReportermService.deleteReporterm(this.$route.params.id);
+					const accessToken = await this.$auth.getTokenSilently();
+
+					await ReportermService.deleteReporterm(this.$route.params.id, accessToken);
 				} catch (err) {
 					this.err = err;
 				}

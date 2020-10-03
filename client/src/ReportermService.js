@@ -3,15 +3,24 @@ import axios from "axios";
 const url = "api/reporterms/";
 
 class ReportermService {
+	// Axios config JSON including JWT
+	static axios_config(accessToken) {
+		return {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		};
+	}
+
 	// Get Reporterms
-	static getReporterms(searchQuery) {
+	static getReporterms(searchQuery, accessToken) {
 		let finalUrl = url;
 		if (searchQuery) {
 			finalUrl = url + "?search=" + searchQuery;
 		}
 		return new Promise((resolve, reject) => {
 			axios
-				.get(finalUrl)
+				.get(finalUrl, ReportermService.axios_config(accessToken))
 				.then((res) => {
 					const data = res.data;
 					resolve(
@@ -31,10 +40,10 @@ class ReportermService {
 	}
 
 	// Get one single Reporterm
-	static getSingleReporterm(id) {
+	static getSingleReporterm(id, accessToken) {
 		return new Promise((resolve, reject) => {
 			axios
-				.get(`${url}${id}`)
+				.get(`${url}${id}`, ReportermService.axios_config(accessToken))
 				.then((res) => {
 					resolve(res.data);
 				})
@@ -46,28 +55,36 @@ class ReportermService {
 	}
 
 	// Create new Reporterm
-	static addReporterm(newReporterm) {
-		return axios.post(url, {
-			startDate: newReporterm.startDate,
-			endDate: newReporterm.endDate,
-			title: newReporterm.title,
-			content: newReporterm.content,
-		});
+	static addReporterm(newReporterm, accessToken) {
+		return axios.post(
+			url,
+			{
+				startDate: newReporterm.startDate,
+				endDate: newReporterm.endDate,
+				title: newReporterm.title,
+				content: newReporterm.content,
+			},
+			ReportermService.axios_config(accessToken)
+		);
 	}
 
 	// Update existing Reporterm
-	static editReporterm(id, updatedReporterm) {
-		return axios.put(`${url}${id}`, {
-			startDate: updatedReporterm.startDate,
-			endDate: updatedReporterm.endDate,
-			title: updatedReporterm.title,
-			content: updatedReporterm.content,
-		});
+	static editReporterm(id, updatedReporterm, accessToken) {
+		return axios.put(
+			`${url}${id}`,
+			{
+				startDate: updatedReporterm.startDate,
+				endDate: updatedReporterm.endDate,
+				title: updatedReporterm.title,
+				content: updatedReporterm.content,
+			},
+			ReportermService.axios_config(accessToken)
+		);
 	}
 
 	// Delete Reporterm
-	static deleteReporterm(id) {
-		return axios.delete(`${url}${id}`);
+	static deleteReporterm(id, accessToken) {
+		return axios.delete(`${url}${id}`, ReportermService.axios_config(accessToken));
 	}
 }
 

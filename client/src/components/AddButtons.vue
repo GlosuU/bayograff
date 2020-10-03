@@ -12,6 +12,7 @@
 			></b-form-input>
 			<b-button class="my-2 my-sm-0" type="submit">Search</b-button>
 		</b-form>
+		<div class="clear" />
 	</div>
 </template>
 

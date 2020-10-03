@@ -1,20 +1,18 @@
 const express = require("express");
-const mongodb = require("mongodb");
 const path = require("path");
 const fs = require("fs");
-const { db_name, db_url } = require("../../config");
+const checkJWT = require("../../middleware/auth");
+const Reporterm = require("../../models/Reporterm");
+const { environment, port } = require("../../config/config");
 
 const router = express.Router();
+
 const latex_online_url = "http://latexonline.cc/compile?url=";
-const bayograff_latex_url = "https://bayograff.herokuapp.com/api/export/latex";
-
-async function loadReportermsCollection() {
-	const client = await mongodb.MongoClient.connect(db_url, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	});
-
-	return client.db(db_name).collection("reporterms");
+let bayograff_app_url = "";
+if (environment === "development") {
+	bayograff_app_url = `http://localhost:${port}`;
+} else {
+	bayograff_app_url = "http://bayograff.herokuapp.com";
 }
 
 //// .TXT EXPORT
@@ -95,46 +93,85 @@ function collectionToLatex(reporterms, fileName, next) {
 
 //// ROUTES
 
-// Send .txt file
-router.get("/txt", async (req, res) => {
-	const reporterms = await loadReportermsCollection();
-	reporterms
-		.find({})
-		.toArray()
-		.then((reps) => {
-			const fileName = `txtoutput_${new Date().getTime()}`;
-			collectionToTxt(reps, fileName, (err) => {
-				if (err) throw err;
-				console.log(`Saved to ${fileName}.txt`);
-				res.sendFile(path.resolve(__dirname, `../../public/text/${fileName}.txt`));
-			});
-		})
-		.catch((err) => console.log(err));
+// @desc    Send the whole biography as a .txt file
+// @route   GET /api/export/txt
+router.get("/txt", checkJWT, async (req, res) => {
+	try {
+		const reporterms = await Reporterm.find({
+			user: req.user.sub,
+		});
+
+		// Use the last 3 digits of the user ID to increase variance in file name
+		const userfootprint = req.user.sub.slice(-3);
+
+		const fileName = `bayograff_${userfootprint}-${new Date().getTime()}`;
+
+		collectionToTxt(reporterms, fileName, (err) => {
+			if (err) throw err;
+			console.log(`Saved successfully to ${fileName}.txt`);
+			res.send(`${bayograff_app_url}/public/text/${fileName}.txt`);
+			// res.sendFile(path.resolve(__dirname, `../../public/text/${fileName}.txt`));
+		});
+	} catch (err) {
+		console.error(err);
+		res.status(500).send();
+	}
 });
 
-// Send Latex file
-router.get("/latex", async (req, res) => {
-	const reporterms = await loadReportermsCollection();
-	reporterms
-		.find({})
-		.toArray()
-		.then((reps) => {
-			const fileName = `latexoutput_${new Date().getTime()}`;
-			collectionToLatex(reps, fileName, (err) => {
-				if (err) throw err;
-				console.log(`Saved to ${fileName}.tex`);
-				res.sendFile(path.resolve(__dirname, `../../public/latex/${fileName}.tex`));
-			});
-		})
-		.catch((err) => console.log(err));
+// @desc    Send the whole biography as a .tex file
+// @route   GET /api/export/latex
+router.get("/latex", checkJWT, async (req, res) => {
+	try {
+		const reporterms = await Reporterm.find({
+			user: req.user.sub,
+		});
+
+		// Use the last 3 digits of the user ID to increase variance in file name
+		const userfootprint = req.user.sub.slice(-3);
+
+		const fileName = `bayograff_${userfootprint}-${new Date().getTime()}`;
+
+		collectionToLatex(reporterms, fileName, (err) => {
+			if (err) throw err;
+			console.log(`Saved successfully to ${fileName}.tex`);
+			res.send(`${bayograff_app_url}/public/latex/${fileName}.tex`);
+			// res.sendFile(path.resolve(__dirname, `../../public/latex/${fileName}.tex`));
+		});
+	} catch (err) {
+		console.error(err);
+		res.status(500).send();
+	}
 });
 
-// Send PDF file
-router.get("/pdf", async (req, res) => {
-	res.redirect(`${latex_online_url}${bayograff_latex_url}`);
+// @desc    Send the whole biography as a .pdf file
+// @route   GET /api/export/pdf
+router.get("/pdf", checkJWT, async (req, res) => {
+	try {
+		const reporterms = await Reporterm.find({
+			user: req.user.sub,
+		});
+
+		// Use the last 3 digits of the user ID to increase variance in file name
+		const userfootprint = req.user.sub.slice(-3);
+
+		const fileName = `bayograff_${userfootprint}-${new Date().getTime()}`;
+
+		collectionToLatex(reporterms, fileName, (err) => {
+			if (err) throw err;
+			console.log(`Saved successfully to ${fileName}.tex`);
+			// If you want this to work in development, upload the .tex file somewhere else in the cloud
+			// res.send(`${latex_online_url}$http://bayograff.herokuapp.com/api/export/sample`);
+			res.send(`${latex_online_url}${bayograff_app_url}/public/latex/${fileName}.tex`);
+			// res.redirect(`${latex_online_url}${bayograff_app_url}/public/latex/${fileName}.tex`);
+		});
+	} catch (err) {
+		console.error(err);
+		res.status(500).send();
+	}
 });
 
-// Send sample latex file
+// @desc    Send a sample .tex file
+// @route   GET /api/export/sample
 router.get("/sample", async (req, res) => {
 	res.sendFile(path.resolve(__dirname, `../../public/latex/sample.tex`));
 });

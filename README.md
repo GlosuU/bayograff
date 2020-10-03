@@ -4,10 +4,16 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
+-   Add Loading Circle to everything but ReportermsList
 -   Images can't be inserted into Latex :(
 -   After searching something, clicking Reporterms does not refresh to all reporterms
 -   Allow date input with text (maybe use npm install v-calendar)
 -   min and max dates should be one day off maybe (will need to use computed I believe)
+
+## Necessary external accounts (add private parameters to .env file)
+
+-   Auth0 (https://auth0.com/)
+-   MongoDB (e.g. Atlas)
 
 ## Project setup
 
@@ -15,19 +21,19 @@ Write an autobiography, a journal or a chronology online
 npm install
 ```
 
-### Run server in development mode
+### Run webapp in development mode
+
+```
+npm run dev
+```
+
+### Run only server in development mode
 
 ```
 npm run server-dev
 ```
 
-### Run client in development mode
-
-```
-npm run client-dev
-```
-
-### Build the client and run server in production mode
+### Build the client and run webapp in production mode
 
 ```
 npm run client-build

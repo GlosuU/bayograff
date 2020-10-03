@@ -12,46 +12,33 @@ class ExporterService {
 		};
 	}
 
-	// Export to PDF
-	static export2pdf(accessToken) {
+	// Template for Axios Promise
+	static axiosPromise(full_url, accessToken) {
 		return new Promise((resolve, reject) => {
 			axios
-				.get(`${url}/pdf`, ExporterService.axios_config(accessToken))
-				.then(() => {
-					resolve();
+				.get(full_url, ExporterService.axios_config(accessToken))
+				.then((res) => {
+					resolve(window.open(res.data, "_blank"));
 				})
 				.catch((err) => {
 					reject(err);
 				});
 		});
+	}
+
+	// Export to PDF
+	static export2pdf(accessToken) {
+		return ExporterService.axiosPromise(`${url}/pdf`, accessToken);
 	}
 
 	// Export to Latex
 	static export2tex(accessToken) {
-		return new Promise((resolve, reject) => {
-			axios
-				.get(`${url}/latex`, ExporterService.axios_config(accessToken))
-				.then(() => {
-					resolve();
-				})
-				.catch((err) => {
-					reject(err);
-				});
-		});
+		return ExporterService.axiosPromise(`${url}/latex`, accessToken);
 	}
 
 	// Export to Text
 	static export2txt(accessToken) {
-		return new Promise((resolve, reject) => {
-			axios
-				.get(`${url}/txt`, ExporterService.axios_config(accessToken))
-				.then(() => {
-					resolve();
-				})
-				.catch((err) => {
-					reject(err);
-				});
-		});
+		return ExporterService.axiosPromise(`${url}/txt`, accessToken);
 	}
 }
 

@@ -3,11 +3,17 @@ const path = require("path");
 const fs = require("fs");
 const checkJWT = require("../../middleware/auth");
 const Reporterm = require("../../models/Reporterm");
+const { environment, port } = require("../../config/config");
 
 const router = express.Router();
 
 const latex_online_url = "http://latexonline.cc/compile?url=";
-const bayograff_app_url = "https://bayograff.herokuapp.com";
+let bayograff_app_url = "";
+if (environment === "development") {
+	bayograff_app_url = `http://localhost:${port}`;
+} else {
+	bayograff_app_url = "http://bayograff.herokuapp.com";
+}
 
 //// .TXT EXPORT
 
@@ -103,7 +109,8 @@ router.get("/txt", checkJWT, async (req, res) => {
 		collectionToTxt(reporterms, fileName, (err) => {
 			if (err) throw err;
 			console.log(`Saved successfully to ${fileName}.txt`);
-			res.sendFile(path.resolve(__dirname, `../../public/text/${fileName}.txt`));
+			res.send(`${bayograff_app_url}/public/text/${fileName}.txt`);
+			// res.sendFile(path.resolve(__dirname, `../../public/text/${fileName}.txt`));
 		});
 	} catch (err) {
 		console.error(err);
@@ -127,7 +134,8 @@ router.get("/latex", checkJWT, async (req, res) => {
 		collectionToLatex(reporterms, fileName, (err) => {
 			if (err) throw err;
 			console.log(`Saved successfully to ${fileName}.tex`);
-			res.sendFile(path.resolve(__dirname, `../../public/latex/${fileName}.tex`));
+			res.send(`${bayograff_app_url}/public/latex/${fileName}.tex`);
+			// res.sendFile(path.resolve(__dirname, `../../public/latex/${fileName}.tex`));
 		});
 	} catch (err) {
 		console.error(err);
@@ -151,7 +159,10 @@ router.get("/pdf", checkJWT, async (req, res) => {
 		collectionToLatex(reporterms, fileName, (err) => {
 			if (err) throw err;
 			console.log(`Saved successfully to ${fileName}.tex`);
-			res.redirect(`${latex_online_url}${bayograff_app_url}/public/${fileName}.tex`);
+			// If you want this to work in development, upload the .tex file somewhere else in the cloud
+			// res.send(`${latex_online_url}$http://bayograff.herokuapp.com/api/export/sample`);
+			res.send(`${latex_online_url}${bayograff_app_url}/public/latex/${fileName}.tex`);
+			// res.redirect(`${latex_online_url}${bayograff_app_url}/public/latex/${fileName}.tex`);
 		});
 	} catch (err) {
 		console.error(err);

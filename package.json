@@ -1,6 +1,6 @@
 {
 	"name": "bayograff",
-	"version": "0.1.5",
+	"version": "0.2.0",
 	"description": "online biographies, journals and chronologies",
 	"private": true,
 	"main": "index.js",
@@ -40,6 +40,7 @@
 		"node-forge": ">=0.10.0",
 		"npm-run-all": "^4.1.5",
 		"vue": "^2.6.12",
+		"vue-loading-spinner": "^1.0.11",
 		"vue-router": "^3.2.0"
 	},
 	"devDependencies": {

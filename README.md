@@ -4,6 +4,7 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
+-   Add Loading Circle to everything but ReportermsList
 -   Images can't be inserted into Latex :(
 -   After searching something, clicking Reporterms does not refresh to all reporterms
 -   Allow date input with text (maybe use npm install v-calendar)

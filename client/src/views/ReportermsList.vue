@@ -1,10 +1,20 @@
 <template>
 	<div id="ReportermsView">
 		<AddButtons @search-text="searchReporterms" />
-		<div v-for="r in reporterms" :key="r._id" :reporterm="r">
-			<router-link :to="'/reporterms/' + r._id">
-				<ReportermCard :reporterm="r" />
-			</router-link>
+		<div class="pushToRight" v-if="!ready">
+			<LoadingCircle />
+		</div>
+		<div class="pushToRight" v-if="ready">
+			<div v-if="reporterms.length == 0">
+				<h4>
+					You have not created any reporterms yet. Click "New Reporterm" to create one.
+				</h4>
+			</div>
+			<div v-for="r in reporterms" :key="r._id" :reporterm="r">
+				<router-link :to="'/reporterms/' + r._id">
+					<ReportermCard :reporterm="r" />
+				</router-link>
+			</div>
 		</div>
 		<AddButtons @search-text="searchReporterms" />
 	</div>
@@ -12,12 +22,14 @@
 
 <script>
 	import AddButtons from "../components/AddButtons";
+	import Circle from "vue-loading-spinner/src/components/Circle";
 	import ReportermCard from "../components/ReportermCard";
 	import ReportermService from "../ReportermService";
 
 	export default {
 		components: {
 			AddButtons,
+			LoadingCircle: Circle,
 			ReportermCard,
 		},
 		props: {
@@ -28,6 +40,7 @@
 		},
 		data() {
 			return {
+				ready: false,
 				reporterms: [],
 				// textToSearch: "",
 				err: "",
@@ -43,6 +56,8 @@
 					this.textToSearch,
 					accessToken
 				);
+
+				this.ready = true;
 			} catch (err) {
 				this.err = err;
 			}
@@ -56,4 +71,8 @@
 	};
 </script>
 
-<style></style>
+<style>
+	.pushToRight {
+		margin-left: 10px;
+	}
+</style>

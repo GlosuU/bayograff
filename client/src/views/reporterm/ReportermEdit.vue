@@ -1,5 +1,5 @@
 <template>
-	<div id="reporterm-new">
+	<div id="reporterm-new" class="reporterm">
 		<BayoForm
 			:statusMsg="message"
 			:object="reporterm"
@@ -10,10 +10,11 @@
 </template>
 
 <script>
-	import BayoForm from "../components/BayoForm";
-	import ReportermService from "../ReportermService";
+	import BayoForm from "../../components/BayoForm";
+	import ReportermService from "../../ReportermService";
 
 	export default {
+		name: "ReportermEdit",
 		components: {
 			BayoForm,
 		},

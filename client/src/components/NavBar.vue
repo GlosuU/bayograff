@@ -22,8 +22,8 @@
 
 <style>
 	#nav {
-		/* position: fixed */
-		padding-bottom: 10px;
+		/* position: fixed 
+		padding-bottom: 10px; */
 	}
 
 	#nav a {

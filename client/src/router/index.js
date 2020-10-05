@@ -2,10 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import Home from "../views/Home";
-import ReportermsList from "../views/ReportermsList";
-import ReportermNew from "../views/ReportermNew";
-import ReportermSingle from "../views/ReportermSingle";
-import ReportermEdit from "../views/ReportermEdit";
+import ReportermsList from "../views/reporterm/ReportermsList";
+import ReportermNew from "../views/reporterm/ReportermNew";
+import ReportermSingle from "../views/reporterm/ReportermSingle";
+import ReportermEdit from "../views/reporterm/ReportermEdit";
 import Export from "../views/Export";
 import Profile from "../views/Profile";
 

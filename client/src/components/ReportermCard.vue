@@ -47,6 +47,13 @@
 <script>
 	export default {
 		props: ["reporterm"],
+		data() {
+			return {
+				images: {
+					butterfly: require("../../public/assets/img/beach.jpg"),
+				},
+			};
+		},
 	};
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-	<div id="reporterm-single">
+	<div id="reporterm-single" class="reporterm">
 		<AddButtons />
 		<div class="clear"></div>
 		<div id="reporterm-single-content">
@@ -36,10 +36,11 @@
 </template>
 
 <script>
-	import AddButtons from "../components/AddButtons";
-	import ReportermService from "../ReportermService";
+	import AddButtons from "../../components/AddButtons";
+	import ReportermService from "../../ReportermService";
 
 	export default {
+		name: "ReportermSingle",
 		components: {
 			AddButtons,
 		},

@@ -1,5 +1,5 @@
 <template>
-	<div id="ReportermsView">
+	<div id="ReportermsView" class="reporterm">
 		<AddButtons @search-text="searchReporterms" />
 		<div class="pushToRight" v-if="!ready">
 			<LoadingCircle />
@@ -21,12 +21,13 @@
 </template>
 
 <script>
-	import AddButtons from "../components/AddButtons";
+	import AddButtons from "../../components/AddButtons";
 	import Circle from "vue-loading-spinner/src/components/Circle";
-	import ReportermCard from "../components/ReportermCard";
-	import ReportermService from "../ReportermService";
+	import ReportermCard from "../../components/ReportermCard";
+	import ReportermService from "../../ReportermService";
 
 	export default {
+		name: "ReportermsList",
 		components: {
 			AddButtons,
 			LoadingCircle: Circle,

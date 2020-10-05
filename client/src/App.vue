@@ -32,4 +32,16 @@
 		clear: both;
 		margin: 20px;
 	}
+
+	.reporterm {
+		background-color: lightpink;
+	}
+
+	.anecdaynote {
+		background-color: lightskyblue;
+	}
+
+	.factale {
+		background-color: lightgreen;
+	}
 </style>

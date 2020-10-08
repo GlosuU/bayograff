@@ -3,17 +3,20 @@
 		<Header />
 		<NavBar v-if="$auth.isAuthenticated" />
 		<router-view />
+		<Footer />
 	</div>
 </template>
 
 <script>
 	import Header from "./components/Header";
 	import NavBar from "./components/NavBar";
+	import Footer from "./components/Footer";
 
 	export default {
 		components: {
 			Header,
 			NavBar,
+			Footer,
 		},
 	};
 </script>
@@ -43,5 +46,13 @@
 
 	.factale {
 		background-color: lightgreen;
+	}
+
+	.pushToRight {
+		margin-left: 10px;
+	}
+
+	.centeraligned {
+		margin: auto;
 	}
 </style>

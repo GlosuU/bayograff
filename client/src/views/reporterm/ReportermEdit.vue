@@ -1,6 +1,10 @@
 <template>
 	<div id="reporterm-new" class="reporterm">
+		<div class="centeraligned" v-if="!ready">
+			<LoadingCircle />
+		</div>
 		<BayoForm
+			v-if="ready"
 			:statusMsg="message"
 			:object="reporterm"
 			:fromRoute="fromRoute"
@@ -10,16 +14,19 @@
 </template>
 
 <script>
+	import Circle from "vue-loading-spinner/src/components/Circle";
 	import BayoForm from "../../components/BayoForm";
 	import ReportermService from "../../ReportermService";
 
 	export default {
 		name: "ReportermEdit",
 		components: {
+			LoadingCircle: Circle,
 			BayoForm,
 		},
 		data() {
 			return {
+				ready: false,
 				reporterm: {},
 				message: "",
 				fromRoute: "/reporterms/" + this.$route.params.id,
@@ -33,6 +40,7 @@
 					accessToken
 				);
 				this.message = "Editing Reporterm " + this.reporterm.title + "...";
+				this.ready = true;
 			} catch (err) {
 				this.err = err;
 			}

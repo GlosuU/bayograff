@@ -1,18 +1,18 @@
 <template>
 	<div id="ReportermsView" class="reporterm">
 		<AddButtons @search-text="searchReporterms" />
-		<div class="pushToRight" v-if="!ready">
+		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
-		<div class="pushToRight" v-if="ready">
+		<div class="centeraligned maxcardsize" v-if="ready">
 			<div v-if="reporterms.length == 0">
 				<h4>
 					You have not created any reporterms yet. Click "New Reporterm" to create one.
 				</h4>
 			</div>
-			<div v-for="r in reporterms" :key="r._id" :reporterm="r">
+			<div class="reportermcard" v-for="r in reporterms" :key="r._id">
 				<router-link :to="'/reporterms/' + r._id">
-					<ReportermCard :reporterm="r" />
+					<BayoCard :bayobject="r" />
 				</router-link>
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 <script>
 	import AddButtons from "../../components/AddButtons";
 	import Circle from "vue-loading-spinner/src/components/Circle";
-	import ReportermCard from "../../components/ReportermCard";
+	import BayoCard from "../../components/BayoCard";
 	import ReportermService from "../../ReportermService";
 
 	export default {
@@ -31,7 +31,7 @@
 		components: {
 			AddButtons,
 			LoadingCircle: Circle,
-			ReportermCard,
+			BayoCard,
 		},
 		props: {
 			textToSearch: {
@@ -72,8 +72,21 @@
 	};
 </script>
 
-<style>
-	.pushToRight {
-		margin-left: 10px;
+<style scoped>
+	.reportermcard {
+		border: 5px solid transparent;
+	}
+
+	.reportermcard:hover {
+		border: 5px solid red;
+	}
+
+	.reportermcard a {
+		color: black;
+	}
+
+	.reportermcard a:hover {
+		text-decoration: none;
+		color: darkred;
 	}
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<div id="headingin">
+	<div id="bayoheader">
 		<div id="title">
 			<h1><strong>Bayograff</strong></h1>
 			<h2>- Jot down your memories. Fast and simple.</h2>
@@ -11,6 +11,7 @@
 
 <script>
 	import Login from "./Login";
+
 	export default {
 		components: {
 			Login,
@@ -19,7 +20,7 @@
 </script>
 
 <style scoped>
-	#headingin {
+	#bayoheader {
 		padding: 20px;
 		background-color: aquamarine;
 	}

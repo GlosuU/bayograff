@@ -2,7 +2,10 @@
 	<div id="reporterm-single" class="reporterm">
 		<AddButtons />
 		<div class="clear"></div>
-		<div id="reporterm-single-content">
+		<div class="centeraligned" v-if="!ready">
+			<LoadingCircle />
+		</div>
+		<div id="reporterm-single-content" v-if="ready">
 			<b-button :to="'/reporterms/' + this.$route.params.id + '/edit'">Edit</b-button>|
 			<b-button @click="deleteReporterm">Delete</b-button>
 			<br />
@@ -37,15 +40,18 @@
 
 <script>
 	import AddButtons from "../../components/AddButtons";
+	import Circle from "vue-loading-spinner/src/components/Circle";
 	import ReportermService from "../../ReportermService";
 
 	export default {
 		name: "ReportermSingle",
 		components: {
 			AddButtons,
+			LoadingCircle: Circle,
 		},
 		data() {
 			return {
+				ready: false,
 				reporterm: {},
 				err: "",
 			};
@@ -58,6 +64,8 @@
 					this.$route.params.id,
 					accessToken
 				);
+
+				this.ready = true;
 			} catch (err) {
 				this.err = err;
 			}

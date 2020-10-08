@@ -4,15 +4,15 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Background colors
--   Cards show Updated at
--   Hovering over cards
--   Adjust card size
--   Add Loading Circle to everything but ReportermsList
 -   Sort list of reporterms by startDate
--   Polish exporter to get better .txt and .tex files
+-   Pop up confirmation before deleting
+-   Flash messages when editting or creating reporterm
+-   Better icons for edit/delete/etc
 -   Select images for reporterms from enum
+-   Polish exporter to get better .txt and .tex files
+-   Allow for sorting by title or last updated
 
+-   Background colors (still showing some yellow)
 -   Images can't be inserted into Latex :(
 -   After searching something, clicking Reporterms does not refresh to all reporterms
 -   Allow date input with text (maybe use npm install v-calendar)

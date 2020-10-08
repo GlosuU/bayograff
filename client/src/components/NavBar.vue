@@ -4,7 +4,7 @@
 			<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 			<b-collapse id="nav-collapse" is-nav>
 				<b-navbar-nav>
-					<router-link to="/">Home</router-link>
+					<router-link to="/" exact>Home</router-link>
 					<router-link to="/reporterms">Reporterms</router-link>
 					<router-link to="/about">Anecdaynotes</router-link>
 					<router-link to="/about">Factales</router-link>
@@ -21,18 +21,19 @@
 </script>
 
 <style>
-	#nav {
-		/* position: fixed 
-		padding-bottom: 10px; */
-	}
+	/* #nav {
+		position: fixed 
+		padding-bottom: 10px;
+	} */
 
 	#nav a {
 		font-weight: bold;
-		color: #ffffff;
+		color: white;
 		padding-right: 10px;
+		cursor: pointer;
 	}
 
-	/* #nav a.router-link-exact-active {
-  color: #ffea2e;
-} */
+	#nav a.router-link-active {
+		color: #ffea2e;
+	}
 </style>

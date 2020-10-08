@@ -16,7 +16,7 @@
 <script>
 	import Circle from "vue-loading-spinner/src/components/Circle";
 	import BayoForm from "../../components/BayoForm";
-	import ReportermService from "../../ReportermService";
+	import ReportermService from "../../apiservices/ReportermService";
 
 	export default {
 		name: "ReportermEdit",
@@ -54,10 +54,28 @@
 						updatedReporterm,
 						accessToken
 					);
+					this.$root.$bvToast.toast(
+						`Reporterm "${this.reporterm.title}" saved successfully!`,
+						{
+							title: "Saved",
+							toaster: "b-toaster-top-center",
+							variant: "primary",
+							autoHideDelay: 4000,
+						}
+					);
+					this.$router.push({ path: this.fromRoute });
 				} catch (err) {
 					this.err = err;
+					this.$root.$bvToast.toast(
+						`We're sorry, something went wrong and we couldn't save the reporterm. Maybe try again later.`,
+						{
+							title: "Error",
+							toaster: "b-toaster-top-center",
+							variant: "danger",
+							autoHideDelay: 5000,
+						}
+					);
 				}
-				this.$router.push({ path: this.fromRoute });
 			},
 		},
 	};

@@ -1,5 +1,6 @@
 <template>
 	<div id="app">
+		<vue-confirm-dialog />
 		<Header />
 		<NavBar v-if="$auth.isAuthenticated" />
 		<router-view />

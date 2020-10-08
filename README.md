@@ -4,9 +4,6 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Sort list of reporterms by startDate
--   Pop up confirmation before deleting
--   Flash messages when editting or creating reporterm
 -   Better icons for edit/delete/etc
 -   Select images for reporterms from enum
 -   Polish exporter to get better .txt and .tex files

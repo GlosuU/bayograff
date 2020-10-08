@@ -24,7 +24,7 @@
 	import AddButtons from "../../components/AddButtons";
 	import Circle from "vue-loading-spinner/src/components/Circle";
 	import BayoCard from "../../components/BayoCard";
-	import ReportermService from "../../ReportermService";
+	import ReportermService from "../../apiservices/ReportermService";
 
 	export default {
 		name: "ReportermsList",

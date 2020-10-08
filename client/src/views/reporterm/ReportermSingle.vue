@@ -41,7 +41,7 @@
 <script>
 	import AddButtons from "../../components/AddButtons";
 	import Circle from "vue-loading-spinner/src/components/Circle";
-	import ReportermService from "../../ReportermService";
+	import ReportermService from "../../apiservices/ReportermService";
 
 	export default {
 		name: "ReportermSingle",
@@ -72,14 +72,53 @@
 		},
 		methods: {
 			async deleteReporterm() {
-				try {
-					const accessToken = await this.$auth.getTokenSilently();
+				this.$confirm({
+					title: `Are you sure?`,
+					message: `This will delete the Reporterm "${this.reporterm.title}"`,
+					button: {
+						no: "No, cancel",
+						yes: "Yes, delete it",
+					},
+					/**
+					 * Callback Function
+					 * @param {Boolean} confirm
+					 */
+					callback: async (confirm) => {
+						if (confirm) {
+							try {
+								const accessToken = await this.$auth.getTokenSilently();
 
-					await ReportermService.deleteReporterm(this.$route.params.id, accessToken);
-				} catch (err) {
-					this.err = err;
-				}
-				this.$router.push({ path: "/reporterms/" });
+								await ReportermService.deleteReporterm(
+									this.$route.params.id,
+									accessToken
+								);
+
+								this.$root.$bvToast.toast(
+									`Reporterm "${this.reporterm.title}" deleted successfully!`,
+									{
+										title: "Deleted",
+										toaster: "b-toaster-top-center",
+										variant: "primary",
+										autoHideDelay: 4000,
+									}
+								);
+
+								this.$router.push({ path: "/reporterms/" });
+							} catch (err) {
+								this.err = err;
+								this.$root.$bvToast.toast(
+									`We're sorry, something went wrong and we couldn't delete the reporterm. Maybe try again later.`,
+									{
+										title: "Error",
+										toaster: "b-toaster-top-center",
+										variant: "danger",
+										autoHideDelay: 5000,
+									}
+								);
+							}
+						}
+					},
+				});
 			},
 		},
 	};

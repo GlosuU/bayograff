@@ -11,7 +11,7 @@
 
 <script>
 	import BayoForm from "../../components/BayoForm";
-	import ReportermService from "../../ReportermService";
+	import ReportermService from "../../apiservices/ReportermService";
 
 	export default {
 		name: "ReportermNew",
@@ -42,10 +42,31 @@
 					const accessToken = await this.$auth.getTokenSilently();
 
 					await ReportermService.addReporterm(newReporterm, accessToken);
+
+					this.$root.$bvToast.toast(
+						`Reporterm "${this.newReporterm.title}" created successfully!`,
+						{
+							title: "Created",
+							toaster: "b-toaster-top-center",
+							variant: "primary",
+							autoHideDelay: 4000,
+						}
+					);
+
+					this.$router.push({ path: "/reporterms/" });
 				} catch (err) {
 					this.err = err;
+					// console.err(err);
+					this.$root.$bvToast.toast(
+						`We're sorry, something went wrong and we couldn't create the reporterm. Maybe try again later.`,
+						{
+							title: "Error",
+							toaster: "b-toaster-top-center",
+							variant: "danger",
+							autoHideDelay: 5000,
+						}
+					);
 				}
-				this.$router.push({ path: "/reporterms/" });
 			},
 		},
 	};

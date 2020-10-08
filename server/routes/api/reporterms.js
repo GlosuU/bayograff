@@ -17,11 +17,11 @@ router.get("/", checkJWT, async (req, res) => {
 					{ title: { $regex: req.query.search, $options: "i" } },
 					{ content: { $regex: req.query.search, $options: "i" } },
 				],
-			});
+			}).sort({ startDate: 1 });
 		} else {
 			reporterms = await Reporterm.find({
 				user: req.user.sub,
-			});
+			}).sort({ startDate: 1 });
 		}
 		res.send(reporterms);
 	} catch (err) {

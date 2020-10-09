@@ -54,9 +54,9 @@
 				></b-form-textarea>
 			</b-form-group>
 
-			<b-button type="submit" variant="success">Save</b-button>
-			<b-button :to="fromRoute" variant="danger">Cancel</b-button>
-			<b-button type="reset" variant="primary">Reset</b-button>
+			<b-button type="submit" variant="success"><b-icon icon="upload" /> Save</b-button>
+			<b-button :to="fromRoute" variant="danger"><b-icon icon="x-circle" /> Cancel</b-button>
+			<!-- <b-button type="reset" variant="primary">Reset</b-button> -->
 		</b-form>
 	</div>
 </template>
@@ -75,19 +75,19 @@
 				evt.preventDefault();
 				this.$emit("save-object", this.object);
 			},
-			onReset(evt) {
-				evt.preventDefault();
-				// Reset form values
-				this.object.title = "";
-				this.object.content = "";
-				this.object.startDate = new Date(2018, 0, 16);
-				this.object.endDate = new Date();
-				// Trick to reset/clear native browser form validation state
-				this.show = false;
-				this.$nextTick(() => {
-					this.show = true;
-				});
-			},
+			// onReset(evt) {
+			// 	evt.preventDefault();
+			// 	// Reset form values
+			// 	this.object.title = "";
+			// 	this.object.content = "";
+			// 	this.object.startDate = new Date(2018, 0, 16);
+			// 	this.object.endDate = new Date();
+			// 	// Trick to reset/clear native browser form validation state
+			// 	this.show = false;
+			// 	this.$nextTick(() => {
+			// 		this.show = true;
+			// 	});
+			// },
 		},
 	};
 </script>

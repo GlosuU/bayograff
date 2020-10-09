@@ -1,16 +1,20 @@
 <template>
 	<div id="addbuttons">
-		<b-button to="/reporterms/new">New Reporterm</b-button>
-		<b-button>New Anecdaynote</b-button>
-		<b-button>New Factale</b-button>
+		<b-button to="/reporterms/new" variant="dark">
+			<b-icon icon="journal-plus" /> New Reporterm
+		</b-button>
+		<b-button variant="dark"> <b-icon icon="file-earmark-plus" /> New Anecdaynote</b-button>
+		<b-button variant="dark"> <b-icon icon="patch-plus" /> New Factale</b-button>
 		<b-form @submit="searchText" inline>
 			<b-form-input
 				v-model="textToSearch"
 				class="mr-sm-2"
-				placeholder="Search"
+				placeholder="Search by text"
 				required
 			></b-form-input>
-			<b-button class="my-2 my-sm-0" type="submit">Search</b-button>
+			<b-button class="my-2 my-sm-0" type="submit">
+				<b-icon icon="search" /> Search
+			</b-button>
 		</b-form>
 		<div class="clear" />
 	</div>

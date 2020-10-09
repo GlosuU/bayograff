@@ -39,7 +39,7 @@
 					this.$route.params.id,
 					accessToken
 				);
-				this.message = "Editing Reporterm " + this.reporterm.title + "...";
+				this.message = `Editing Reporterm "${this.reporterm.title}"...`;
 				this.ready = true;
 			} catch (err) {
 				this.err = err;

@@ -6,8 +6,13 @@
 			<LoadingCircle />
 		</div>
 		<div id="reporterm-single-content" v-if="ready">
-			<b-button :to="'/reporterms/' + this.$route.params.id + '/edit'">Edit</b-button>|
-			<b-button @click="deleteReporterm">Delete</b-button>
+			<b-button :to="`/reporterms/${this.$route.params.id}/edit`" variant="primary">
+				<b-icon icon="pencil-square" /> Edit
+			</b-button>
+			&nbsp;
+			<b-button @click="deleteReporterm" variant="danger">
+				<b-icon icon="trash" /> Delete
+			</b-button>
 			<br />
 			<br />
 			<h2>

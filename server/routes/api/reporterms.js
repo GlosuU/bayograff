@@ -82,8 +82,6 @@ router.put("/:id", checkJWT, async (req, res) => {
 			res.status(403).send();
 		} else {
 			req.body.updatedAt = new Date();
-			req.body.image =
-				"https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search-v2_297x176.jpg";
 			await Reporterm.findOneAndUpdate({ _id: req.params.id }, req.body, {
 				new: true,
 				runValidators: true,

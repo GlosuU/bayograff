@@ -36,7 +36,7 @@
 			<br />
 			<p id="content-paragraph">{{ reporterm.content }}</p>
 			<br />
-			<img :src="reporterm.image" alt="Reporterm Image" />
+			<img :src="getImage(reporterm.image, images)" alt="Reporterm Image" />
 			<br />
 		</div>
 		<AddButtons />
@@ -59,6 +59,14 @@
 				ready: false,
 				reporterm: {},
 				err: "",
+				images: {
+					noImg: require("../../../public/assets/img/default-img.jpg"),
+					beach: require("../../../public/assets/img/beach.jpg"),
+					mountain: require("../../../public/assets/img/mountain.jpg"),
+					graduation: require("../../../public/assets/img/graduation.jpg"),
+					heart: require("../../../public/assets/img/heart.jpg"),
+					ball: require("../../../public/assets/img/ball.jpg"),
+				},
 			};
 		},
 		async created() {
@@ -76,6 +84,13 @@
 			}
 		},
 		methods: {
+			getImage: (imgProperty, images) => {
+				if (imgProperty in images) {
+					return images[imgProperty];
+				} else {
+					return imgProperty;
+				}
+			},
 			async deleteReporterm() {
 				this.$confirm({
 					title: `Are you sure?`,

@@ -32,6 +32,7 @@
 					endDate: end,
 					title: "",
 					content: "",
+					image: "noImg",
 				},
 				fromRoute: "/reporterms/",
 			};

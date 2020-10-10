@@ -2,8 +2,8 @@
 	<div id="bayo-form">
 		<h2>{{ statusMsg }}</h2>
 		<br />
-		<b-form @submit="onSave" @reset="onReset" v-if="show">
-			<b-form-group id="input-group-1" label="Date Range:" label-for="input-1">
+		<b-form @submit="onSave">
+			<b-form-group id="dates-input-group" label="Date Range:" label-for="input-1">
 				<b-input-group id="input-1">
 					<b-datepicker
 						id="startDate"
@@ -33,16 +33,16 @@
 				</b-input-group>
 			</b-form-group>
 
-			<b-form-group id="input-group-2" label="Title:" label-for="input-2">
+			<b-form-group id="title-input-group" label="Title:" label-for="input-2">
 				<b-form-input
 					id="input-2"
 					v-model="object.title"
 					required
 					placeholder="Enter title"
-				></b-form-input>
+				/>
 			</b-form-group>
 
-			<b-form-group id="input-group-3" label="Content:" label-for="input-3">
+			<b-form-group id="content-input-group" label="Content:" label-for="input-3">
 				<b-form-textarea
 					id="input-3"
 					v-model="object.content"
@@ -51,12 +51,84 @@
 					rows="8"
 					max-rows="8"
 					no-resize
-				></b-form-textarea>
+				/>
 			</b-form-group>
 
+			<b-button v-b-toggle.imgOptionsCollapse variant="primary">
+				{{ imgOptionsVisible ? "Hide" : "Show" }} image options
+				<b-icon v-if="!imgOptionsVisible" icon="arrow-right" />
+				<b-icon v-if="imgOptionsVisible" icon="arrow-down" />
+			</b-button>
+			<br />
+			<b-collapse id="imgOptionsCollapse" v-model="imgOptionsVisible">
+				<br />
+				<b-form-radio-group id="image-location-radio-group" v-model="useExternalImg">
+					<b-form-radio :value="false">
+						Use a preset image:
+						<div class="bayoformRadioOptions">
+							<b-form-radio-group id="local-image-radio-group" v-model="object.image">
+								<b-form-radio value="noImg" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.noImg"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+								<b-form-radio value="beach" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.beach"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+								<b-form-radio value="mountain" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.mountain"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+								<b-form-radio value="graduation" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.graduation"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+								<b-form-radio value="heart" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.heart"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+								<b-form-radio value="ball" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.ball"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+							</b-form-radio-group>
+						</div>
+					</b-form-radio>
+					<b-form-radio :value="true">
+						Use an external image:
+						<div class="bayoformRadioOptions">
+							<b-form-input
+								id="hello"
+								placeholder="Image URL"
+								v-model="object.image"
+								:disabled="!useExternalImg"
+							/>
+						</div>
+					</b-form-radio>
+				</b-form-radio-group>
+			</b-collapse>
+
+			<br />
 			<b-button type="submit" variant="success"><b-icon icon="upload" /> Save</b-button>
 			<b-button :to="fromRoute" variant="danger"><b-icon icon="x-circle" /> Cancel</b-button>
-			<!-- <b-button type="reset" variant="primary">Reset</b-button> -->
 		</b-form>
 	</div>
 </template>
@@ -67,7 +139,17 @@
 		props: ["statusMsg", "object", "fromRoute"],
 		data() {
 			return {
-				show: true,
+				// show: true,
+				imgOptionsVisible: false,
+				useExternalImg: false,
+				images: {
+					noImg: require("../../public/assets/img/default-img.jpg"),
+					beach: require("../../public/assets/img/beach.jpg"),
+					mountain: require("../../public/assets/img/mountain.jpg"),
+					graduation: require("../../public/assets/img/graduation.jpg"),
+					heart: require("../../public/assets/img/heart.jpg"),
+					ball: require("../../public/assets/img/ball.jpg"),
+				},
 			};
 		},
 		methods: {
@@ -75,19 +157,6 @@
 				evt.preventDefault();
 				this.$emit("save-object", this.object);
 			},
-			// onReset(evt) {
-			// 	evt.preventDefault();
-			// 	// Reset form values
-			// 	this.object.title = "";
-			// 	this.object.content = "";
-			// 	this.object.startDate = new Date(2018, 0, 16);
-			// 	this.object.endDate = new Date();
-			// 	// Trick to reset/clear native browser form validation state
-			// 	this.show = false;
-			// 	this.$nextTick(() => {
-			// 		this.show = true;
-			// 	});
-			// },
 		},
 	};
 </script>
@@ -103,5 +172,9 @@
 
 	#bayo-form button {
 		margin-right: 10px;
+	}
+
+	.bayoformRadioOptions {
+		margin: 10px 0px 10px 50px;
 	}
 </style>

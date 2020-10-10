@@ -63,6 +63,7 @@ class ReportermService {
 				endDate: newReporterm.endDate,
 				title: newReporterm.title,
 				content: newReporterm.content,
+				image: newReporterm.image,
 			},
 			ReportermService.axios_config(accessToken)
 		);
@@ -77,6 +78,7 @@ class ReportermService {
 				endDate: updatedReporterm.endDate,
 				title: updatedReporterm.title,
 				content: updatedReporterm.content,
+				image: updatedReporterm.image,
 			},
 			ReportermService.axios_config(accessToken)
 		);

@@ -18,7 +18,7 @@
 					rounded="circle"
 					left
 					fluid
-				></b-card-img-lazy>
+				/>
 				Welcome, <strong>{{ $auth.user.name }}!</strong>
 				<b-button @click="logout" variant="dark">
 					<b-icon icon="power" /> Log out

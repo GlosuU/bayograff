@@ -1,6 +1,6 @@
 <template>
 	<div id="ReportermsView" class="reporterm">
-		<AddButtons @search-text="searchReporterms" />
+		<PrimaryButtons @search-text="searchReporterms" />
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
@@ -16,20 +16,20 @@
 				</router-link>
 			</div>
 		</div>
-		<AddButtons @search-text="searchReporterms" />
+		<PrimaryButtons @search-text="searchReporterms" />
 	</div>
 </template>
 
 <script>
-	import AddButtons from "../../components/AddButtons";
+	import PrimaryButtons from "../../components/PrimaryButtons";
 	import Circle from "vue-loading-spinner/src/components/Circle";
 	import BayoCard from "../../components/BayoCard";
-	import ReportermService from "../../apiservices/ReportermService";
+	import ReportermService from "../../services/ReportermService";
 
 	export default {
 		name: "ReportermsList",
 		components: {
-			AddButtons,
+			PrimaryButtons,
 			LoadingCircle: Circle,
 			BayoCard,
 		},

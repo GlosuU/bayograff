@@ -16,7 +16,7 @@
 <script>
 	import Circle from "vue-loading-spinner/src/components/Circle";
 	import BayoForm from "../../components/BayoForm";
-	import ReportermService from "../../apiservices/ReportermService";
+	import ReportermService from "../../services/ReportermService";
 
 	export default {
 		name: "ReportermEdit",

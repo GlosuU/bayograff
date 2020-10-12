@@ -15,6 +15,7 @@
 						<b-icon icon="patch-exclamation" /> Factales
 					</router-link>
 					<router-link to="/export"> <b-icon icon="printer" /> Print/Export </router-link>
+					<router-link to="/about"> <b-icon icon="info-circle" /> About </router-link>
 					<router-link to="/profile"><b-icon icon="person" />My Profile</router-link>
 				</b-navbar-nav>
 			</b-collapse>

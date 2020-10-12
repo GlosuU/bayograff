@@ -1,5 +1,5 @@
 <template>
-	<div id="addbuttons">
+	<div id="primarybuttons">
 		<b-button to="/reporterms/new" variant="dark">
 			<b-icon icon="journal-plus" /> New Reporterm
 		</b-button>
@@ -37,19 +37,19 @@
 </script>
 
 <style>
-	#addbuttons {
+	#primarybuttons {
 		margin: 10px;
 	}
 
-	#addbuttons a {
+	#primarybuttons a {
 		margin-right: 10px;
 	}
 
-	#addbuttons button {
+	#primarybuttons button {
 		margin-right: 10px;
 	}
 
-	#addbuttons form {
+	#primarybuttons form {
 		float: right;
 	}
 </style>

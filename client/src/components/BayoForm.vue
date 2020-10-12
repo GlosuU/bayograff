@@ -62,56 +62,45 @@
 			<br />
 			<b-collapse id="imgOptionsCollapse" v-model="imgOptionsVisible">
 				<br />
-				<b-form-radio-group id="image-location-radio-group" v-model="useExternalImg">
+				<em>
+					<strong>NOTE:</strong> Images are for reference in the website. They will not
+					appear when exporting the whole biography.
+				</em>
+				<br />
+				<!-- <b-form-radio-group id="image-location-radio-group" v-model="useExternalImg">
 					<b-form-radio :value="false">
-						Use a preset image:
-						<div class="bayoformRadioOptions">
-							<b-form-radio-group id="local-image-radio-group" v-model="object.image">
-								<b-form-radio value="noImg" :disabled="useExternalImg">
-									<b-img-lazy
-										:src="this.images.noImg"
-										alt="Default image"
-										height="125"
-									/>
-								</b-form-radio>
-								<b-form-radio value="beach" :disabled="useExternalImg">
-									<b-img-lazy
-										:src="this.images.beach"
-										alt="Default image"
-										height="125"
-									/>
-								</b-form-radio>
-								<b-form-radio value="mountain" :disabled="useExternalImg">
-									<b-img-lazy
-										:src="this.images.mountain"
-										alt="Default image"
-										height="125"
-									/>
-								</b-form-radio>
-								<b-form-radio value="graduation" :disabled="useExternalImg">
-									<b-img-lazy
-										:src="this.images.graduation"
-										alt="Default image"
-										height="125"
-									/>
-								</b-form-radio>
-								<b-form-radio value="heart" :disabled="useExternalImg">
-									<b-img-lazy
-										:src="this.images.heart"
-										alt="Default image"
-										height="125"
-									/>
-								</b-form-radio>
-								<b-form-radio value="ball" :disabled="useExternalImg">
-									<b-img-lazy
-										:src="this.images.ball"
-										alt="Default image"
-										height="125"
-									/>
-								</b-form-radio>
-							</b-form-radio-group>
-						</div>
-					</b-form-radio>
+						Use a preset image: -->
+				<div class="bayoformRadioOptions">
+					<b-form-radio-group id="local-image-radio-group" v-model="object.image">
+						<b-form-radio value="noImg" :disabled="useExternalImg">
+							<b-img-lazy :src="this.images.noImg" alt="Default image" height="125" />
+						</b-form-radio>
+						<b-form-radio value="beach" :disabled="useExternalImg">
+							<b-img-lazy :src="this.images.beach" alt="Default image" height="125" />
+						</b-form-radio>
+						<b-form-radio value="mountain" :disabled="useExternalImg">
+							<b-img-lazy
+								:src="this.images.mountain"
+								alt="Default image"
+								height="125"
+							/>
+						</b-form-radio>
+						<b-form-radio value="graduation" :disabled="useExternalImg">
+							<b-img-lazy
+								:src="this.images.graduation"
+								alt="Default image"
+								height="125"
+							/>
+						</b-form-radio>
+						<b-form-radio value="heart" :disabled="useExternalImg">
+							<b-img-lazy :src="this.images.heart" alt="Default image" height="125" />
+						</b-form-radio>
+						<b-form-radio value="ball" :disabled="useExternalImg">
+							<b-img-lazy :src="this.images.ball" alt="Default image" height="125" />
+						</b-form-radio>
+					</b-form-radio-group>
+				</div>
+				<!-- </b-form-radio>
 					<b-form-radio :value="true">
 						Use an external image:
 						<div class="bayoformRadioOptions">
@@ -123,7 +112,7 @@
 							/>
 						</div>
 					</b-form-radio>
-				</b-form-radio-group>
+				</b-form-radio-group> -->
 			</b-collapse>
 
 			<br />
@@ -134,6 +123,8 @@
 </template>
 
 <script>
+	import ImagesService from "../services/ImagesService";
+
 	export default {
 		name: "BayoForm",
 		props: ["statusMsg", "object", "fromRoute"],
@@ -142,14 +133,7 @@
 				// show: true,
 				imgOptionsVisible: false,
 				useExternalImg: false,
-				images: {
-					noImg: require("../../public/assets/img/default-img.jpg"),
-					beach: require("../../public/assets/img/beach.jpg"),
-					mountain: require("../../public/assets/img/mountain.jpg"),
-					graduation: require("../../public/assets/img/graduation.jpg"),
-					heart: require("../../public/assets/img/heart.jpg"),
-					ball: require("../../public/assets/img/ball.jpg"),
-				},
+				images: ImagesService.getAllImages(),
 			};
 		},
 		methods: {

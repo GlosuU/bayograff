@@ -4,7 +4,7 @@
 			<b-row no-gutters>
 				<b-col md="3">
 					<b-card-img-lazy
-						:src="getImage(bayobject.image, images)"
+						:src="getImage(bayobject.image)"
 						alt="Image"
 						class="rounded-0"
 					></b-card-img-lazy>
@@ -47,18 +47,12 @@
 </template>
 
 <script>
+	import ImagesService from "../services/ImagesService";
+
 	export default {
 		props: ["bayobject"],
 		data() {
 			return {
-				images: {
-					noImg: require("../../public/assets/img/default-img.jpg"),
-					beach: require("../../public/assets/img/beach.jpg"),
-					mountain: require("../../public/assets/img/mountain.jpg"),
-					graduation: require("../../public/assets/img/graduation.jpg"),
-					heart: require("../../public/assets/img/heart.jpg"),
-					ball: require("../../public/assets/img/ball.jpg"),
-				},
 				maxLength: 300,
 			};
 		},
@@ -87,13 +81,7 @@
 					hour12: false,
 				})}`;
 			},
-			getImage: (imgProperty, images) => {
-				if (imgProperty in images) {
-					return images[imgProperty];
-				} else {
-					return imgProperty;
-				}
-			},
+			getImage: (img) => ImagesService.getImage(img),
 		},
 	};
 </script>

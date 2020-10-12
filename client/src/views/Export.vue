@@ -28,7 +28,7 @@
 </template>
 
 <script>
-	import ExporterService from "../apiservices/ExporterService";
+	import ExporterService from "../services/ExporterService";
 	export default {
 		data() {
 			return {

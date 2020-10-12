@@ -4,17 +4,15 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Move access to images to a separate script
--   Back to all reporterms button in ReportermSingle view
--   Duplicate Edit + Delete buttons at bottom in ReportermSingle view
--   Improve font sizes, some are too small
--   Polish exporter to get better .txt and .tex files
 -   Reorganize exporter code in server
+-   Polish exporter to get better .txt and .tex files
 -   Allow for sorting by title or last updated
 -   Show collapsed last updated Reporterm
 -   After searching something, clicking Reporterms does not refresh to all reporterms
 -   Background colors (still showing some yellow)
 -   Paging in Reporterms List
+-   Consider extracting everything from reporterm views into templates for Anecdaynotes and Factales
+-   Allow external images
 
 -   Add Anecdaynotes and Factales
 -   Add Home and About Pages

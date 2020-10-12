@@ -11,7 +11,7 @@
 
 <script>
 	import BayoForm from "../../components/BayoForm";
-	import ReportermService from "../../apiservices/ReportermService";
+	import ReportermService from "../../services/ReportermService";
 
 	export default {
 		name: "ReportermNew",

@@ -1,20 +1,15 @@
 <template>
 	<div id="reporterm-single" class="reporterm">
-		<AddButtons />
-		<div class="clear"></div>
+		<PrimaryButtons />
+		<SecondaryButtons
+			:backRoute="backRoute"
+			:editRoute="editRoute"
+			@delete-object="deleteReporterm"
+		/>
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
 		<div id="reporterm-single-content" v-if="ready">
-			<b-button :to="`/reporterms/${this.$route.params.id}/edit`" variant="primary">
-				<b-icon icon="pencil-square" /> Edit
-			</b-button>
-			&nbsp;
-			<b-button @click="deleteReporterm" variant="danger">
-				<b-icon icon="trash" /> Delete
-			</b-button>
-			<br />
-			<br />
 			<h2>
 				{{
 					new Date(reporterm.startDate).toLocaleDateString(undefined, {
@@ -32,26 +27,63 @@
 					})
 				}}
 			</h2>
-			<h1>{{ reporterm.title }}</h1>
+			<h1>
+				<u>{{ reporterm.title }}</u>
+			</h1>
 			<br />
 			<p id="content-paragraph">{{ reporterm.content }}</p>
+			<img :src="getImage(reporterm.image)" alt="Reporterm Image" />
 			<br />
-			<img :src="getImage(reporterm.image, images)" alt="Reporterm Image" />
 			<br />
+			<div class="object-dates">
+				<h5>
+					Created:
+					{{
+						new Date(reporterm.createdAt).toLocaleDateString(undefined, {
+							year: "numeric",
+							month: "long",
+							day: "numeric",
+						})
+					}}
+				</h5>
+				<h5>
+					Last updated:
+					{{
+						new Date(reporterm.updatedAt).toLocaleDateString(undefined, {
+							year: "numeric",
+							month: "long",
+							day: "numeric",
+							year: "numeric",
+							hour: "2-digit",
+							minute: "2-digit",
+							hour12: false,
+						})
+					}}
+				</h5>
+			</div>
 		</div>
-		<AddButtons />
+		<br />
+		<SecondaryButtons
+			:backRoute="backRoute"
+			:editRoute="editRoute"
+			@delete-object="deleteReporterm"
+		/>
+		<PrimaryButtons />
 	</div>
 </template>
 
 <script>
-	import AddButtons from "../../components/AddButtons";
+	import PrimaryButtons from "../../components/PrimaryButtons";
+	import SecondaryButtons from "../../components/SecondaryButtons";
 	import Circle from "vue-loading-spinner/src/components/Circle";
-	import ReportermService from "../../apiservices/ReportermService";
+	import ReportermService from "../../services/ReportermService";
+	import ImagesService from "../../services/ImagesService";
 
 	export default {
 		name: "ReportermSingle",
 		components: {
-			AddButtons,
+			PrimaryButtons,
+			SecondaryButtons,
 			LoadingCircle: Circle,
 		},
 		data() {
@@ -59,14 +91,8 @@
 				ready: false,
 				reporterm: {},
 				err: "",
-				images: {
-					noImg: require("../../../public/assets/img/default-img.jpg"),
-					beach: require("../../../public/assets/img/beach.jpg"),
-					mountain: require("../../../public/assets/img/mountain.jpg"),
-					graduation: require("../../../public/assets/img/graduation.jpg"),
-					heart: require("../../../public/assets/img/heart.jpg"),
-					ball: require("../../../public/assets/img/ball.jpg"),
-				},
+				backRoute: "/reporterms",
+				editRoute: `/reporterms/${this.$route.params.id}/edit`,
 			};
 		},
 		async created() {
@@ -84,13 +110,7 @@
 			}
 		},
 		methods: {
-			getImage: (imgProperty, images) => {
-				if (imgProperty in images) {
-					return images[imgProperty];
-				} else {
-					return imgProperty;
-				}
-			},
+			getImage: (img) => ImagesService.getImage(img),
 			async deleteReporterm() {
 				this.$confirm({
 					title: `Are you sure?`,
@@ -152,5 +172,11 @@
 
 	#content-paragraph {
 		white-space: pre-line;
+		font: normal 20px Arial, Helvetica, sans-serif;
+	}
+
+	.object-dates {
+		font-weight: bold;
+		font-style: italic;
 	}
 </style>

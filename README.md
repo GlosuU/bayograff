@@ -4,8 +4,6 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Reorganize exporter code in server
--   Polish exporter to get better .txt and .tex files
 -   Allow for sorting by title or last updated
 -   Show collapsed last updated Reporterm
 -   After searching something, clicking Reporterms does not refresh to all reporterms
@@ -13,10 +11,13 @@ Write an autobiography, a journal or a chronology online
 -   Paging in Reporterms List
 -   Consider extracting everything from reporterm views into templates for Anecdaynotes and Factales
 -   Allow external images
+-   Limit size in card images
+-   Dates in cards must be inline when card is made vertical due to small screen
 
 -   Add Anecdaynotes and Factales
 -   Add Home and About Pages
 -   Add Video
+-   Images same size
 -   Images can't be inserted into Latex :(
 -   Allow date input with text (maybe use npm install v-calendar)
 -   min and max dates should be one day off maybe (will need to use computed I believe)

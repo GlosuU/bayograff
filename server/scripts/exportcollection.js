@@ -2,7 +2,7 @@ const Reporterm = require("../models/Reporterm");
 
 module.exports = {
 	getCollection: async (user) => {
-		const reporterms = await Reporterm.find({ user });
+		const reporterms = await Reporterm.find({ user }).sort({ startDate: 1 });
 		return {
 			reporterms,
 		};

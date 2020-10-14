@@ -11,7 +11,7 @@
 				</b-col>
 				<b-col md="2">
 					<b-card-body>
-						<b-card-text id="card-dates-text">
+						<b-card-text id="card-dates-text" class="centeraligned">
 							<p>
 								{{
 									bayobject.startDate.toLocaleDateString(undefined, {
@@ -90,9 +90,5 @@
 	.maxcardsize {
 		max-width: 1400px;
 		/* max-height: 300px; */
-	}
-
-	#card-dates-text {
-		text-align: center;
 	}
 </style>

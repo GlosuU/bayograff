@@ -1,5 +1,5 @@
 <template>
-	<div id="secondarybuttons">
+	<div id="secondarybuttons" class="centeraligned">
 		<b-button :to="backRoute" variant="primary">
 			<b-icon icon="skip-backward" /> Back to all
 		</b-button>
@@ -25,10 +25,6 @@
 </script>
 
 <style>
-	#secondarybuttons {
-		text-align: center;
-	}
-
 	#secondarybuttons a {
 		margin-right: 10px;
 	}

@@ -4,14 +4,12 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   After searching something, clicking Reporterms does not refresh to all reporterms
--   Background colors (still showing some yellow)
--   Paging in Reporterms List
--   Consider extracting everything from reporterm views into templates for Anecdaynotes and Factales
 -   Limit size in card images
+-   Paging in Reporterms List
 -   Allow external images
 -   Dates in cards must be inline when card is made vertical due to small screen
--   Sanitize User input in title and content
+-   Sanitize User input in title and content (use text editor plugin)
+-   Consider extracting everything from reporterm views into templates for Anecdaynotes and Factales
 
 -   Add Anecdaynotes and Factales
 -   Add Home and About Pages

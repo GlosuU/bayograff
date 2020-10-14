@@ -9,7 +9,7 @@
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
-		<div id="reporterm-single-content" v-if="ready">
+		<div id="reporterm-single-content" class="centeraligned" v-if="ready">
 			<h2>
 				{{
 					new Date(reporterm.startDate).toLocaleDateString(undefined, {
@@ -167,7 +167,6 @@
 <style>
 	#reporterm-single-content {
 		margin: 10px;
-		text-align: center;
 	}
 
 	#content-paragraph {

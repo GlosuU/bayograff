@@ -4,11 +4,17 @@
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
-		<div class="centeraligned maxcardsize" v-if="ready">
-			<div v-if="reporterms.length == 0">
+		<div class="automargin maxcardsize" v-if="ready">
+			<div class="centeraligned" v-if="reporterms.length == 0 && !textToSearch">
 				<h4>
 					You have not created any reporterms yet. Click "New Reporterm" to create one.
 				</h4>
+			</div>
+			<div class="centeraligned" v-if="textToSearch">
+				<h4 v-if="reporterms.length == 0">
+					Sorry, no results found for "{{ textToSearch }}"
+				</h4>
+				<h4 v-if="reporterms.length > 0">Showing results for "{{ textToSearch }}"</h4>
 			</div>
 			<div v-if="reporterms.length > 0">
 				<div id="lastupdatedrepcollapse" v-if="reporterms.length > 1">
@@ -31,15 +37,15 @@
 						</div>
 					</b-collapse>
 					<hr />
+					<SortButtons
+						@sort-date-asc="sortDateASC"
+						@sort-date-desc="sortDateDESC"
+						@sort-alpha-az="sortAlphaAZ"
+						@sort-alpha-za="sortAlphaZA"
+						@sort-updated-at-asc="sortUpdatedAtASC"
+						@sort-updated-at-desc="sortUpdatedAtDESC"
+					/>
 				</div>
-				<SortButtons
-					@sort-date-asc="sortDateASC"
-					@sort-date-desc="sortDateDESC"
-					@sort-alpha-az="sortAlphaAZ"
-					@sort-alpha-za="sortAlphaZA"
-					@sort-updated-at-asc="sortUpdatedAtASC"
-					@sort-updated-at-desc="sortUpdatedAtDESC"
-				/>
 				<br />
 				<div class="reportermcard" v-for="r in reporterms" :key="r._id">
 					<router-link :to="'/reporterms/' + r._id">
@@ -48,6 +54,7 @@
 				</div>
 			</div>
 		</div>
+		<br />
 	</div>
 </template>
 
@@ -76,9 +83,8 @@
 			return {
 				ready: false,
 				reporterms: [],
-				// textToSearch: "",
-				lastUpdatedReportermVisible: false,
 				lastUpdatedReporterm: {},
+				lastUpdatedReportermVisible: false,
 				err: "",
 			};
 		},
@@ -93,9 +99,11 @@
 					accessToken
 				);
 
-				this.lastUpdatedReporterm = this.reporterms.reduce((a, b) =>
-					new Date(a.updatedAt) > new Date(b.updatedAt) ? a : b
-				);
+				if (this.reporterms.length > 1) {
+					this.lastUpdatedReporterm = this.reporterms.reduce((a, b) =>
+						new Date(a.updatedAt) > new Date(b.updatedAt) ? a : b
+					);
+				}
 
 				this.ready = true;
 			} catch (err) {
@@ -104,8 +112,8 @@
 		},
 		methods: {
 			searchReporterms(searchText) {
+				this.ready = false;
 				this.$router.push({ query: { search: searchText } });
-				location.reload();
 			},
 			sortDateASC() {
 				this.reporterms.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
@@ -124,6 +132,12 @@
 			},
 			sortUpdatedAtDESC() {
 				this.reporterms.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+			},
+		},
+		watch: {
+			// refresh page if the route changes
+			$route: () => {
+				location.reload();
 			},
 		},
 	};

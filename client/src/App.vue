@@ -29,7 +29,6 @@
 		-moz-osx-font-smoothing: grayscale;
 		color: #2c3e50;
 		background-color: beige;
-		padding-bottom: 20px;
 	}
 
 	.clear {
@@ -39,21 +38,28 @@
 
 	.reporterm {
 		background-color: lightpink;
+		padding: 5px;
 	}
 
 	.anecdaynote {
 		background-color: lightskyblue;
+		padding: 5px;
 	}
 
 	.factale {
 		background-color: lightgreen;
+		padding: 5px;
 	}
 
 	.pushToRight {
 		margin-left: 10px;
 	}
 
-	.centeraligned {
+	.automargin {
 		margin: auto;
+	}
+
+	.centeraligned {
+		text-align: center;
 	}
 </style>

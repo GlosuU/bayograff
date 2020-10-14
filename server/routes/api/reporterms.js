@@ -9,7 +9,7 @@ const router = express.Router();
 // @route   GET /api/reporterms
 router.get("/", checkJWT, async (req, res) => {
 	try {
-		let reporterms;
+		let reporterms = [];
 		if (req.query.search != null) {
 			reporterms = await Reporterm.find({
 				user: req.user.sub,

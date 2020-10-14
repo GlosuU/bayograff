@@ -23,8 +23,8 @@ const routes = [
 		path: "/reporterms",
 		name: "ReportermsList",
 		component: ReportermsList,
-		beforeEnter: authGuard,
 		props: (route) => ({ textToSearch: route.query.search }),
+		beforeEnter: authGuard,
 	},
 	{
 		path: "/reporterms/new",

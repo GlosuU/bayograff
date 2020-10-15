@@ -62,4 +62,8 @@
 	.centeraligned {
 		text-align: center;
 	}
+
+	.biggerfont {
+		font-size: 20px;
+	}
 </style>

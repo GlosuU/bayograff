@@ -4,11 +4,8 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Limit size in card images
--   Paging in Reporterms List
--   Allow external images
--   Dates in cards must be inline when card is made vertical due to small screen
 -   Sanitize User input in title and content (use text editor plugin)
+-   Reporterms router?
 -   Consider extracting everything from reporterm views into templates for Anecdaynotes and Factales
 
 -   Add Anecdaynotes and Factales

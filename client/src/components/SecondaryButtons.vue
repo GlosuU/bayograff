@@ -3,11 +3,9 @@
 		<b-button :to="backRoute" variant="primary">
 			<b-icon icon="skip-backward" /> Back to all
 		</b-button>
-		&nbsp;
 		<b-button :to="editRoute" variant="success">
 			<b-icon icon="pencil-square" /> Edit
 		</b-button>
-		&nbsp;
 		<b-button @click="deleteObject" variant="danger"> <b-icon icon="trash" /> Delete </b-button>
 	</div>
 </template>

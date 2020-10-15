@@ -63,56 +63,78 @@
 			<b-collapse id="imgOptionsCollapse" v-model="imgOptionsVisible">
 				<br />
 				<em>
-					<strong>NOTE:</strong> Images are for reference in the website. They will not
-					appear when exporting the whole biography.
+					<strong>NOTE:</strong> Images are only for reference in the website. They will
+					not appear when exporting the whole biography.
 				</em>
 				<br />
-				<!-- <b-form-radio-group id="image-location-radio-group" v-model="useExternalImg">
+				<b-form-radio-group id="image-location-radio-group" v-model="useExternalImg">
 					<b-form-radio :value="false">
-						Use a preset image: -->
-				<div class="bayoformRadioOptions">
-					<b-form-radio-group id="local-image-radio-group" v-model="object.image">
-						<b-form-radio value="noImg" :disabled="useExternalImg">
-							<b-img-lazy :src="this.images.noImg" alt="Default image" height="125" />
-						</b-form-radio>
-						<b-form-radio value="beach" :disabled="useExternalImg">
-							<b-img-lazy :src="this.images.beach" alt="Default image" height="125" />
-						</b-form-radio>
-						<b-form-radio value="mountain" :disabled="useExternalImg">
-							<b-img-lazy
-								:src="this.images.mountain"
-								alt="Default image"
-								height="125"
-							/>
-						</b-form-radio>
-						<b-form-radio value="graduation" :disabled="useExternalImg">
-							<b-img-lazy
-								:src="this.images.graduation"
-								alt="Default image"
-								height="125"
-							/>
-						</b-form-radio>
-						<b-form-radio value="heart" :disabled="useExternalImg">
-							<b-img-lazy :src="this.images.heart" alt="Default image" height="125" />
-						</b-form-radio>
-						<b-form-radio value="ball" :disabled="useExternalImg">
-							<b-img-lazy :src="this.images.ball" alt="Default image" height="125" />
-						</b-form-radio>
-					</b-form-radio-group>
-				</div>
-				<!-- </b-form-radio>
+						Use a preset image:
+						<div class="bayoformRadioOptions">
+							<b-form-radio-group id="local-image-radio-group" v-model="localImg">
+								<b-form-radio value="noImg" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.noImg"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+								<b-form-radio value="beach" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.beach"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+								<b-form-radio value="mountain" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.mountain"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+								<b-form-radio value="graduation" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.graduation"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+								<b-form-radio value="heart" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.heart"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+								<b-form-radio value="ball" :disabled="useExternalImg">
+									<b-img-lazy
+										:src="this.images.ball"
+										alt="Default image"
+										height="125"
+									/>
+								</b-form-radio>
+							</b-form-radio-group>
+						</div>
+					</b-form-radio>
 					<b-form-radio :value="true">
 						Use an external image:
 						<div class="bayoformRadioOptions">
 							<b-form-input
-								id="hello"
+								id="externalImageInput"
 								placeholder="Image URL"
-								v-model="object.image"
+								v-model="externalImgURL"
 								:disabled="!useExternalImg"
 							/>
 						</div>
+						<b-img-lazy
+							v-if="useExternalImg && externalImgURL"
+							:src="externalImgURL"
+							alt="Image URL not valid"
+							class="externalImgSmall"
+						/>
 					</b-form-radio>
-				</b-form-radio-group> -->
+				</b-form-radio-group>
 			</b-collapse>
 
 			<br />
@@ -130,16 +152,37 @@
 		props: ["statusMsg", "object", "fromRoute"],
 		data() {
 			return {
-				// show: true,
 				imgOptionsVisible: false,
 				useExternalImg: false,
+				localImg: "",
+				externalImgURL: "",
 				images: ImagesService.getAllImages(),
 			};
+		},
+		created() {
+			if (ImagesService.isLocal(this.object.image)) {
+				this.localImg = this.object.image;
+			} else {
+				this.useExternalImg = true;
+				this.externalImgURL = this.object.image;
+			}
 		},
 		methods: {
 			onSave(evt) {
 				evt.preventDefault();
+				this.saveImg();
 				this.$emit("save-object", this.object);
+			},
+			saveImg() {
+				if (this.useExternalImg) {
+					if (this.externalImgURL) {
+						this.object.image = this.externalImgURL;
+					} else {
+						this.object.image = "noImg";
+					}
+				} else {
+					this.object.image = this.localImg;
+				}
 			},
 		},
 	};
@@ -160,5 +203,10 @@
 
 	.bayoformRadioOptions {
 		margin: 10px 0px 10px 50px;
+	}
+
+	.externalImgSmall {
+		max-width: 300px;
+		max-height: 200px;
 	}
 </style>

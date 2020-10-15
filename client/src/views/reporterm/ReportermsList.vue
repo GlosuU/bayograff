@@ -32,7 +32,11 @@
 					<b-collapse id="lastUpdatedReporterm" v-model="lastUpdatedReportermVisible">
 						<div class="reportermcard">
 							<router-link :to="'/reporterms/' + lastUpdatedReporterm._id">
-								<BayoCard :bayobject="lastUpdatedReporterm" />
+								<BayoCard
+									:bayobject="lastUpdatedReporterm"
+									@edit-object="editReporterm"
+									@delete-object="deleteReporterm"
+								/>
 							</router-link>
 						</div>
 					</b-collapse>
@@ -47,11 +51,24 @@
 					/>
 				</div>
 				<br />
-				<div class="reportermcard" v-for="r in reporterms" :key="r._id">
+				<div id="reportermslist" class="reportermcard" v-for="r in repsPag" :key="r._id">
 					<router-link :to="'/reporterms/' + r._id">
-						<BayoCard :bayobject="r" />
+						<BayoCard
+							:bayobject="r"
+							@edit-object="editReporterm"
+							@delete-object="deleteReporterm"
+						/>
 					</router-link>
 				</div>
+				<br />
+				<b-pagination
+					v-model="currentPage"
+					:total-rows="reporterms.length"
+					:per-page="perPage"
+					aria-controls="reportermslist"
+					align="center"
+				>
+				</b-pagination>
 			</div>
 		</div>
 		<br />
@@ -85,6 +102,8 @@
 				reporterms: [],
 				lastUpdatedReporterm: {},
 				lastUpdatedReportermVisible: false,
+				currentPage: 1,
+				perPage: 5,
 				err: "",
 			};
 		},
@@ -110,6 +129,18 @@
 				this.err = err;
 			}
 		},
+		computed: {
+			repsPag() {
+				if (this.reporterms.length > this.perPage) {
+					return this.reporterms.slice(
+						(this.currentPage - 1) * this.perPage,
+						this.currentPage * this.perPage
+					);
+				} else {
+					return this.reporterms;
+				}
+			},
+		},
 		methods: {
 			searchReporterms(searchText) {
 				this.ready = false;
@@ -132,6 +163,56 @@
 			},
 			sortUpdatedAtDESC() {
 				this.reporterms.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+			},
+			editReporterm(r) {
+				this.$router.push({ path: `/reporterms/${r._id}/edit` });
+			},
+			async deleteReporterm(r) {
+				this.$confirm({
+					title: `Are you sure?`,
+					message: `This will delete the Reporterm "${r.title}"`,
+					button: {
+						no: "No, cancel",
+						yes: "Yes, delete it",
+					},
+					/**
+					 * Callback Function
+					 * @param {Boolean} confirm
+					 */
+					callback: async (confirm) => {
+						if (confirm) {
+							try {
+								const accessToken = await this.$auth.getTokenSilently();
+
+								await ReportermService.deleteReporterm(r._id, accessToken);
+
+								this.$root.$bvToast.toast(
+									`Reporterm "${r.title}" deleted successfully!`,
+									{
+										title: "Deleted",
+										toaster: "b-toaster-top-center",
+										variant: "primary",
+										autoHideDelay: 4000,
+									}
+								);
+
+								// Remove the reporterm from the current array
+								this.reporterms.splice(this.reporterms.indexOf(r), 1);
+							} catch (err) {
+								this.err = err;
+								this.$root.$bvToast.toast(
+									`We're sorry, something went wrong and we couldn't delete the reporterm. Maybe try again later.`,
+									{
+										title: "Error",
+										toaster: "b-toaster-top-center",
+										variant: "danger",
+										autoHideDelay: 5000,
+									}
+								);
+							}
+						}
+					},
+				});
 			},
 		},
 		watch: {

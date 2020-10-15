@@ -6,13 +6,13 @@
 					<b-card-img-lazy
 						:src="getImage(bayobject.image)"
 						alt="Image"
-						class="rounded-0"
+						class="rounded-0 maximgheight"
 					></b-card-img-lazy>
 				</b-col>
 				<b-col md="2">
-					<b-card-body>
-						<b-card-text id="card-dates-text" class="centeraligned">
-							<p>
+					<b-card-body class="biggerfont">
+						<div class="d-lg-none">
+							<b-card-text class="centeraligned">
 								{{
 									bayobject.startDate.toLocaleDateString(undefined, {
 										year: "numeric",
@@ -20,9 +20,7 @@
 										day: "numeric",
 									})
 								}}
-							</p>
-							<p>-</p>
-							<p>
+								<span class="tabspaces">-</span>
 								{{
 									bayobject.endDate.toLocaleDateString(undefined, {
 										year: "numeric",
@@ -30,15 +28,44 @@
 										day: "numeric",
 									})
 								}}
-							</p>
-						</b-card-text>
+							</b-card-text>
+						</div>
+						<div class="d-none d-lg-block">
+							<b-card-text class="centeraligned">
+								{{
+									bayobject.startDate.toLocaleDateString(undefined, {
+										year: "numeric",
+										month: "short",
+										day: "numeric",
+									})
+								}}
+								<br />-<br />
+								{{
+									bayobject.endDate.toLocaleDateString(undefined, {
+										year: "numeric",
+										month: "short",
+										day: "numeric",
+									})
+								}}
+							</b-card-text>
+						</div>
 					</b-card-body>
 				</b-col>
-				<b-col md="7">
+				<b-col md="6">
 					<b-card-body :title="bayobject.title" :sub-title="getSubtitleStr(bayobject)">
 						<b-card-text>{{
 							truncate(bayobject.content.replace("\n", "\\"), maxLength)
 						}}</b-card-text>
+					</b-card-body>
+				</b-col>
+				<b-col md="1">
+					<b-card-body id="card-edit-delete-btns" class="centeraligned btn-margin">
+						<b-button @click="editObject" variant="success">
+							<b-icon icon="pencil-square" />
+						</b-button>
+						<b-button @click="deleteObject" variant="danger">
+							<b-icon icon="trash" />
+						</b-button>
 					</b-card-body>
 				</b-col>
 			</b-row>
@@ -50,7 +77,7 @@
 	import ImagesService from "../services/ImagesService";
 
 	export default {
-		props: ["bayobject"],
+		props: ["bayobject", "editRoute"],
 		data() {
 			return {
 				maxLength: 300,
@@ -82,13 +109,33 @@
 				})}`;
 			},
 			getImage: (img) => ImagesService.getImage(img),
+			editObject(evt) {
+				evt.preventDefault();
+				this.$emit("edit-object", this.bayobject);
+			},
+			deleteObject(evt) {
+				evt.preventDefault();
+				this.$emit("delete-object", this.bayobject);
+			},
 		},
 	};
 </script>
 
 <style>
-	.maxcardsize {
+	.maxcardwidth {
 		max-width: 1400px;
-		/* max-height: 300px; */
+	}
+
+	.maximgheight {
+		object-fit: cover;
+		height: 200px;
+	}
+
+	.tabspaces {
+		padding: 0px 10px;
+	}
+
+	.btn-margin button {
+		margin: 8px;
 	}
 </style>

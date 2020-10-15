@@ -8,6 +8,10 @@ const images = {
 };
 
 class ImagesService {
+	static isLocal(imgProperty) {
+		return imgProperty in images;
+	}
+
 	static getImage(imgProperty) {
 		if (imgProperty in images) {
 			return images[imgProperty];

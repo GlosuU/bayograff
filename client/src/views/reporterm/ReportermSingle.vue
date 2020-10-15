@@ -32,7 +32,7 @@
 			</h1>
 			<br />
 			<p id="content-paragraph">{{ reporterm.content }}</p>
-			<img :src="getImage(reporterm.image)" alt="Reporterm Image" />
+			<img :src="getImage(reporterm.image)" alt="Reporterm Image" class="externalImgBig" />
 			<br />
 			<br />
 			<div class="object-dates">
@@ -177,5 +177,10 @@
 	.object-dates {
 		font-weight: bold;
 		font-style: italic;
+	}
+
+	.externalImgBig {
+		max-width: 600px;
+		max-height: 400px;
 	}
 </style>

@@ -103,7 +103,7 @@
 				lastUpdatedReporterm: {},
 				lastUpdatedReportermVisible: false,
 				currentPage: 1,
-				perPage: 5,
+				perPage: 3,
 				err: "",
 			};
 		},
@@ -124,10 +124,15 @@
 					);
 				}
 
+				this.setPerPage();
+
 				this.ready = true;
 			} catch (err) {
 				this.err = err;
 			}
+		},
+		mounted() {
+			window.addEventListener("resize", this.setPerPage);
 		},
 		computed: {
 			repsPag() {
@@ -142,6 +147,13 @@
 			},
 		},
 		methods: {
+			setPerPage() {
+				if (window.innerWidth > 768) {
+					this.perPage = 5;
+				} else {
+					this.perPage = 3;
+				}
+			},
 			searchReporterms(searchText) {
 				this.ready = false;
 				this.$router.push({ query: { search: searchText } });
@@ -220,6 +232,9 @@
 			$route: () => {
 				location.reload();
 			},
+		},
+		destroyed() {
+			window.removeEventListener("resize", this.setPerPage);
 		},
 	};
 </script>

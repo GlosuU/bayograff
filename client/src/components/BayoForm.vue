@@ -117,26 +117,25 @@
 							</b-form-radio-group>
 						</div>
 					</b-form-radio>
-					<b-form-radio :value="true">
-						Use an external image:
-						<div class="bayoformRadioOptions">
-							<b-form-input
-								id="externalImageInput"
-								placeholder="Image URL"
-								v-model="externalImgURL"
-								:disabled="!useExternalImg"
-							/>
-						</div>
-						<b-img-lazy
-							v-if="useExternalImg && externalImgURL"
-							:src="externalImgURL"
-							alt="Image URL not valid"
-							class="externalImgSmall"
-						/>
-					</b-form-radio>
+					<br />
+					<b-form-radio :value="true"> Use an external image: </b-form-radio>
 				</b-form-radio-group>
+				<div class="bayoformRadioOptions">
+					<b-form-input
+						id="externalImageInput"
+						placeholder="Image URL"
+						v-model="externalImgURL"
+						:disabled="!useExternalImg"
+						lazy
+					/>
+					<b-img-lazy
+						v-if="useExternalImg && externalImgURL"
+						:src="externalImgURL"
+						alt="Image URL not valid"
+						class="externalImgSmall"
+					/>
+				</div>
 			</b-collapse>
-
 			<br />
 			<b-button type="submit" variant="success"><b-icon icon="upload" /> Save</b-button>
 			<b-button :to="fromRoute" variant="danger"><b-icon icon="x-circle" /> Cancel</b-button>

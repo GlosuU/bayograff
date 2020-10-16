@@ -10,6 +10,7 @@ Write an autobiography, a journal or a chronology online
 
 -   Add Anecdaynotes and Factales
 -   Add Home and About Pages
+-   Add 404 and 500 views
 -   Add Video
 -   Images same size
 -   Images can't be inserted into Latex :(

@@ -74,6 +74,6 @@
 	}
 
 	#sortbuttons button {
-		margin-right: 10px;
+		margin: 5px;
 	}
 </style>

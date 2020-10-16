@@ -42,11 +42,11 @@
 	}
 
 	#primarybuttons a {
-		margin-right: 10px;
+		margin: 5px;
 	}
 
 	#primarybuttons button {
-		margin-right: 10px;
+		margin: 5px;
 	}
 
 	#primarybuttons form {

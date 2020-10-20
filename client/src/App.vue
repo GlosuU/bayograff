@@ -63,6 +63,16 @@
 		text-align: center;
 	}
 
+	.centeredlistitems ul {
+		text-align: left;
+		padding-left: 100px;
+	}
+
+	.centeredlistitems ol {
+		text-align: left;
+		padding-left: 100px;
+	}
+
 	.biggerfont {
 		font-size: 20px;
 	}

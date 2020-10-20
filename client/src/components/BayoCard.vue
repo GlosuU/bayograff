@@ -75,23 +75,18 @@
 
 <script>
 	import ImagesService from "../services/ImagesService";
+	import ProcessHTMLService from "../services/ProcessHTMLService";
 
 	export default {
 		props: ["bayobject", "editRoute"],
 		data() {
 			return {
-				maxLength: 300,
+				maxLength: 250,
 			};
 		},
 		methods: {
 			stripContentOfHTML(content) {
-				let strippedContent = content;
-				strippedContent = strippedContent.replace(/(<\/p>)/gi, " \\ ");
-				strippedContent = strippedContent.replace(/(<li>)/gi, " * ");
-				strippedContent = strippedContent.replace(/(<([^>]+)>)/gi, "");
-				strippedContent = strippedContent.replace(/(&lt;)/gi, "<");
-				strippedContent = strippedContent.replace(/(&gt;)/gi, ">");
-				return strippedContent;
+				return ProcessHTMLService.getCardContent(content);
 			},
 			truncate: (str, len) => {
 				if (str.length > len && str.length > 0) {

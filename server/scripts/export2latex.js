@@ -1,4 +1,5 @@
 const exportcollection = require("./exportcollection");
+const striphtml = require("./striphtml");
 const fs = require("fs");
 
 // Extract the whole content of a reporterm to LaTeX
@@ -14,7 +15,7 @@ function reportermToLatex(reporterm) {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
-	})}\n\n${reporterm.content}`;
+	})}\n\n${striphtml.getTextContent(reporterm.content)}`;
 
 	// if (reporterm.image) {
 	// 	repLatex += `\n\n\\externalfigure[${reporterm.image}]`;

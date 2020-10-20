@@ -9,7 +9,7 @@
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
-		<div id="reporterm-single-content" class="centeraligned" v-if="ready">
+		<div id="reporterm-single-content" class="centeraligned centeredlistitems" v-if="ready">
 			<h2>
 				{{
 					new Date(reporterm.startDate).toLocaleDateString(undefined, {

@@ -4,17 +4,17 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Set a maximum amount of characters for Title and Content
--   HTML must be parsed correctly when exporting
--   Ordered and unordered lists showing weird in SingleReportermView
+-   Change text-align center to left in SingleReportermView
 -   Reporterms router?
 -   Consider extracting everything from reporterm views into templates for Anecdaynotes and Factales
 
 -   Add Anecdaynotes and Factales
 -   Add Home and About Pages
 -   Add 404 and 500 views
+-   Include HTML tags in Latex
 -   Add Video
 -   Images same size
+-   import ImageSelection.vue (needs events etc)
 -   Images can't be inserted into Latex :(
 -   Allow date input with text (maybe use npm install v-calendar)
 -   min and max dates should be one day off maybe (will need to use computed I believe)

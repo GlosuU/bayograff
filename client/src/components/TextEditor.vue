@@ -92,6 +92,7 @@
 		},
 		data() {
 			return {
+				focused: false,
 				editor: new Editor({
 					extensions: [
 						new Bold(),
@@ -111,17 +112,16 @@
 						}),
 					],
 					content: this.initialContent,
-					onBlur: () => {
-						// emit new content on blur
+					onUpdate: () => {
+						// emit new content on update
 						this.focused = false;
 						// console.log("editor-content", this.editor.getHTML());
-						this.$emit("editor-blurred", this.editor.getHTML());
+						this.$emit("editor-updated", this.editor.getHTML());
 					},
 					onFocus: () => {
 						this.focused = true;
 					},
 				}),
-				focused: false,
 			};
 		},
 		beforeDestroy() {

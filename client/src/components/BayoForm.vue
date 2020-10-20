@@ -38,31 +38,34 @@
 			id="title-input-group"
 			label="Title:"
 			label-for="input-2"
-			:class="[titleMissing && !object.title ? 'showRequired' : 'hideRequired']"
+			:class="[
+				(titleMissing && !object.title) || object.title.length > maxTitleLength
+					? 'showRequired'
+					: 'hideRequired',
+			]"
 		>
 			<b-form-input id="input-2" v-model="object.title" placeholder="Enter title" />
 		</b-form-group>
 
-		<!-- <b-form-group
-			id="content-input-group"
-			label="Content:"
-			label-for="input-3"
-			:class="[contentMissing && !object.content ? 'showRequired' : 'hideRequired']"
-		>
-			<b-form-textarea
-				id="input-3"
-				v-model="object.content"
-				placeholder="Enter content"
-				rows="8"
-				max-rows="8"
-				no-resize
-			/>
-		</b-form-group> -->
-
-		<div :class="[contentMissing && !object.content ? 'showRequired' : 'hideRequired']">
-			<div class="label">Content:</div>
-			<TextEditor :initialContent="object.content" @editor-blurred="updateContent" />
+		<div class="numcharsmessage" v-if="titleInputMessage">
+			{{ titleInputMessage }}
 		</div>
+
+		<div
+			:class="[
+				(contentMissing && !object.content) || cleanContent.length > maxContentLength
+					? 'showRequired'
+					: 'hideRequired',
+			]"
+		>
+			<div class="label">Content:</div>
+			<TextEditor :initialContent="object.content" @editor-updated="updateContent" />
+		</div>
+
+		<div class="numcharsmessage" v-if="contentInputMessage">
+			{{ contentInputMessage }}
+		</div>
+
 		<br />
 
 		<b-button v-b-toggle.imgOptionsCollapse variant="primary">
@@ -155,6 +158,7 @@
 
 <script>
 	import ImagesService from "../services/ImagesService";
+	import ProcessHTMLService from "../services/ProcessHTMLService";
 	import TextEditor from "./TextEditor";
 
 	export default {
@@ -172,6 +176,8 @@
 				images: ImagesService.getAllImages(),
 				titleMissing: false,
 				contentMissing: false,
+				maxTitleLength: 150,
+				maxContentLength: 8000,
 			};
 		},
 		created() {
@@ -191,6 +197,9 @@
 				}
 			},
 			onSave() {
+				let validated = true;
+
+				// Non-empty validation
 				if (!this.object.title) {
 					this.titleMissing = true;
 				}
@@ -199,16 +208,34 @@
 					this.contentMissing = true;
 				}
 
-				if (this.object.title && this.object.content) {
-					this.saveImg();
-					this.$emit("save-object", this.object);
-				} else {
+				if (!this.object.title || !this.object.content) {
 					this.$root.$bvToast.toast(`Please fill out required fields`, {
 						title: "Missing required fields",
 						toaster: "b-toaster-top-center",
 						variant: "danger",
 						autoHideDelay: 4000,
 					});
+					validated = false;
+				}
+
+				// Within Limits validation
+				if (
+					this.object.title.length > this.maxTitleLength ||
+					this.cleanContent.length > this.maxContentLength
+				) {
+					this.$root.$bvToast.toast(`Please reduce the amount of characters`, {
+						title: "Character limit exceeded",
+						toaster: "b-toaster-top-center",
+						variant: "danger",
+						autoHideDelay: 4000,
+					});
+					validated = false;
+				}
+
+				// Save object if validated
+				if (validated) {
+					this.saveImg();
+					this.$emit("save-object", this.object);
 				}
 			},
 			saveImg() {
@@ -220,6 +247,32 @@
 					}
 				} else {
 					this.object.image = this.localImg;
+				}
+			},
+		},
+		computed: {
+			titleInputMessage() {
+				const numChars = this.object.title.length;
+				if (numChars > this.maxTitleLength - 20 && numChars <= this.maxTitleLength) {
+					return `Reaching the limit: ${numChars}/${this.maxTitleLength} characters`;
+				} else if (numChars > this.maxTitleLength) {
+					return `Limit exceeded! ${numChars}/${this.maxTitleLength} characters`;
+				} else {
+					return "";
+				}
+			},
+			cleanContent() {
+				return ProcessHTMLService.getTextContent(this.object.content);
+			},
+			contentInputMessage() {
+				const cleanContent = this.cleanContent;
+				const numChars = cleanContent.length;
+				if (numChars > this.maxContentLength - 500 && numChars <= this.maxContentLength) {
+					return `Reaching the limit: ${numChars}/${this.maxContentLength} characters`;
+				} else if (numChars > this.maxContentLength) {
+					return `Limit exceeded! ${numChars}/${this.maxContentLength} characters`;
+				} else {
+					return "";
 				}
 			},
 		},
@@ -261,5 +314,11 @@
 
 	.label {
 		margin-bottom: 10px;
+	}
+
+	.numcharsmessage {
+		color: red;
+		font-weight: bold;
+		margin: 0px 5px 5px 5px;
 	}
 </style>

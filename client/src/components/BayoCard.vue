@@ -54,7 +54,7 @@
 				<b-col md="6">
 					<b-card-body :title="bayobject.title" :sub-title="getSubtitleStr(bayobject)">
 						<b-card-text>{{
-							truncate(bayobject.content.replace("\n", "\\"), maxLength)
+							truncate(stripContentOfHTML(bayobject.content), maxLength)
 						}}</b-card-text>
 					</b-card-body>
 				</b-col>
@@ -84,6 +84,15 @@
 			};
 		},
 		methods: {
+			stripContentOfHTML(content) {
+				let strippedContent = content;
+				strippedContent = strippedContent.replace(/(<\/p>)/gi, " \\ ");
+				strippedContent = strippedContent.replace(/(<li>)/gi, " * ");
+				strippedContent = strippedContent.replace(/(<([^>]+)>)/gi, "");
+				strippedContent = strippedContent.replace(/(&lt;)/gi, "<");
+				strippedContent = strippedContent.replace(/(&gt;)/gi, ">");
+				return strippedContent;
+			},
 			truncate: (str, len) => {
 				if (str.length > len && str.length > 0) {
 					let new_str = str + " ";

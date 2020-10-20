@@ -4,7 +4,9 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Sanitize User input in title and content (use text editor plugin)
+-   Set a maximum amount of characters for Title and Content
+-   HTML must be parsed correctly when exporting
+-   Ordered and unordered lists showing weird in SingleReportermView
 -   Reporterms router?
 -   Consider extracting everything from reporterm views into templates for Anecdaynotes and Factales
 

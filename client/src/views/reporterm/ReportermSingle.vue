@@ -31,7 +31,7 @@
 				<u>{{ reporterm.title }}</u>
 			</h1>
 			<br />
-			<p id="content-paragraph">{{ reporterm.content }}</p>
+			<p id="content-paragraph" v-html="reporterm.content" />
 			<img :src="getImage(reporterm.image)" alt="Reporterm Image" class="externalImgBig" />
 			<br />
 			<br />

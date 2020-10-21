@@ -1,5 +1,5 @@
 <template>
-	<div id="bayo-form">
+	<div id="bayo-form" class="margin5 bayobtns">
 		<h2>{{ statusMsg }}</h2>
 		<b-form-group
 			id="dates-input-group"
@@ -157,8 +157,8 @@
 </template>
 
 <script>
-	import ImagesService from "../services/ImagesService";
-	import ProcessHTMLService from "../services/ProcessHTMLService";
+	import ImagesService from "../../services/ImagesService";
+	import ProcessHTMLService from "../../services/ProcessHTMLService";
 	import TextEditor from "./TextEditor";
 
 	export default {
@@ -280,18 +280,6 @@
 </script>
 
 <style>
-	#bayo-form {
-		margin: 5px;
-	}
-
-	#bayo-form a {
-		margin-right: 10px;
-	}
-
-	#bayo-form button {
-		margin-right: 10px;
-	}
-
 	.bayoformRadioOptions {
 		margin: 10px 0px 10px 50px;
 	}

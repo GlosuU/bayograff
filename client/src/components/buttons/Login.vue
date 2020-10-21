@@ -1,5 +1,5 @@
 <template>
-	<div id="login">
+	<div id="login" class="bayobtns">
 		<div v-if="$auth.loading">
 			<LoadingCircle />
 		</div>
@@ -19,7 +19,9 @@
 					left
 					fluid
 				/>
-				Welcome, <strong>{{ $auth.user.name }}!</strong>
+				<span class="margin5">
+					Welcome, <strong>{{ $auth.user.name }}!</strong>
+				</span>
 				<b-button @click="logout" variant="dark">
 					<b-icon icon="power" /> Log out
 				</b-button>
@@ -50,8 +52,4 @@
 	};
 </script>
 
-<style scoped>
-	button {
-		margin-left: 10px;
-	}
-</style>
+<style></style>

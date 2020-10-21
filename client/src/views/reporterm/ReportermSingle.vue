@@ -1,15 +1,16 @@
 <template>
-	<div id="reporterm-single" class="reporterm">
+	<div id="reporterm-single" class="reporterm routercontent">
 		<PrimaryButtons />
 		<SecondaryButtons
 			:backRoute="backRoute"
 			:editRoute="editRoute"
 			@delete-object="deleteReporterm"
 		/>
+		<br />
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
-		<div id="reporterm-single-content" class="centeraligned centeredlistitems" v-if="ready">
+		<div id="reporterm-single-content" class="centeraligned" v-if="ready">
 			<h2>
 				{{
 					new Date(reporterm.startDate).toLocaleDateString(undefined, {
@@ -31,7 +32,11 @@
 				<u>{{ reporterm.title }}</u>
 			</h1>
 			<br />
-			<p id="content-paragraph" v-html="reporterm.content" />
+			<p
+				id="content-paragraph"
+				class="singleobjectcontentview automargin alignlistitems"
+				v-html="reporterm.content"
+			/>
 			<img :src="getImage(reporterm.image)" alt="Reporterm Image" class="externalImgBig" />
 			<br />
 			<br />
@@ -68,13 +73,13 @@
 			:editRoute="editRoute"
 			@delete-object="deleteReporterm"
 		/>
-		<PrimaryButtons />
+		<br />
 	</div>
 </template>
 
 <script>
-	import PrimaryButtons from "../../components/PrimaryButtons";
-	import SecondaryButtons from "../../components/SecondaryButtons";
+	import PrimaryButtons from "../../components/buttons/PrimaryButtons";
+	import SecondaryButtons from "../../components/buttons/SecondaryButtons";
 	import Circle from "vue-loading-spinner/src/components/Circle";
 	import ReportermService from "../../services/ReportermService";
 	import ImagesService from "../../services/ImagesService";
@@ -165,10 +170,6 @@
 </script>
 
 <style>
-	#reporterm-single-content {
-		margin: 10px;
-	}
-
 	#content-paragraph {
 		white-space: pre-line;
 		font: normal 20px Arial, Helvetica, sans-serif;

@@ -1,5 +1,5 @@
 <template>
-	<div id="profile">
+	<div id="profile" class="routercontent margin10">
 		<div>
 			<img :src="$auth.user.picture" />
 			<h2>{{ $auth.user.name }}</h2>
@@ -16,8 +16,4 @@
 	export default {};
 </script>
 
-<style>
-	#profile {
-		margin: 10px;
-	}
-</style>
+<style></style>

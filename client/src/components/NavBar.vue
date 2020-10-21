@@ -28,16 +28,12 @@
 </script>
 
 <style>
-	/* #nav {
-		position: fixed 
-		padding-bottom: 10px;
-	} */
-
 	#nav a {
 		font-weight: bold;
 		color: white;
 		padding-right: 10px;
 		cursor: pointer;
+		margin: 1px;
 	}
 
 	#nav a.router-link-active {

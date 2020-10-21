@@ -1,5 +1,5 @@
 <template>
-	<div id="sortbuttons">
+	<div id="sortbuttons" class="centeraligned bayobtns">
 		<b-button id="sortdate" variant="light" @click="sortDate">
 			<b-icon v-if="dateDESC" icon="sort-numeric-down-alt" />
 			<b-icon v-if="!dateDESC" icon="sort-numeric-down" />
@@ -68,12 +68,4 @@
 	};
 </script>
 
-<style>
-	#sortbuttons {
-		text-align: center;
-	}
-
-	#sortbuttons button {
-		margin: 5px;
-	}
-</style>
+<style></style>

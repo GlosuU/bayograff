@@ -1,5 +1,5 @@
 <template>
-	<div id="secondarybuttons" class="centeraligned">
+	<div id="secondarybuttons" class="centeraligned bayobtns">
 		<b-button :to="backRoute" variant="primary">
 			<b-icon icon="skip-backward" /> Back to all
 		</b-button>
@@ -22,8 +22,4 @@
 	};
 </script>
 
-<style>
-	#secondarybuttons a {
-		margin-right: 10px;
-	}
-</style>
+<style></style>

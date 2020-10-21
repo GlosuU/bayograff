@@ -4,16 +4,16 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Change text-align center to left in SingleReportermView
 -   Reporterms router?
 -   Consider extracting everything from reporterm views into templates for Anecdaynotes and Factales
+-   Consider changing card link to go inside BayoCard
 
 -   Add Anecdaynotes and Factales
 -   Add Home and About Pages
 -   Add 404 and 500 views
 -   Include HTML tags in Latex
 -   Add Video
--   Images same size
+-   Images same size, different images for Reps, Anecs and Facts
 -   import ImageSelection.vue (needs events etc)
 -   Images can't be inserted into Latex :(
 -   Allow date input with text (maybe use npm install v-calendar)

@@ -61,7 +61,7 @@
 </template>
 
 <script>
-	import ImagesService from "../services/ImagesService";
+	import ImagesService from "../../services/ImagesService";
 
 	export default {
 		data() {

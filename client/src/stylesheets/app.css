@@ -1,0 +1,70 @@
+#app {
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #2c3e50;
+	background-color: beige;
+}
+
+.routercontent {
+	padding: 5px;
+}
+
+.reporterm {
+	background-color: lightpink;
+}
+
+.anecdaynote {
+	background-color: lightskyblue;
+}
+
+.factale {
+	background-color: lightgreen;
+}
+
+.clear {
+	clear: both;
+	margin: 20px;
+}
+
+.margin10 {
+	margin: 10px;
+}
+
+.margin5 {
+	margin: 5px;
+}
+
+.automargin {
+	margin: auto;
+}
+
+.centeraligned {
+	text-align: center;
+}
+
+.singleobjectcontentview {
+	text-align: left;
+	max-width: 900px;
+	padding-bottom: 20px;
+}
+
+.bayobtns button,
+a,
+input[type="button"],
+input[type="submit"] {
+	margin: 5px;
+}
+
+.pushToRight {
+	margin-left: 10px;
+}
+
+.alignlistitems ol,
+ul {
+	padding-left: 50px;
+}
+
+.biggerfont {
+	font-size: 20px;
+}

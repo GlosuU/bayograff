@@ -1,5 +1,5 @@
 <template>
-	<div id="primarybuttons">
+	<div id="primarybuttons" class="margin10 bayobtns">
 		<b-button to="/reporterms/new" variant="dark">
 			<b-icon icon="journal-plus" /> New Reporterm
 		</b-button>
@@ -11,7 +11,7 @@
 				class="mr-sm-2"
 				placeholder="Search by text"
 				required
-			></b-form-input>
+			/>
 			<b-button class="my-2 my-sm-0" type="submit">
 				<b-icon icon="search" /> Search
 			</b-button>
@@ -37,18 +37,6 @@
 </script>
 
 <style>
-	#primarybuttons {
-		margin: 10px;
-	}
-
-	#primarybuttons a {
-		margin: 5px;
-	}
-
-	#primarybuttons button {
-		margin: 5px;
-	}
-
 	#primarybuttons form {
 		float: right;
 	}

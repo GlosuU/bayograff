@@ -1,10 +1,10 @@
 <template>
-	<div id="ReportermsView" class="reporterm">
+	<div id="ReportermsView" class="reporterm routercontent">
 		<PrimaryButtons @search-text="searchReporterms" />
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
-		<div class="automargin maxcardsize" v-if="ready">
+		<div class="automargin maxcardwidth" v-if="ready">
 			<div class="centeraligned" v-if="reporterms.length == 0 && !textToSearch">
 				<h4>
 					You have not created any reporterms yet. Click "New Reporterm" to create one.
@@ -30,7 +30,7 @@
 					</b-button>
 					<br /><br />
 					<b-collapse id="lastUpdatedReporterm" v-model="lastUpdatedReportermVisible">
-						<div class="reportermcard">
+						<div class="cardlink reportermcard">
 							<router-link :to="'/reporterms/' + lastUpdatedReporterm._id">
 								<BayoCard
 									:bayobject="lastUpdatedReporterm"
@@ -51,7 +51,12 @@
 					/>
 				</div>
 				<br />
-				<div id="reportermslist" class="reportermcard" v-for="r in repsPag" :key="r._id">
+				<div
+					id="reportermslist"
+					class="cardlink reportermcard"
+					v-for="r in repsPag"
+					:key="r._id"
+				>
 					<router-link :to="'/reporterms/' + r._id">
 						<BayoCard
 							:bayobject="r"
@@ -77,8 +82,8 @@
 
 <script>
 	import Circle from "vue-loading-spinner/src/components/Circle";
-	import PrimaryButtons from "../../components/PrimaryButtons";
-	import SortButtons from "../../components/SortButtons";
+	import PrimaryButtons from "../../components/buttons/PrimaryButtons";
+	import SortButtons from "../../components/buttons/SortButtons";
 	import BayoCard from "../../components/BayoCard";
 	import ReportermService from "../../services/ReportermService";
 
@@ -240,24 +245,12 @@
 </script>
 
 <style scoped>
-	.reportermcard {
-		border: 5px solid transparent;
-	}
-
 	.reportermcard:hover {
 		border: 5px solid red;
-	}
-
-	.reportermcard a {
-		color: black;
 	}
 
 	.reportermcard a:hover {
 		text-decoration: none;
 		color: darkred;
-	}
-
-	#toggleLastUpdCollapse {
-		margin-left: 10px;
 	}
 </style>

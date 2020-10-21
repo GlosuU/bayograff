@@ -5,7 +5,7 @@
 				<b-button
 					size="lg"
 					variant="light"
-					:pressed="isActive.bold()"
+					:pressed="focused && isActive.bold()"
 					@click="commands.bold"
 				>
 					<b-icon icon="type-bold" />
@@ -14,7 +14,7 @@
 				<b-button
 					size="lg"
 					variant="light"
-					:pressed="isActive.italic()"
+					:pressed="focused && isActive.italic()"
 					@click="commands.italic"
 				>
 					<b-icon icon="type-italic" />
@@ -23,7 +23,7 @@
 				<b-button
 					size="lg"
 					variant="light"
-					:pressed="isActive.underline()"
+					:pressed="focused && isActive.underline()"
 					@click="commands.underline"
 				>
 					<b-icon icon="type-underline" />
@@ -32,7 +32,7 @@
 				<b-button
 					size="lg"
 					variant="light"
-					:pressed="isActive.strike()"
+					:pressed="focused && isActive.strike()"
 					@click="commands.strike"
 				>
 					<b-icon icon="type-strikethrough" />
@@ -41,7 +41,7 @@
 				<b-button
 					size="lg"
 					variant="light"
-					:pressed="isActive.bullet_list()"
+					:pressed="focused && isActive.bullet_list()"
 					@click="commands.bullet_list"
 				>
 					<b-icon icon="list-ul" />
@@ -50,7 +50,7 @@
 				<b-button
 					size="lg"
 					variant="light"
-					:pressed="isActive.ordered_list()"
+					:pressed="focused && isActive.ordered_list()"
 					@click="commands.ordered_list"
 				>
 					<b-icon icon="list-ol" />
@@ -114,12 +114,14 @@
 					content: this.initialContent,
 					onUpdate: () => {
 						// emit new content on update
-						this.focused = false;
 						// console.log("editor-content", this.editor.getHTML());
 						this.$emit("editor-updated", this.editor.getHTML());
 					},
 					onFocus: () => {
 						this.focused = true;
+					},
+					onBlur: () => {
+						this.focused = false;
 					},
 				}),
 			};

@@ -1,5 +1,5 @@
 <template>
-	<div id="bayofooter">
+	<div id="bayofooter" class="centeraligned">
 		<h3>Dummy Footer</h3>
 	</div>
 </template>
@@ -11,7 +11,6 @@
 <style scoped>
 	#bayofooter {
 		padding: 20px;
-		text-align: center;
 		color: white;
 		background-color: peru;
 	}

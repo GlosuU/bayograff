@@ -1,11 +1,11 @@
 <template>
-	<div id="export">
+	<div id="export" class="routercontent margin10 alignlistitems bayobtns">
 		<h1>Export Biography</h1>
 		<p>Click on a button below to download the biography in the desired format.</p>
 		<p>If the biography is of another person, please enter their name here first:</p>
 		<b-form inline>
 			<b-form-group id="name-input-group" label="Name:" label-for="name-input">
-				<b-form-input id="name-input" v-model="name" required></b-form-input>
+				<b-form-input id="name-input" class="margin5" v-model="name" required />
 			</b-form-group>
 		</b-form>
 		<br />
@@ -68,14 +68,4 @@
 	};
 </script>
 
-<style>
-	#export {
-		padding: 10px;
-	}
-	#name-input {
-		padding-left: 10px;
-	}
-	#formats li {
-		padding-bottom: 10px;
-	}
-</style>
+<style></style>

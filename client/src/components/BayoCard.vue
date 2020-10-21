@@ -1,13 +1,13 @@
 <template>
-	<div id="bayocard" class="maxcardsize">
-		<b-card no-body class="overflow-hidden maxcardsize">
+	<div id="bayocard">
+		<b-card no-body class="overflow-hidden">
 			<b-row no-gutters>
 				<b-col md="3">
 					<b-card-img-lazy
 						:src="getImage(bayobject.image)"
 						alt="Image"
 						class="rounded-0 maximgheight"
-					></b-card-img-lazy>
+					/>
 				</b-col>
 				<b-col md="2">
 					<b-card-body class="biggerfont">
@@ -126,6 +126,15 @@
 </script>
 
 <style>
+	.cardlink {
+		border: 5px solid transparent;
+	}
+
+	.cardlink a {
+		color: black;
+		margin: 0;
+	}
+
 	.maxcardwidth {
 		max-width: 1400px;
 	}

@@ -1,5 +1,5 @@
 <template>
-	<div id="reporterm-new" class="reporterm">
+	<div id="reporterm-new" class="reporterm routercontent">
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
@@ -15,7 +15,7 @@
 
 <script>
 	import Circle from "vue-loading-spinner/src/components/Circle";
-	import BayoForm from "../../components/BayoForm";
+	import BayoForm from "../../components/form/BayoForm";
 	import ReportermService from "../../services/ReportermService";
 
 	export default {

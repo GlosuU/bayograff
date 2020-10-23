@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
-const ReportermSchema = new mongoose.Schema({
+const reportermSchema = new mongoose.Schema({
 	user: {
 		type: String,
 		required: true,
+		index: true,
 	},
 	startDate: {
 		type: Date,
@@ -37,4 +38,4 @@ const ReportermSchema = new mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model("Reporterm", ReportermSchema);
+module.exports = mongoose.model("Reporterm", reportermSchema);

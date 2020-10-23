@@ -47,6 +47,9 @@
 				this.$auth.logout({
 					returnTo: window.location.origin,
 				});
+				this.$nReporterms = -1;
+				// this.$nAnecdaynotes = -1;
+				// this.$nFactales = -1;
 			},
 		},
 	};

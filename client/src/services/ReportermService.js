@@ -88,6 +88,20 @@ class ReportermService {
 	static deleteReporterm(id, accessToken) {
 		return axios.delete(`${url}${id}`, ReportermService.axios_config(accessToken));
 	}
+
+	// Get Reporterms
+	static getReportermsTotalCount(accessToken) {
+		return new Promise((resolve, reject) => {
+			axios
+				.get(`${url}total/count`, ReportermService.axios_config(accessToken))
+				.then((res) => {
+					resolve(res.data);
+				})
+				.catch((err) => {
+					reject(err);
+				});
+		});
+	}
 }
 
 export default ReportermService;

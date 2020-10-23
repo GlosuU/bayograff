@@ -4,21 +4,22 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Reporterms router?
--   Consider extracting everything from reporterm views into templates for Anecdaynotes and Factales
--   Consider changing card link to go inside BayoCard
-
--   Add Anecdaynotes and Factales
+-   ensureIndex is deprecated. Use createIndex instead.
+-   Add Anecdaynotes. Sidebar in ReportermSingleView
+-   Add Factales. Sortingbuttons should not sort by startdate
 -   Add Home and About Pages
--   Add 404 and 500 views
 -   Include HTML tags in Latex
--   Add Video
+-   Add Profile Page
 -   Images same size, different images for Reps, Anecs and Facts
+-   Add Footer
+-   Add Video
+
+-   Add 404 and 500 views
 -   import ImageSelection.vue (needs events etc)
+-   "Cancel" in BayoForm goes back to previous route regardless if it's outside the webpage. Probably should go to reporterms if it's the case
 -   Images can't be inserted into Latex :(
 -   Allow date input with text (maybe use npm install v-calendar)
 -   min and max dates should be one day off maybe (will need to use computed I believe)
--   Allow resizing of text
 
 ## Necessary external accounts (add private parameters to .env file)
 

@@ -10,10 +10,10 @@
 			<b-input-group id="input-1">
 				<b-datepicker
 					id="startDate"
-					v-model="object.startDate"
+					v-model="bayobject.startDate"
 					class="mb-2"
 					:date-format-options="{ year: 'numeric', month: 'short', day: '2-digit' }"
-					:max="object.endDate"
+					:max="bayobject.endDate"
 					value-as-date
 					show-decade-nav
 					close-button
@@ -21,10 +21,10 @@
 				/>
 				<b-datepicker
 					id="endDate"
-					v-model="object.endDate"
+					v-model="bayobject.endDate"
 					class="mb-2"
 					:date-format-options="{ year: 'numeric', month: 'short', day: '2-digit' }"
-					:min="object.startDate"
+					:min="bayobject.startDate"
 					value-as-date
 					show-decade-nav
 					today-button
@@ -39,12 +39,12 @@
 			label="Title:"
 			label-for="input-2"
 			:class="[
-				(titleMissing && !object.title) || object.title.length > maxTitleLength
+				(titleMissing && !bayobject.title) || bayobject.title.length > maxTitleLength
 					? 'showRequired'
 					: 'hideRequired',
 			]"
 		>
-			<b-form-input id="input-2" v-model="object.title" placeholder="Enter title" />
+			<b-form-input id="input-2" v-model="bayobject.title" placeholder="Enter title" />
 		</b-form-group>
 
 		<div class="numcharsmessage" v-if="titleInputMessage">
@@ -53,13 +53,13 @@
 
 		<div
 			:class="[
-				(contentMissing && !object.content) || cleanContent.length > maxContentLength
+				(contentMissing && !bayobject.content) || cleanContent.length > maxContentLength
 					? 'showRequired'
 					: 'hideRequired',
 			]"
 		>
 			<div class="label">Content:</div>
-			<TextEditor :initialContent="object.content" @editor-updated="updateContent" />
+			<TextEditor :initialContent="bayobject.content" @editor-updated="updateContent" />
 		</div>
 
 		<div class="numcharsmessage" v-if="contentInputMessage">
@@ -152,7 +152,7 @@
 		</b-collapse>
 		<br />
 		<b-button @click="onSave" variant="success"><b-icon icon="upload" /> Save</b-button>
-		<b-button :to="fromRoute" variant="danger"><b-icon icon="x-circle" /> Cancel</b-button>
+		<b-button @click="goBack" variant="danger"><b-icon icon="x-circle" /> Cancel</b-button>
 	</div>
 </template>
 
@@ -163,12 +163,13 @@
 
 	export default {
 		name: "BayoForm",
-		props: ["statusMsg", "object", "fromRoute"],
+		props: ["statusMsg", "bayobject"],
 		components: {
 			TextEditor,
 		},
 		data() {
 			return {
+				from: null,
 				imgOptionsVisible: false,
 				useExternalImg: false,
 				localImg: "",
@@ -181,34 +182,34 @@
 			};
 		},
 		created() {
-			if (ImagesService.isLocal(this.object.image)) {
-				this.localImg = this.object.image;
+			if (ImagesService.isLocal(this.bayobject.image)) {
+				this.localImg = this.bayobject.image;
 			} else {
 				this.useExternalImg = true;
-				this.externalImgURL = this.object.image;
+				this.externalImgURL = this.bayobject.image;
 			}
 		},
 		methods: {
 			updateContent(content) {
 				if (content == `<p></p>`) {
-					this.object.content = "";
+					this.bayobject.content = "";
 				} else {
-					this.object.content = content;
+					this.bayobject.content = content;
 				}
 			},
 			onSave() {
 				let validated = true;
 
 				// Non-empty validation
-				if (!this.object.title) {
+				if (!this.bayobject.title) {
 					this.titleMissing = true;
 				}
 
-				if (!this.object.content) {
+				if (!this.bayobject.content) {
 					this.contentMissing = true;
 				}
 
-				if (!this.object.title || !this.object.content) {
+				if (!this.bayobject.title || !this.bayobject.content) {
 					this.$root.$bvToast.toast(`Please fill out required fields`, {
 						title: "Missing required fields",
 						toaster: "b-toaster-top-center",
@@ -220,7 +221,7 @@
 
 				// Within Limits validation
 				if (
-					this.object.title.length > this.maxTitleLength ||
+					this.bayobject.title.length > this.maxTitleLength ||
 					this.cleanContent.length > this.maxContentLength
 				) {
 					this.$root.$bvToast.toast(`Please reduce the amount of characters`, {
@@ -232,27 +233,30 @@
 					validated = false;
 				}
 
-				// Save object if validated
+				// Save bayobject if validated
 				if (validated) {
 					this.saveImg();
-					this.$emit("save-object", this.object);
+					this.$emit("save-bayobject", this.bayobject);
 				}
 			},
 			saveImg() {
 				if (this.useExternalImg) {
 					if (this.externalImgURL) {
-						this.object.image = this.externalImgURL;
+						this.bayobject.image = this.externalImgURL;
 					} else {
-						this.object.image = "noImg";
+						this.bayobject.image = "noImg";
 					}
 				} else {
-					this.object.image = this.localImg;
+					this.bayobject.image = this.localImg;
 				}
+			},
+			goBack() {
+				this.$router.back();
 			},
 		},
 		computed: {
 			titleInputMessage() {
-				const numChars = this.object.title.length;
+				const numChars = this.bayobject.title.length;
 				if (numChars > this.maxTitleLength - 20 && numChars <= this.maxTitleLength) {
 					return `Reaching the limit: ${numChars}/${this.maxTitleLength} characters`;
 				} else if (numChars > this.maxTitleLength) {
@@ -262,7 +266,7 @@
 				}
 			},
 			cleanContent() {
-				return ProcessHTMLService.getTextContent(this.object.content);
+				return ProcessHTMLService.getTextContent(this.bayobject.content);
 			},
 			contentInputMessage() {
 				const cleanContent = this.cleanContent;

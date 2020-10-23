@@ -2,9 +2,8 @@
 	<div id="reporterm-new" class="reporterm routercontent">
 		<BayoForm
 			:statusMsg="message"
-			:object="newReporterm"
-			:fromRoute="fromRoute"
-			@save-object="addNewReporterm"
+			:bayobject="newReporterm"
+			@save-bayobject="addNewReporterm"
 		/>
 	</div>
 </template>
@@ -34,7 +33,6 @@
 					content: "",
 					image: "noImg",
 				},
-				fromRoute: "/reporterms/",
 			};
 		},
 		methods: {
@@ -42,19 +40,38 @@
 				try {
 					const accessToken = await this.$auth.getTokenSilently();
 
-					await ReportermService.addReporterm(newReporterm, accessToken);
+					if (this.$nReporterms < 0) {
+						this.$nReporterms = await ReportermService.getReportermsTotalCount(
+							accessToken
+						);
+					}
 
-					this.$root.$bvToast.toast(
-						`Reporterm "${this.newReporterm.title}" created successfully!`,
-						{
-							title: "Created",
-							toaster: "b-toaster-top-center",
-							variant: "primary",
-							autoHideDelay: 4000,
-						}
-					);
+					if (this.$nReporterms < process.env.VUE_APP_MAX_N_REPORTERMS) {
+						await ReportermService.addReporterm(newReporterm, accessToken);
 
-					this.$router.push({ path: "/reporterms/" });
+						this.$root.$bvToast.toast(
+							`Reporterm "${this.newReporterm.title}" created successfully!`,
+							{
+								title: "Created",
+								toaster: "b-toaster-top-center",
+								variant: "primary",
+								autoHideDelay: 4000,
+							}
+						);
+
+						this.$router.push({ path: "/reporterms/" });
+						this.$nReporterms++;
+					} else {
+						this.$root.$bvToast.toast(
+							`You cannot have more than ${process.env.VUE_APP_MAX_N_REPORTERMS} Reporterms. Please delete one before creating a new one.`,
+							{
+								title: "Reporterms limit reached",
+								toaster: "b-toaster-top-center",
+								variant: "danger",
+								autoHideDelay: 5000,
+							}
+						);
+					}
 				} catch (err) {
 					this.err = err;
 					// console.err(err);

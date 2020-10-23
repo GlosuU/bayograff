@@ -1,4 +1,5 @@
 const express = require("express");
+const { max_n_reporterms } = require("../../config/config");
 const checkJWT = require("../../middleware/auth");
 const Reporterm = require("../../models/Reporterm");
 
@@ -23,10 +24,10 @@ router.get("/", checkJWT, async (req, res) => {
 				user: req.user.sub,
 			}).sort({ startDate: 1 });
 		}
-		res.send(reporterms);
+		return res.send(reporterms);
 	} catch (err) {
 		console.error(err);
-		res.status(500).send();
+		return res.status(500).send();
 	}
 });
 
@@ -43,9 +44,9 @@ router.get("/:id", checkJWT, async (req, res) => {
 
 		if (reporterm.user != req.user.sub) {
 			// User does not own this reporterm
-			res.status(403).send();
+			return res.status(403).send();
 		} else {
-			res.send(reporterm);
+			return res.send(reporterm);
 		}
 	} catch (err) {
 		console.error(err);
@@ -57,12 +58,24 @@ router.get("/:id", checkJWT, async (req, res) => {
 // @route   POST /api/reporterms
 router.post("/", checkJWT, async (req, res) => {
 	try {
-		req.body.user = req.user.sub;
-		await Reporterm.create(req.body);
-		res.status(201).send();
+		let reporterms = [];
+		reporterms = await Reporterm.find({
+			user: req.user.sub,
+		});
+
+		if (reporterms.length < max_n_reporterms) {
+			req.body.user = req.user.sub;
+			await Reporterm.create(req.body);
+			return res.status(201).send();
+		} else {
+			console.error(`Maximum number of reporterms exceeded for user: ${req.user.sub}`);
+			return res
+				.status(409)
+				.send("Maximum number of reporterms reached. Can't create new reporterm.");
+		}
 	} catch (err) {
 		console.error(err);
-		res.status(500).send();
+		return res.status(500).send();
 	}
 });
 
@@ -79,7 +92,7 @@ router.put("/:id", checkJWT, async (req, res) => {
 
 		if (reporterm.user != req.user.sub) {
 			// User does not own this reporterm
-			res.status(403).send();
+			return res.status(403).send();
 		} else {
 			req.body.updatedAt = new Date();
 			await Reporterm.findOneAndUpdate({ _id: req.params.id }, req.body, {
@@ -87,11 +100,11 @@ router.put("/:id", checkJWT, async (req, res) => {
 				runValidators: true,
 			});
 
-			res.status(200).send();
+			return res.status(200).send();
 		}
 	} catch (err) {
 		console.error(err);
-		res.status(500).send();
+		return res.status(500).send();
 	}
 });
 
@@ -108,14 +121,29 @@ router.delete("/:id", checkJWT, async (req, res) => {
 
 		if (reporterm.user != req.user.sub) {
 			// User does not own this reporterm
-			res.status(403).send();
+			return res.status(403).send();
 		} else {
 			await Reporterm.deleteOne({ _id: req.params.id });
-			res.status(200).send();
+			return res.status(200).send();
 		}
 	} catch (err) {
 		console.error(err);
-		res.status(500).send();
+		return res.status(500).send();
+	}
+});
+
+// @desc    Fetch the total count of reporterms of a user
+// @route   GET /api/reporterms/totalcount
+router.get("/total/count", checkJWT, async (req, res) => {
+	try {
+		let reporterms = [];
+		reporterms = await Reporterm.find({
+			user: req.user.sub,
+		});
+		return res.send(reporterms.length.toString());
+	} catch (err) {
+		console.error(err);
+		return res.status(500).send();
 	}
 });
 

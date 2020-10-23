@@ -7,6 +7,7 @@ const connectDB = async () => {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 			useFindAndModify: false,
+			// autoIndex: false, // Mongoose doc recommends autoindex=false in production...
 		});
 
 		console.log(`MongoDB Connected: ${conn.connection.host}`);

@@ -1,94 +1,30 @@
 <template>
 	<div id="reporterm-single" class="reporterm routercontent">
-		<PrimaryButtons />
-		<SecondaryButtons
-			:backRoute="backRoute"
-			:editRoute="editRoute"
-			@delete-object="deleteReporterm"
-		/>
-		<br />
+		<PrimaryButtons :enableSearch="false" />
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
-		<div id="reporterm-single-content" class="centeraligned" v-if="ready">
-			<h2>
-				{{
-					new Date(reporterm.startDate).toLocaleDateString(undefined, {
-						year: "numeric",
-						month: "long",
-						day: "numeric",
-					})
-				}}
-				-
-				{{
-					new Date(reporterm.endDate).toLocaleDateString(undefined, {
-						year: "numeric",
-						month: "long",
-						day: "numeric",
-					})
-				}}
-			</h2>
-			<h1>
-				<u>{{ reporterm.title }}</u>
-			</h1>
-			<br />
-			<p
-				id="content-paragraph"
-				class="singleobjectcontentview automargin alignlistitems"
-				v-html="reporterm.content"
-			/>
-			<img :src="getImage(reporterm.image)" alt="Reporterm Image" class="externalImgBig" />
-			<br />
-			<br />
-			<div class="object-dates">
-				<h5>
-					Created:
-					{{
-						new Date(reporterm.createdAt).toLocaleDateString(undefined, {
-							year: "numeric",
-							month: "long",
-							day: "numeric",
-						})
-					}}
-				</h5>
-				<h5>
-					Last updated:
-					{{
-						new Date(reporterm.updatedAt).toLocaleDateString(undefined, {
-							year: "numeric",
-							month: "long",
-							day: "numeric",
-							year: "numeric",
-							hour: "2-digit",
-							minute: "2-digit",
-							hour12: false,
-						})
-					}}
-				</h5>
-			</div>
-		</div>
-		<br />
-		<SecondaryButtons
-			:backRoute="backRoute"
-			:editRoute="editRoute"
-			@delete-object="deleteReporterm"
+		<SingleView
+			v-if="ready"
+			:bayobject="reporterm"
+			backRoute="/reporterms"
+			:editRoute="`/reporterms/${this.$route.params.id}/edit`"
+			@delete-bayobject="deleteReporterm"
 		/>
-		<br />
 	</div>
 </template>
 
 <script>
 	import PrimaryButtons from "../../components/buttons/PrimaryButtons";
-	import SecondaryButtons from "../../components/buttons/SecondaryButtons";
 	import Circle from "vue-loading-spinner/src/components/Circle";
+	import SingleView from "../../components/templates/SingleView";
 	import ReportermService from "../../services/ReportermService";
-	import ImagesService from "../../services/ImagesService";
 
 	export default {
 		name: "ReportermSingle",
 		components: {
 			PrimaryButtons,
-			SecondaryButtons,
+			SingleView,
 			LoadingCircle: Circle,
 		},
 		data() {
@@ -96,8 +32,6 @@
 				ready: false,
 				reporterm: {},
 				err: "",
-				backRoute: "/reporterms",
-				editRoute: `/reporterms/${this.$route.params.id}/edit`,
 			};
 		},
 		async created() {
@@ -115,7 +49,6 @@
 			}
 		},
 		methods: {
-			getImage: (img) => ImagesService.getImage(img),
 			async deleteReporterm() {
 				this.$confirm({
 					title: `Are you sure?`,
@@ -149,6 +82,7 @@
 								);
 
 								this.$router.push({ path: "/reporterms/" });
+								this.$nReporterms--;
 							} catch (err) {
 								this.err = err;
 								this.$root.$bvToast.toast(
@@ -169,19 +103,4 @@
 	};
 </script>
 
-<style>
-	#content-paragraph {
-		white-space: pre-line;
-		font: normal 20px Arial, Helvetica, sans-serif;
-	}
-
-	.object-dates {
-		font-weight: bold;
-		font-style: italic;
-	}
-
-	.externalImgBig {
-		max-width: 600px;
-		max-height: 400px;
-	}
-</style>
+<style></style>

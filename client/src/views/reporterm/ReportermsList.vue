@@ -1,90 +1,27 @@
 <template>
 	<div id="ReportermsView" class="reporterm routercontent">
-		<PrimaryButtons @search-text="searchReporterms" />
+		<PrimaryButtons :enableSearch="true" @search-text="searchReporterms" />
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
-		<div class="automargin maxcardwidth" v-if="ready">
-			<div class="centeraligned" v-if="reporterms.length == 0 && !textToSearch">
-				<h4>
-					You have not created any reporterms yet. Click "New Reporterm" to create one.
-				</h4>
-			</div>
-			<div class="centeraligned" v-if="textToSearch">
-				<h4 v-if="reporterms.length == 0">
-					Sorry, no results found for "{{ textToSearch }}"
-				</h4>
-				<h4 v-if="reporterms.length > 0">Showing results for "{{ textToSearch }}"</h4>
-			</div>
-			<div v-if="reporterms.length > 0">
-				<div id="lastupdatedrepcollapse" v-if="reporterms.length > 1">
-					<b-button
-						id="toggleLastUpdCollapse"
-						v-b-toggle.lastUpdatedReporterm
-						variant="primary"
-					>
-						{{ lastUpdatedReportermVisible ? "Hide" : "Show" }} your last updated
-						Reporterm
-						<b-icon v-if="!lastUpdatedReportermVisible" icon="arrow-right" />
-						<b-icon v-if="lastUpdatedReportermVisible" icon="arrow-down" />
-					</b-button>
-					<br /><br />
-					<b-collapse id="lastUpdatedReporterm" v-model="lastUpdatedReportermVisible">
-						<div class="cardlink reportermcard">
-							<router-link :to="'/reporterms/' + lastUpdatedReporterm._id">
-								<BayoCard
-									:bayobject="lastUpdatedReporterm"
-									@edit-object="editReporterm"
-									@delete-object="deleteReporterm"
-								/>
-							</router-link>
-						</div>
-					</b-collapse>
-					<hr />
-					<SortButtons
-						@sort-date-asc="sortDateASC"
-						@sort-date-desc="sortDateDESC"
-						@sort-alpha-az="sortAlphaAZ"
-						@sort-alpha-za="sortAlphaZA"
-						@sort-updated-at-asc="sortUpdatedAtASC"
-						@sort-updated-at-desc="sortUpdatedAtDESC"
-					/>
-				</div>
-				<br />
-				<div
-					id="reportermslist"
-					class="cardlink reportermcard"
-					v-for="r in repsPag"
-					:key="r._id"
-				>
-					<router-link :to="'/reporterms/' + r._id">
-						<BayoCard
-							:bayobject="r"
-							@edit-object="editReporterm"
-							@delete-object="deleteReporterm"
-						/>
-					</router-link>
-				</div>
-				<br />
-				<b-pagination
-					v-model="currentPage"
-					:total-rows="reporterms.length"
-					:per-page="perPage"
-					aria-controls="reportermslist"
-					align="center"
-				>
-				</b-pagination>
-			</div>
-		</div>
-		<br />
+		<ListView
+			v-if="ready"
+			:textToSearch="textToSearch"
+			:bayobjects="reporterms"
+			bayobjectType="Reporterm"
+			bayobjectClass="reportermcard"
+			rootPath="/reporterms/"
+			@sort-date-asc="sortDateASC"
+			@sort-date-desc="sortDateDESC"
+			@delete-bayobject="deleteReporterm"
+		/>
 	</div>
 </template>
 
 <script>
 	import Circle from "vue-loading-spinner/src/components/Circle";
 	import PrimaryButtons from "../../components/buttons/PrimaryButtons";
-	import SortButtons from "../../components/buttons/SortButtons";
-	import BayoCard from "../../components/BayoCard";
+	import ListView from "../../components/templates/ListView";
 	import ReportermService from "../../services/ReportermService";
 
 	export default {
@@ -92,8 +29,7 @@
 		components: {
 			LoadingCircle: Circle,
 			PrimaryButtons,
-			SortButtons,
-			BayoCard,
+			ListView,
 		},
 		props: {
 			textToSearch: {
@@ -105,10 +41,6 @@
 			return {
 				ready: false,
 				reporterms: [],
-				lastUpdatedReporterm: {},
-				lastUpdatedReportermVisible: false,
-				currentPage: 1,
-				perPage: 3,
 				err: "",
 			};
 		},
@@ -123,42 +55,16 @@
 					accessToken
 				);
 
-				if (this.reporterms.length > 1) {
-					this.lastUpdatedReporterm = this.reporterms.reduce((a, b) =>
-						new Date(a.updatedAt) > new Date(b.updatedAt) ? a : b
-					);
+				if (this.$nReporterms == -1) {
+					this.$nReporterms = this.reporterms.length;
 				}
-
-				this.setPerPage();
 
 				this.ready = true;
 			} catch (err) {
 				this.err = err;
 			}
 		},
-		mounted() {
-			window.addEventListener("resize", this.setPerPage);
-		},
-		computed: {
-			repsPag() {
-				if (this.reporterms.length > this.perPage) {
-					return this.reporterms.slice(
-						(this.currentPage - 1) * this.perPage,
-						this.currentPage * this.perPage
-					);
-				} else {
-					return this.reporterms;
-				}
-			},
-		},
 		methods: {
-			setPerPage() {
-				if (window.innerWidth > 768) {
-					this.perPage = 5;
-				} else {
-					this.perPage = 3;
-				}
-			},
 			searchReporterms(searchText) {
 				this.ready = false;
 				this.$router.push({ query: { search: searchText } });
@@ -168,21 +74,6 @@
 			},
 			sortDateDESC() {
 				this.reporterms.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
-			},
-			sortAlphaAZ() {
-				this.reporterms.sort((a, b) => a.title.localeCompare(b.title));
-			},
-			sortAlphaZA() {
-				this.reporterms.sort((a, b) => b.title.localeCompare(a.title));
-			},
-			sortUpdatedAtASC() {
-				this.reporterms.sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt));
-			},
-			sortUpdatedAtDESC() {
-				this.reporterms.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-			},
-			editReporterm(r) {
-				this.$router.push({ path: `/reporterms/${r._id}/edit` });
 			},
 			async deleteReporterm(r) {
 				this.$confirm({
@@ -215,6 +106,7 @@
 
 								// Remove the reporterm from the current array
 								this.reporterms.splice(this.reporterms.indexOf(r), 1);
+								this.$nReporterms--;
 							} catch (err) {
 								this.err = err;
 								this.$root.$bvToast.toast(
@@ -234,17 +126,15 @@
 		},
 		watch: {
 			// refresh page if the route changes
-			$route: () => {
+			$route: function () {
+				this.ready = false;
 				location.reload();
 			},
-		},
-		destroyed() {
-			window.removeEventListener("resize", this.setPerPage);
 		},
 	};
 </script>
 
-<style scoped>
+<style>
 	.reportermcard:hover {
 		border: 5px solid red;
 	}

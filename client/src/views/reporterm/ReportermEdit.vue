@@ -1,14 +1,13 @@
 <template>
-	<div id="reporterm-new" class="reporterm routercontent">
+	<div id="reporterm-edit" class="reporterm routercontent">
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
 		<BayoForm
 			v-if="ready"
 			:statusMsg="message"
-			:object="reporterm"
-			:fromRoute="fromRoute"
-			@save-object="saveReporterm"
+			:bayobject="reporterm"
+			@save-bayobject="saveReporterm"
 		/>
 	</div>
 </template>
@@ -29,7 +28,6 @@
 				ready: false,
 				reporterm: {},
 				message: "",
-				fromRoute: "/reporterms/" + this.$route.params.id,
 			};
 		},
 		async created() {
@@ -63,7 +61,7 @@
 							autoHideDelay: 4000,
 						}
 					);
-					this.$router.push({ path: this.fromRoute });
+					this.$router.push({ path: "/reporterms/" + this.$route.params.id });
 				} catch (err) {
 					this.err = err;
 					this.$root.$bvToast.toast(

@@ -18,6 +18,10 @@ Vue.use(Auth0Plugin, {
 
 Vue.config.productionTip = false;
 
+Vue.prototype.$nReporterms = -1;
+Vue.prototype.$nAnecdaynotes = -1;
+Vue.prototype.$nFactales = -1;
+
 new Vue({
 	router,
 	render: (h) => h(App),

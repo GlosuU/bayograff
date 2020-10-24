@@ -3,8 +3,10 @@
 		<b-button @click="go2NewReporterm" variant="dark">
 			<b-icon icon="journal-plus" /> New Reporterm
 		</b-button>
-		<b-button variant="dark"> <b-icon icon="file-earmark-plus" /> New Anecdaynote</b-button>
-		<b-button variant="dark"> <b-icon icon="patch-plus" /> New Factale</b-button>
+		<b-button @click="go2NewAnecdaynote" variant="dark">
+			<b-icon icon="file-earmark-plus" /> New Anecdaynote
+		</b-button>
+		<b-button variant="dark"> <b-icon icon="patch-plus" /> New Factale </b-button>
 		<b-form v-if="enableSearch" @submit="searchText" inline>
 			<b-form-input
 				v-model="textToSearch"
@@ -22,6 +24,7 @@
 
 <script>
 	import ReportermService from "../../services/ReportermService";
+	import AnecdaynoteService from "../../services/AnecdaynoteService";
 
 	export default {
 		props: ["enableSearch"],
@@ -36,16 +39,55 @@
 				this.$emit("search-text", this.textToSearch);
 			},
 			async go2NewReporterm() {
-				if (this.$nReporterms < 0) {
+				await this.go2NewBayobject(
+					this.$nReporterms,
+					process.env.VUE_APP_MAX_N_REPORTERMS,
+					"reporterm"
+				);
+			},
+			async go2NewAnecdaynote() {
+				await this.go2NewBayobject(
+					this.$nAnecdaynotes,
+					process.env.VUE_APP_MAX_N_ANECDAYNOTES,
+					"anecdaynote"
+				);
+			},
+			async go2NewFactale() {
+				await this.go2NewBayobject(
+					this.$nFactales,
+					process.env.VUE_APP_MAX_N_FACTALES,
+					"anecdaynote"
+				);
+			},
+			capitalize: (s) => {
+				if (typeof s !== "string") return "";
+				return s.charAt(0).toUpperCase() + s.slice(1);
+			},
+			async go2NewBayobject(nObjects, maxNObjects, objectTypeStr) {
+				if (nObjects < 0) {
 					try {
 						const accessToken = await this.$auth.getTokenSilently();
-						this.$nReporterms = await ReportermService.getReportermsTotalCount(
-							accessToken
-						);
+						switch (objectTypeStr) {
+							case "reporterm":
+								nObjects = await ReportermService.getReportermsTotalCount(
+									accessToken
+								);
+								break;
+							case "anecdaynote":
+								nObjects = await AnecdaynoteService.getAnecdaynotesTotalCount(
+									accessToken
+								);
+								break;
+							case "factale":
+							// nObjects = await FactaleService.getFactalesTotalCount(accessToken);
+							// break;
+						}
 					} catch (err) {
 						this.err = err;
 						this.$root.$bvToast.toast(
-							`We're sorry, something went wrong and we can't create new reporterms. Maybe try again later.`,
+							`We're sorry, something went wrong and we can't create new ${this.capitalize(
+								objectTypeStr
+							)}s. Maybe try again later.`,
 							{
 								title: "Error",
 								toaster: "b-toaster-top-center",
@@ -55,13 +97,15 @@
 						);
 					}
 				}
-				if (this.$nReporterms < process.env.VUE_APP_MAX_N_REPORTERMS) {
-					this.$router.push({ path: "/reporterms/new" });
+				if (nObjects < maxNObjects) {
+					this.$router.push({ path: `/${objectTypeStr}s/new` });
 				} else {
 					this.$root.$bvToast.toast(
-						`You cannot have more than ${process.env.VUE_APP_MAX_N_REPORTERMS} Reporterms. Please delete one before creating a new one.`,
+						`You cannot have more than ${maxNObjects} ${this.capitalize(
+							objectTypeStr
+						)}s. Please delete one before creating a new one.`,
 						{
-							title: "Reporterms limit reached",
+							title: `${this.capitalize(objectTypeStr)}s limit reached`,
 							toaster: "b-toaster-top-center",
 							variant: "danger",
 							autoHideDelay: 5000,

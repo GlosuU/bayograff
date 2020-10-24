@@ -6,7 +6,8 @@
 			@delete-object="deleteBayobject"
 		/>
 		<br />
-		<h2>
+		<!-- Reporterm -->
+		<h2 v-if="bayobject.startDate && bayobject.endDate">
 			{{
 				new Date(bayobject.startDate).toLocaleDateString(undefined, {
 					year: "numeric",
@@ -17,6 +18,16 @@
 			-
 			{{
 				new Date(bayobject.endDate).toLocaleDateString(undefined, {
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+				})
+			}}
+		</h2>
+		<!-- Anecdaynote -->
+		<h2 v-if="bayobject.date">
+			{{
+				new Date(bayobject.date).toLocaleDateString(undefined, {
 					year: "numeric",
 					month: "long",
 					day: "numeric",

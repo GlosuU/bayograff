@@ -1,15 +1,15 @@
 <template>
-	<div id="reporterm-single" class="reporterm routercontent">
+	<div id="anecdaynote-single" class="anecdaynote routercontent">
 		<PrimaryButtons :enableSearch="false" />
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
 		<SingleView
 			v-if="ready"
-			:bayobject="reporterm"
-			backRoute="/reporterms"
-			:editRoute="`/reporterms/${this.$route.params.id}/edit`"
-			@delete-bayobject="deleteReporterm"
+			:bayobject="anecdaynote"
+			backRoute="/anecdaynotes"
+			:editRoute="`/anecdaynotes/${this.$route.params.id}/edit`"
+			@delete-bayobject="deleteAnecdaynote"
 		/>
 	</div>
 </template>
@@ -18,10 +18,10 @@
 	import PrimaryButtons from "../../components/buttons/PrimaryButtons";
 	import Circle from "vue-loading-spinner/src/components/Circle";
 	import SingleView from "../../components/templates/SingleView";
-	import ReportermService from "../../services/ReportermService";
+	import AnecdaynoteService from "../../services/AnecdaynoteService";
 
 	export default {
-		name: "ReportermSingle",
+		name: "AnecdaynoteSingle",
 		components: {
 			PrimaryButtons,
 			SingleView,
@@ -30,7 +30,7 @@
 		data() {
 			return {
 				ready: false,
-				reporterm: {},
+				anecdaynote: {},
 				err: "",
 			};
 		},
@@ -38,7 +38,7 @@
 			try {
 				const accessToken = await this.$auth.getTokenSilently();
 
-				this.reporterm = await ReportermService.getSingleReporterm(
+				this.anecdaynote = await AnecdaynoteService.getSingleAnecdaynote(
 					this.$route.params.id,
 					accessToken
 				);
@@ -49,10 +49,10 @@
 			}
 		},
 		methods: {
-			async deleteReporterm() {
+			async deleteAnecdaynote() {
 				this.$confirm({
 					title: "Are you sure?",
-					message: `This will delete the Reporterm "${this.reporterm.title}"`,
+					message: `This will delete the Anecdaynote "${this.anecdaynote.title}"`,
 					button: {
 						no: "No, cancel",
 						yes: "Yes, delete it",
@@ -66,13 +66,13 @@
 							try {
 								const accessToken = await this.$auth.getTokenSilently();
 
-								await ReportermService.deleteReporterm(
+								await AnecdaynoteService.deleteAnecdaynote(
 									this.$route.params.id,
 									accessToken
 								);
 
 								this.$root.$bvToast.toast(
-									`Reporterm "${this.reporterm.title}" deleted successfully!`,
+									`Anecdaynote "${this.anecdaynote.title}" deleted successfully!`,
 									{
 										title: "Deleted",
 										toaster: "b-toaster-top-center",
@@ -81,12 +81,12 @@
 									}
 								);
 
-								this.$router.push({ path: "/reporterms/" });
-								this.$nReporterms--;
+								this.$router.push({ path: "/anecdaynotes/" });
+								this.$nAnecdaynotes--;
 							} catch (err) {
 								this.err = err;
 								this.$root.$bvToast.toast(
-									`We're sorry, something went wrong and we couldn't delete the reporterm. Maybe try again later.`,
+									`We're sorry, something went wrong and we couldn't delete the anecdaynote. Maybe try again later.`,
 									{
 										title: "Error",
 										toaster: "b-toaster-top-center",

@@ -8,7 +8,7 @@
 					<router-link to="/reporterms">
 						<b-icon icon="journal" />Reporterms
 					</router-link>
-					<router-link to="/about">
+					<router-link to="/anecdaynotes">
 						<b-icon icon="file-earmark" />Anecdaynotes
 					</router-link>
 					<router-link to="/about">

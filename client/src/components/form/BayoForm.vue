@@ -1,13 +1,14 @@
 <template>
 	<div id="bayo-form" class="margin5 bayobtns">
 		<h2>{{ statusMsg }}</h2>
+
 		<b-form-group
-			id="dates-input-group"
 			label="Date Range:"
-			label-for="input-1"
+			label-for="input-1-twodates"
 			class="hideRequired"
+			v-if="bayobject.startDate && bayobject.endDate"
 		>
-			<b-input-group id="input-1">
+			<b-input-group id="input-1-twodates">
 				<b-datepicker
 					id="startDate"
 					v-model="bayobject.startDate"
@@ -28,6 +29,26 @@
 					value-as-date
 					show-decade-nav
 					today-button
+					close-button
+					locale="en"
+				/>
+			</b-input-group>
+		</b-form-group>
+
+		<b-form-group
+			label="Date:"
+			label-for="input-1-onedate"
+			class="hideRequired"
+			v-if="bayobject.date"
+		>
+			<b-input-group id="input-1-onedate">
+				<b-datepicker
+					id="date"
+					v-model="bayobject.date"
+					class="mb-2"
+					:date-format-options="{ year: 'numeric', month: 'short', day: '2-digit' }"
+					value-as-date
+					show-decade-nav
 					close-button
 					locale="en"
 				/>

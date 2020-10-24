@@ -1,0 +1,43 @@
+.cardlink {
+	border: 5px solid transparent;
+}
+
+.cardlink a {
+	color: black;
+	margin: 0;
+}
+
+.maxcardwidth {
+	max-width: 1400px;
+}
+
+.maximgheight {
+	object-fit: cover;
+	height: 200px;
+}
+
+.tabspaces {
+	padding: 0px 10px;
+}
+
+.btn-margin button {
+	margin: 8px;
+}
+
+.reportermcard:hover {
+	border: 5px solid red;
+}
+
+.reportermcard a:hover {
+	text-decoration: none;
+	color: darkred;
+}
+
+.anecdaynotecard:hover {
+	border: 5px solid blue;
+}
+
+.anecdaynotecard a:hover {
+	text-decoration: none;
+	color: darkblue;
+}

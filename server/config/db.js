@@ -7,6 +7,7 @@ const connectDB = async () => {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 			useFindAndModify: false,
+			useCreateIndex: true,
 			// autoIndex: false, // Mongoose doc recommends autoindex=false in production...
 		});
 

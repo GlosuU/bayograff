@@ -1,19 +1,19 @@
 <template>
-	<div id="ReportermsView" class="reporterm routercontent">
-		<PrimaryButtons :enableSearch="true" @search-text="searchReporterms" />
+	<div id="AnecdaynotesView" class="anecdaynote routercontent">
+		<PrimaryButtons :enableSearch="true" @search-text="searchAnecdaynotes" />
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
 		<ListView
 			v-if="ready"
 			:textToSearch="textToSearch"
-			:bayobjects="reporterms"
-			bayobjectType="Reporterm"
-			bayobjectClass="reportermcard"
-			rootPath="/reporterms/"
+			:bayobjects="anecdaynotes"
+			bayobjectType="Anecdaynote"
+			bayobjectClass="anecdaynotecard"
+			rootPath="/anecdaynotes/"
 			@sort-date-asc="sortDateASC"
 			@sort-date-desc="sortDateDESC"
-			@delete-bayobject="deleteReporterm"
+			@delete-bayobject="deleteAnecdaynote"
 		/>
 	</div>
 </template>
@@ -22,10 +22,10 @@
 	import Circle from "vue-loading-spinner/src/components/Circle";
 	import PrimaryButtons from "../../components/buttons/PrimaryButtons";
 	import ListView from "../../components/templates/ListView";
-	import ReportermService from "../../services/ReportermService";
+	import AnecdaynoteService from "../../services/AnecdaynoteService";
 
 	export default {
-		name: "ReportermsList",
+		name: "AnecdaynotesList",
 		components: {
 			LoadingCircle: Circle,
 			PrimaryButtons,
@@ -40,23 +40,21 @@
 		data() {
 			return {
 				ready: false,
-				reporterms: [],
+				anecdaynotes: [],
 				err: "",
 			};
 		},
 		async created() {
 			try {
-				// Get the access token from the auth wrapper
 				const accessToken = await this.$auth.getTokenSilently();
-				// console.log("accessToken", accessToken);
 
-				this.reporterms = await ReportermService.getReporterms(
+				this.anecdaynotes = await AnecdaynoteService.getAnecdaynotes(
 					this.textToSearch,
 					accessToken
 				);
 
-				if (this.$nReporterms == -1) {
-					this.$nReporterms = this.reporterms.length;
+				if (this.$nAnecdaynotes == -1) {
+					this.$nAnecdaynotes = this.anecdaynotes.length;
 				}
 
 				this.ready = true;
@@ -65,20 +63,20 @@
 			}
 		},
 		methods: {
-			searchReporterms(searchText) {
+			searchAnecdaynotes(searchText) {
 				this.ready = false;
 				this.$router.push({ query: { search: searchText } });
 			},
 			sortDateASC() {
-				this.reporterms.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+				this.anecdaynotes.sort((a, b) => new Date(a.date) - new Date(b.date));
 			},
 			sortDateDESC() {
-				this.reporterms.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+				this.anecdaynotes.sort((a, b) => new Date(b.date) - new Date(a.date));
 			},
-			async deleteReporterm(r) {
+			async deleteAnecdaynote(a) {
 				this.$confirm({
 					title: `Are you sure?`,
-					message: `This will delete the Reporterm "${r.title}"`,
+					message: `This will delete the Anecdaynote "${a.title}"`,
 					button: {
 						no: "No, cancel",
 						yes: "Yes, delete it",
@@ -92,10 +90,10 @@
 							try {
 								const accessToken = await this.$auth.getTokenSilently();
 
-								await ReportermService.deleteReporterm(r._id, accessToken);
+								await AnecdaynoteService.deleteAnecdaynote(a._id, accessToken);
 
 								this.$root.$bvToast.toast(
-									`Reporterm "${r.title}" deleted successfully!`,
+									`Anecdaynote "${a.title}" deleted successfully!`,
 									{
 										title: "Deleted",
 										toaster: "b-toaster-top-center",
@@ -104,13 +102,13 @@
 									}
 								);
 
-								// Remove the reporterm from the current array
-								this.reporterms.splice(this.reporterms.indexOf(r), 1);
-								this.$nReporterms--;
+								// Remove the anecdaynote from the current array
+								this.anecdaynotes.splice(this.anecdaynotes.indexOf(a), 1);
+								this.$nAnecdaynotes--;
 							} catch (err) {
 								this.err = err;
 								this.$root.$bvToast.toast(
-									`We're sorry, something went wrong and we couldn't delete the reporterm. Maybe try again later.`,
+									`We're sorry, something went wrong and we couldn't delete the anecdaynote. Maybe try again later.`,
 									{
 										title: "Error",
 										toaster: "b-toaster-top-center",

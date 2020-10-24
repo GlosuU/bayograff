@@ -4,12 +4,11 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   ensureIndex is deprecated. Use createIndex instead.
--   Add Anecdaynotes. Sidebar in ReportermSingleView
 -   Add Factales. Sortingbuttons should not sort by startdate
+-   Sidebar of anecdaynotes in ReportermSingleView
 -   Add Home and About Pages
 -   Include HTML tags in Latex
--   Add Profile Page
+-   Add Profile Page. Add delete all data there.
 -   Images same size, different images for Reps, Anecs and Facts
 -   Add Footer
 -   Add Video

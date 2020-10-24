@@ -1,6 +1,6 @@
 <template>
 	<div id="sortbuttons" class="centeraligned bayobtns">
-		<b-button id="sortdate" variant="light" @click="sortDate">
+		<b-button id="sortdate" variant="light" @click="sortDate" v-if="sortDateEnabled">
 			<b-icon v-if="dateDESC" icon="sort-numeric-down-alt" />
 			<b-icon v-if="!dateDESC" icon="sort-numeric-down" />
 			Sort by date
@@ -23,6 +23,7 @@
 
 <script>
 	export default {
+		props: ["sortDateEnabled"],
 		data() {
 			return {
 				dateDESC: true,

@@ -1,17 +1,13 @@
 const mongoose = require("mongoose");
 
-const reportermSchema = new mongoose.Schema({
+const anecdaynoteSchema = new mongoose.Schema({
 	user: {
 		type: String,
 		required: true,
 		index: true,
 		trim: true,
 	},
-	startDate: {
-		type: Date,
-		required: true,
-	},
-	endDate: {
+	date: {
 		type: Date,
 		required: true,
 	},
@@ -41,4 +37,4 @@ const reportermSchema = new mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model("Reporterm", reportermSchema);
+module.exports = mongoose.model("Anecdaynote", anecdaynoteSchema);

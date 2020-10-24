@@ -7,6 +7,8 @@ module.exports = {
 	environment: process.env.NODE_ENV,
 	port: process.env.PORT || 3000,
 	max_n_reporterms: process.env.VUE_APP_MAX_N_REPORTERMS,
+	max_n_anecdaynotes: process.env.VUE_APP_MAX_N_ANECDAYNOTES,
+	max_n_factales: process.env.VUE_APP_MAX_N_FACTALES,
 	db_name: process.env.DB_NAME,
 	// db_url:
 	// 	`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}` +

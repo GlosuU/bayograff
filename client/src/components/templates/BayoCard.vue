@@ -11,7 +11,11 @@
 						/>
 					</b-col>
 					<b-col md="2">
-						<b-card-body class="biggerfont">
+						<!-- Reporterm -->
+						<b-card-body
+							class="biggerfont"
+							v-if="bayobject.startDate && bayobject.endDate"
+						>
 							<div class="d-lg-none">
 								<b-card-text class="centeraligned">
 									{{
@@ -50,6 +54,18 @@
 									}}
 								</b-card-text>
 							</div>
+						</b-card-body>
+						<!-- Anecdaynote -->
+						<b-card-body class="biggerfont" v-if="bayobject.date">
+							<b-card-text class="centeraligned">
+								{{
+									bayobject.date.toLocaleDateString(undefined, {
+										year: "numeric",
+										month: "short",
+										day: "numeric",
+									})
+								}}
+							</b-card-text>
 						</b-card-body>
 					</b-col>
 					<b-col md="6">
@@ -130,30 +146,4 @@
 	};
 </script>
 
-<style>
-	.cardlink {
-		border: 5px solid transparent;
-	}
-
-	.cardlink a {
-		color: black;
-		margin: 0;
-	}
-
-	.maxcardwidth {
-		max-width: 1400px;
-	}
-
-	.maximgheight {
-		object-fit: cover;
-		height: 200px;
-	}
-
-	.tabspaces {
-		padding: 0px 10px;
-	}
-
-	.btn-margin button {
-		margin: 8px;
-	}
-</style>
+<style src="../../stylesheets/card.css" />

@@ -6,7 +6,9 @@
 		<b-button @click="go2NewAnecdaynote" variant="dark">
 			<b-icon icon="file-earmark-plus" /> New Anecdaynote
 		</b-button>
-		<b-button variant="dark"> <b-icon icon="patch-plus" /> New Factale </b-button>
+		<b-button @click="go2NewFactale" variant="dark">
+			<b-icon icon="patch-plus" /> New Factale
+		</b-button>
 		<b-form v-if="enableSearch" @submit="searchText" inline>
 			<b-form-input
 				v-model="textToSearch"
@@ -25,6 +27,7 @@
 <script>
 	import ReportermService from "../../services/ReportermService";
 	import AnecdaynoteService from "../../services/AnecdaynoteService";
+	import FactaleService from "../../services/FactaleService";
 
 	export default {
 		props: ["enableSearch"],
@@ -56,7 +59,7 @@
 				await this.go2NewBayobject(
 					this.$nFactales,
 					process.env.VUE_APP_MAX_N_FACTALES,
-					"anecdaynote"
+					"factale"
 				);
 			},
 			capitalize: (s) => {
@@ -79,8 +82,8 @@
 								);
 								break;
 							case "factale":
-							// nObjects = await FactaleService.getFactalesTotalCount(accessToken);
-							// break;
+								nObjects = await FactaleService.getFactalesTotalCount(accessToken);
+								break;
 						}
 					} catch (err) {
 						this.err = err;

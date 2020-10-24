@@ -6,6 +6,7 @@ import Export from "../views/Export";
 import Profile from "../views/Profile";
 import reportermsRoutes from "./reporterms-routes";
 import anecdaynotesRoutes from "./anecdaynotes-routes";
+import factalesRoutes from "./factales-routes";
 
 import { authGuard } from "../plugins/auth0";
 
@@ -39,6 +40,7 @@ const routes = [
 	},
 	...reportermsRoutes,
 	...anecdaynotesRoutes,
+	...factalesRoutes,
 ];
 
 const router = new VueRouter({

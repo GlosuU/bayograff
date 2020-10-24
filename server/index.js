@@ -7,6 +7,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const reporterms = require("./routes/api/reporterms");
 const anecdaynotes = require("./routes/api/anecdaynotes");
+const factales = require("./routes/api/factales");
 const exporter = require("./routes/api/exporter");
 
 // Connect to DB
@@ -30,6 +31,7 @@ app.use("/public", express.static(path.resolve(__dirname, "./public")));
 //// ROUTES
 app.use("/api/reporterms", reporterms);
 app.use("/api/anecdaynotes", anecdaynotes);
+app.use("/api/factales", factales);
 app.use("/api/export", exporter);
 
 // Handle production

@@ -10,7 +10,10 @@
 							class="rounded-0 maximgheight"
 						/>
 					</b-col>
-					<b-col md="2">
+					<b-col
+						md="2"
+						v-if="(bayobject.startDate && bayobject.endDate) || bayobject.date"
+					>
 						<!-- Reporterm -->
 						<b-card-body
 							class="biggerfont"
@@ -68,7 +71,10 @@
 							</b-card-text>
 						</b-card-body>
 					</b-col>
-					<b-col md="6">
+					<!-- Factales have more columns because of lack of date -->
+					<b-col
+						:md="(bayobject.startDate && bayobject.endDate) || bayobject.date ? 6 : 8"
+					>
 						<b-card-body
 							:title="bayobject.title"
 							:sub-title="getSubtitleStr(bayobject)"

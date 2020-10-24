@@ -11,7 +11,7 @@
 					<router-link to="/anecdaynotes">
 						<b-icon icon="file-earmark" />Anecdaynotes
 					</router-link>
-					<router-link to="/about">
+					<router-link to="/factales">
 						<b-icon icon="patch-exclamation" /> Factales
 					</router-link>
 					<router-link to="/export"> <b-icon icon="printer" /> Print/Export </router-link>

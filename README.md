@@ -4,16 +4,17 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Add Factales. Sortingbuttons should not sort by startdate
 -   Sidebar of anecdaynotes in ReportermSingleView
 -   Add Home and About Pages
 -   Include HTML tags in Latex
 -   Add Profile Page. Add delete all data there.
 -   Images same size, different images for Reps, Anecs and Facts
--   Add Footer
+-   Images in BayoForm should be displayed with v-for
+-   Add Footer. Fill the page?
 -   Add Video
 
 -   Add 404 and 500 views
+-   Allow date input with text (looks like it's possible with current plugin?)
 -   import ImageSelection.vue (needs events etc)
 -   "Cancel" in BayoForm goes back to previous route regardless if it's outside the webpage. Probably should go to reporterms if it's the case
 -   Images can't be inserted into Latex :(

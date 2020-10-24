@@ -41,3 +41,12 @@
 	text-decoration: none;
 	color: darkblue;
 }
+
+.factalecard:hover {
+	border: 5px solid green;
+}
+
+.factalecard a:hover {
+	text-decoration: none;
+	color: darkgreen;
+}

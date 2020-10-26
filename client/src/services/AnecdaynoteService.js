@@ -38,6 +38,32 @@ class AnecdaynoteService {
 		});
 	}
 
+	// Get Anecdaynotes in Reporterm
+	static getAnecdaynotesInReporterm(reporterm, accessToken) {
+		let finalUrl = url;
+		if (reporterm) {
+			finalUrl = `${url}?startDate=${reporterm.startDate}&endDate=${reporterm.endDate}`;
+		}
+		return new Promise((resolve, reject) => {
+			axios
+				.get(finalUrl, AnecdaynoteService.axios_config(accessToken))
+				.then((res) => {
+					const data = res.data;
+					resolve(
+						data.map((anecdaynote) => ({
+							...anecdaynote,
+							date: new Date(anecdaynote.date),
+							createdAt: new Date(anecdaynote.createdAt),
+							updatedAt: new Date(anecdaynote.updatedAt),
+						}))
+					);
+				})
+				.catch((err) => {
+					reject(err);
+				});
+		});
+	}
+
 	// Get one single Anecdaynote
 	static getSingleAnecdaynote(id, accessToken) {
 		return new Promise((resolve, reject) => {

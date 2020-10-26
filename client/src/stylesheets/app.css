@@ -60,6 +60,14 @@ input[type="submit"] {
 	margin-left: 10px;
 }
 
+.floatRight {
+	float: right;
+}
+
+.floatLeft {
+	float: left;
+}
+
 .alignlistitems ol,
 ul {
 	padding-left: 50px;

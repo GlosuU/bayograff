@@ -1,6 +1,6 @@
 <template>
 	<div id="bayoheader">
-		<div id="title">
+		<div class="floatLeft">
 			<h1><strong>Bayograff</strong></h1>
 			<h2>- Jot down your memories. Fast and simple.</h2>
 		</div>
@@ -23,13 +23,5 @@
 	#bayoheader {
 		padding: 20px;
 		background-color: aquamarine;
-	}
-
-	#title {
-		float: left;
-	}
-
-	#login {
-		float: right;
 	}
 </style>

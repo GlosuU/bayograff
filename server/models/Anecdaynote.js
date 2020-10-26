@@ -10,6 +10,7 @@ const anecdaynoteSchema = new mongoose.Schema({
 	date: {
 		type: Date,
 		required: true,
+		index: true,
 	},
 	title: {
 		type: String,

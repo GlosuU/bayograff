@@ -7,6 +7,7 @@ const router = express.Router();
 
 // @desc    Fetch a list of anecdaynotes belonging to user
 // @query	Optional search (filter) parameter in query
+// @query	Optional startDate + endDate parameters in query
 // @route   GET /api/anecdaynotes
 router.get("/", checkJWT, async (req, res) => {
 	try {
@@ -18,6 +19,11 @@ router.get("/", checkJWT, async (req, res) => {
 					{ title: { $regex: req.query.search, $options: "i" } },
 					{ content: { $regex: req.query.search, $options: "i" } },
 				],
+			}).sort({ date: 1 });
+		} else if (req.query.startDate && req.query.endDate) {
+			anecdaynotes = await Anecdaynote.find({
+				user: req.user.sub,
+				date: { $gte: req.query.startDate, $lte: req.query.endDate },
 			}).sort({ date: 1 });
 		} else {
 			anecdaynotes = await Anecdaynote.find({

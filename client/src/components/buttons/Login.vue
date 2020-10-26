@@ -1,5 +1,5 @@
 <template>
-	<div id="login" class="bayobtns">
+	<div id="login" class="bayobtns floatRight">
 		<div v-if="$auth.loading">
 			<LoadingCircle />
 		</div>

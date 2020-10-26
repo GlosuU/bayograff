@@ -1,6 +1,6 @@
 <template>
 	<div id="reporterm-single" class="reporterm routercontent">
-		<PrimaryButtons :enableSearch="false" />
+		<PrimaryButtons :enableSearch="false" :enableSidebar="true" :sidebar="'sidebar'" />
 		<div class="centeraligned" v-if="!ready">
 			<LoadingCircle />
 		</div>
@@ -11,6 +11,16 @@
 			:editRoute="`/reporterms/${this.$route.params.id}/edit`"
 			@delete-bayobject="deleteReporterm"
 		/>
+		<b-sidebar
+			id="sidebar"
+			title="Anecdaynotes in this Reporterm"
+			body-class="anecdaynote"
+			right
+			shadow
+			lazy
+		>
+			<SmallCard v-for="a in anecdaynotes" :key="a._id" :anecdaynote="a" />
+		</b-sidebar>
 	</div>
 </template>
 
@@ -18,19 +28,24 @@
 	import PrimaryButtons from "../../components/buttons/PrimaryButtons";
 	import Circle from "vue-loading-spinner/src/components/Circle";
 	import SingleView from "../../components/templates/SingleView";
+	import SmallCard from "../../components/templates/SmallCard";
 	import ReportermService from "../../services/ReportermService";
+	import AnecdaynoteService from "../../services/AnecdaynoteService";
 
 	export default {
 		name: "ReportermSingle",
 		components: {
 			PrimaryButtons,
 			SingleView,
+			SmallCard,
 			LoadingCircle: Circle,
 		},
 		data() {
 			return {
 				ready: false,
+				sidebarVisible: false,
 				reporterm: {},
+				anecdaynotes: [],
 				err: "",
 			};
 		},
@@ -43,12 +58,20 @@
 					accessToken
 				);
 
+				this.anecdaynotes = await AnecdaynoteService.getAnecdaynotesInReporterm(
+					this.reporterm,
+					accessToken
+				);
+
 				this.ready = true;
 			} catch (err) {
 				this.err = err;
 			}
 		},
 		methods: {
+			showSidebar() {
+				this.sidebarVisible = true;
+			},
 			async deleteReporterm() {
 				this.$confirm({
 					title: "Are you sure?",

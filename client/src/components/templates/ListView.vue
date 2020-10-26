@@ -34,7 +34,7 @@
 				</b-collapse>
 				<hr />
 				<SortButtons
-					:sortButtonsEnabled="
+					:sortDateEnabled="
 						bayobjectType == 'Reporterm' || bayobjectType == 'Anecdaynote'
 					"
 					@sort-date-asc="sortDateASC"

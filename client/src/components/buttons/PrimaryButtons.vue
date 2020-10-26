@@ -9,17 +9,22 @@
 		<b-button @click="go2NewFactale" variant="dark">
 			<b-icon icon="patch-plus" /> New Factale
 		</b-button>
-		<b-form v-if="enableSearch" @submit="searchText" inline>
-			<b-form-input
-				v-model="textToSearch"
-				class="mr-sm-2"
-				placeholder="Search by text"
-				required
-			/>
-			<b-button class="my-2 my-sm-0" type="submit">
-				<b-icon icon="search" /> Search
+		<div class="floatRight">
+			<b-form v-if="enableSearch" @submit="searchText" inline>
+				<b-form-input
+					v-model="textToSearch"
+					class="mr-sm-2"
+					placeholder="Search by text"
+					required
+				/>
+				<b-button class="my-2 my-sm-0" type="submit">
+					<b-icon icon="search" /> Search
+				</b-button>
+			</b-form>
+			<b-button v-if="enableSidebar" variant="primary" v-b-toggle="sidebar">
+				Anecdaynotes in this Reporterm <b-icon icon="arrow-left" />
 			</b-button>
-		</b-form>
+		</div>
 		<div class="clear" />
 	</div>
 </template>
@@ -30,7 +35,7 @@
 	import FactaleService from "../../services/FactaleService";
 
 	export default {
-		props: ["enableSearch"],
+		props: ["enableSearch", "enableSidebar", "sidebar"],
 		data() {
 			return {
 				textToSearch: "",
@@ -40,6 +45,10 @@
 			searchText(evt) {
 				evt.preventDefault();
 				this.$emit("search-text", this.textToSearch);
+			},
+			showSidebar(evt) {
+				evt.preventDefault();
+				this.$emit("show-sidebar");
 			},
 			async go2NewReporterm() {
 				await this.go2NewBayobject(
@@ -120,8 +129,4 @@
 	};
 </script>
 
-<style>
-	#primarybuttons form {
-		float: right;
-	}
-</style>
+<style></style>

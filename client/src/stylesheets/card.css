@@ -16,6 +16,11 @@
 	height: 200px;
 }
 
+.card-img-top {
+	object-fit: cover;
+	max-height: 150px;
+}
+
 .tabspaces {
 	padding: 0px 10px;
 }
@@ -49,4 +54,8 @@
 .factalecard a:hover {
 	text-decoration: none;
 	color: darkgreen;
+}
+
+.magentatext {
+	color: darkmagenta;
 }

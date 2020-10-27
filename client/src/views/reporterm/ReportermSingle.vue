@@ -14,12 +14,19 @@
 		<b-sidebar
 			id="sidebar"
 			title="Anecdaynotes in this Reporterm"
+			header-class="sidebar-header centeraligned"
 			body-class="anecdaynote"
 			right
 			shadow
 			lazy
+			no-header-close
+			backdrop
+			backdrop-variant="transparent"
 		>
 			<SmallCard v-for="a in anecdaynotes" :key="a._id" :anecdaynote="a" />
+			<h5 v-if="anecdaynotes.length == 0" class="margin10 magentatext">
+				No registered Anecdaynotes happened during this Reporterm.
+			</h5>
 		</b-sidebar>
 	</div>
 </template>
@@ -126,4 +133,9 @@
 	};
 </script>
 
-<style></style>
+<style>
+	.sidebar-header {
+		background-color: darkblue;
+		color: white;
+	}
+</style>

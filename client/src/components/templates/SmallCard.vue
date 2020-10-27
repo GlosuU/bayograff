@@ -1,12 +1,12 @@
 <template>
 	<div id="smallcard" :class="['cardlink', 'anecdaynotecard', 'centeraligned']">
 		<router-link :to="`/anecdaynotes/${anecdaynote._id}`">
-			<b-card class="mb-2">
-				<b-card-img-lazy
+			<b-card :img-src="getImage(anecdaynote.image)" img-alt="Anecdaynote Image" img-top>
+				<!-- <b-card-img-lazy
 					:src="getImage(anecdaynote.image)"
 					alt="Anecdaynote Image"
-					class="rounded-0 maximgheight"
-				/>
+					class="maximgheight"
+				/> -->
 				<b-card-title>
 					{{ truncate(anecdaynote.title, maxLength) }}
 				</b-card-title>

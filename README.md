@@ -4,7 +4,6 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Sidebar of anecdaynotes in ReportermSingleView
 -   Add Home and About Pages
 -   Include HTML tags in Latex
 -   Add Profile Page. Add delete all data there.

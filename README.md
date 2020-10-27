@@ -4,15 +4,18 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Add Home and About Pages
+-   Add About Page
+-   Investigate Embed error
 -   Include HTML tags in Latex
 -   Add Profile Page. Add delete all data there.
+-   Bayograff logo and change "Vue App" to Bayograff in HTML title
 -   Images same size, different images for Reps, Anecs and Facts
 -   Images in BayoForm should be displayed with v-for
 -   Add Footer. Fill the page?
 -   Add Video
 
 -   Add 404 and 500 views
+-   Fix Header and NavBar from scrolling down
 -   Allow date input with text (looks like it's possible with current plugin?)
 -   import ImageSelection.vue (needs events etc)
 -   "Cancel" in BayoForm goes back to previous route regardless if it's outside the webpage. Probably should go to reporterms if it's the case

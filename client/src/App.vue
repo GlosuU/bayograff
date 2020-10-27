@@ -23,3 +23,5 @@
 </script>
 
 <style src="./stylesheets/app.css"></style>
+<style src="./stylesheets/text.css"></style>
+<style src="./stylesheets/media.css"></style>

@@ -1,0 +1,36 @@
+.centeraligned {
+	text-align: center;
+}
+
+.content-paragraph {
+	white-space: pre-line;
+	font: normal 20px Arial, Helvetica, sans-serif;
+}
+
+.biggerfont {
+	font-size: 20px;
+}
+
+.fullpagetextview {
+	text-align: left;
+	max-width: 1400px;
+	padding-bottom: 20px;
+}
+
+.singleobjectcontentview {
+	text-align: left;
+	max-width: 900px;
+	padding-bottom: 20px;
+}
+
+.textred {
+	color: darkred;
+}
+
+.textblue {
+	color: darkblue;
+}
+
+.textgreen {
+	color: darkgreen;
+}

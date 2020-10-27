@@ -39,8 +39,7 @@
 		</h1>
 		<br />
 		<p
-			id="content-paragraph"
-			class="singleobjectcontentview automargin alignlistitems"
+			class="content-paragraph singleobjectcontentview automargin alignlistitems"
 			v-html="bayobject.content"
 		/>
 		<img :src="getImage(bayobject.image)" alt="Image" class="externalImgBig" />
@@ -102,11 +101,6 @@
 </script>
 
 <style>
-	#content-paragraph {
-		white-space: pre-line;
-		font: normal 20px Arial, Helvetica, sans-serif;
-	}
-
 	.object-dates {
 		font-weight: bold;
 		font-style: italic;

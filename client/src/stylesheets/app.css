@@ -39,16 +39,6 @@
 	margin: auto;
 }
 
-.centeraligned {
-	text-align: center;
-}
-
-.singleobjectcontentview {
-	text-align: left;
-	max-width: 900px;
-	padding-bottom: 20px;
-}
-
 .bayobtns button,
 a,
 input[type="button"],
@@ -71,8 +61,4 @@ input[type="submit"] {
 .alignlistitems ol,
 ul {
 	padding-left: 50px;
-}
-
-.biggerfont {
-	font-size: 20px;
 }

@@ -1,5 +1,5 @@
 <template>
-	<div class="home routercontent margin10 content-paragraph">
+	<div id="home" class="routercontent margin10 content-paragraph">
 		<h1 class="centeraligned">Welcome to Bayograff!</h1>
 		<p class="centeraligned">
 			If it's your first time here, watch the video below for an introduction:

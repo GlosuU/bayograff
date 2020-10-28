@@ -4,10 +4,11 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Investigate Embed error
 -   Include HTML tags in Latex
 -   Add and embed Donate PayPal button.
--   Design Anecdayotes in Reporterm algorithm. Update exporter to export Anecdaynotes and Factales.
+-   Design Anecdayotes in Reporterm algorithm.
+-   Update exporter to export Anecdaynotes and Factales.
+-   Update Exporter Page.
 -   Add Profile Page. Add delete all data there.
 -   Bayograff logo and change "Vue App" to Bayograff in HTML title
 -   Images same size, different images for Reps, Anecs and Facts

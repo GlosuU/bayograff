@@ -1,5 +1,5 @@
 const exportcollection = require("./exportcollection");
-const striphtml = require("./striphtml");
+const parsehtml = require("./parsehtml");
 const fs = require("fs");
 
 // Extract the titles of all Reporterms to text
@@ -25,7 +25,7 @@ function reportermToText(reporterm) {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
-	})}\n\n${striphtml.getTextContent(reporterm.content)}`;
+	})}\n\n${parsehtml.getTextContent(reporterm.content)}`;
 
 	// if (reporterm.image) {
 	// 	repTxt += `\n\nIMAGE: ${reporterm.image}`;

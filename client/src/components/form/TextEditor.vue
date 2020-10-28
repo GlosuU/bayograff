@@ -114,7 +114,7 @@
 					content: this.initialContent,
 					onUpdate: () => {
 						// emit new content on update
-						// console.log("editor-content", this.editor.getHTML());
+						console.log("editor-content", this.editor.getHTML());
 						this.$emit("editor-updated", this.editor.getHTML());
 					},
 					onFocus: () => {

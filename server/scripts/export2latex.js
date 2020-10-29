@@ -26,6 +26,7 @@ function reportermToLatex(reporterm) {
 
 // Transform the whole biography of a user to a .tex file
 // @return	The URL of the created .tex file, ready for download
+// \\usepackage{ulem}
 async function collectionToLatex(user, bayograff_app_url) {
 	const { reporterms } = await exportcollection.getCollection(user);
 	const fileName = exportcollection.getFileName(user, "tex");

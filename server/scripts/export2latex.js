@@ -7,7 +7,9 @@ function reportermToLatex(reporterm) {
 	const startDate = new Date(reporterm.startDate);
 	const endDate = new Date(reporterm.endDate);
 
-	let repLatex = `\\section{${reporterm.title}}\n${startDate.toLocaleDateString(undefined, {
+	let repLatex = `\\section{${reporterm.title}}
+	\\begin{center}
+	\\textbf{${startDate.toLocaleDateString(undefined, {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
@@ -15,7 +17,10 @@ function reportermToLatex(reporterm) {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
-	})}\n\n${parsehtml.getLatexContent(reporterm.content)}`;
+	})}}
+	\\end{center}
+	\\vspace{5mm}
+	\n${parsehtml.getLatexContent(reporterm.content)}`;
 
 	// if (reporterm.image) {
 	// 	repLatex += `\n\n\\externalfigure[${reporterm.image}]`;
@@ -26,7 +31,6 @@ function reportermToLatex(reporterm) {
 
 // Transform the whole biography of a user to a .tex file
 // @return	The URL of the created .tex file, ready for download
-// \\usepackage{ulem}
 async function collectionToLatex(user, bayograff_app_url) {
 	const { reporterms } = await exportcollection.getCollection(user);
 	const fileName = exportcollection.getFileName(user, "tex");
@@ -42,7 +46,8 @@ async function collectionToLatex(user, bayograff_app_url) {
 \\maketitle
 \\newpage
 \\tableofcontents
-\\newpage\n\n`;
+\\newpage
+\n`;
 	reporterms.forEach((r) => {
 		lines += `${reportermToLatex(r)}\n\n`;
 	});

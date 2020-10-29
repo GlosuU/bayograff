@@ -29,7 +29,6 @@ module.exports = {
 		return textContent;
 	},
 	// Latex Content parses the HTML into Latex tags
-	// latexContent = latexContent.replace(regex.italics, "\\textit{");
 	getLatexContent: (html) => {
 		let latexContent = html;
 		latexContent = latexContent.replace(regex.bold, "\\textbf{");

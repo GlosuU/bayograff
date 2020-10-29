@@ -4,7 +4,6 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Add and embed Donate PayPal button.
 -   Design Anecdayotes in Reporterm algorithm.
 -   Update exporter to export Anecdaynotes and Factales.
 -   Update Exporter Page.

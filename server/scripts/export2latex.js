@@ -19,7 +19,7 @@ function reportermToLatex(reporterm) {
 		day: "numeric",
 	})}}
 	\\end{center}
-	\\vspace{5mm}
+	\\vspace{3mm}
 	\n${parsehtml.getLatexContent(reporterm.content)}`;
 
 	// if (reporterm.image) {

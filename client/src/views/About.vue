@@ -17,11 +17,12 @@
 			</p>
 			<p>
 				If you have questions, bug reports or wish to contact GlosuU, you can
-				<a href="mailto:glosuu31@gmail.com">e-mail</a> him or contact him via different
-				social media: links can be found at the footer of the website. GlosuU accepts
-				donations too, you can donate via <strong>PayPal</strong>:
-				<a href="#"> Donate </a>
+				<a href="mailto:bayograff.website@gmail.com">e-mail</a> him or contact him via
+				different social media: links can be found at the footer of the website. GlosuU
+				accepts donations too, you can donate via <strong>PayPal</strong>:
 			</p>
+			<DonateButtonBig />
+
 			<hr />
 			<p>Here are the <strong>major tools</strong> used to develop Bayograff:</p>
 			<ul>
@@ -83,7 +84,12 @@
 </template>
 
 <script>
-	export default {};
+	import DonateButtonBig from "../components/buttons/DonateButtonBig";
+	export default {
+		components: {
+			DonateButtonBig,
+		},
+	};
 </script>
 
 <style />

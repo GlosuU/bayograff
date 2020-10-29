@@ -33,6 +33,7 @@ async function collectionToLatex(user, bayograff_app_url) {
 
 	let lines = `\\documentclass[12pt, a4paper]{article}
 \\usepackage[utf8]{inputenc}
+\\usepackage{ulem}
 
 \\author{GlosuU}
 \\title{Bayograff - Latex Output}

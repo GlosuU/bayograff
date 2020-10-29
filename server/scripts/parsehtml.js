@@ -16,16 +16,23 @@ const regex = {
 	trimSpaces: /^\s+|\s+$/g,
 };
 
+// Subfunction: strips the remainder of HTML tags
+function stripHTML(html) {
+	let strippedText = html;
+	strippedText = strippedText.replace(regex.endP, "\n\n");
+	strippedText = strippedText.replace(regex.allTags, "");
+	strippedText = strippedText.replace(regex.lessthan, "<");
+	strippedText = strippedText.replace(regex.greaterthan, ">");
+	strippedText = strippedText.replace(regex.trimSpaces, "");
+	return strippedText;
+}
+
 module.exports = {
 	// txt Content strips most of the HTML
 	getTextContent: (htmlContent) => {
 		let textContent = htmlContent;
-		textContent = textContent.replace(regex.endP, "\n\n");
 		textContent = textContent.replace(regex.list_item, "* ");
-		textContent = textContent.replace(regex.allTags, "");
-		textContent = textContent.replace(regex.lessthan, "<");
-		textContent = textContent.replace(regex.greaterthan, ">");
-		textContent = textContent.replace(regex.trimSpaces, "");
+		textContent = stripHTML(textContent);
 		return textContent;
 	},
 	// Latex Content parses the HTML into Latex tags
@@ -37,15 +44,11 @@ module.exports = {
 		latexContent = latexContent.replace(regex.strikethru, "\\sout{");
 		latexContent = latexContent.replace(regex.closetag, "}");
 		latexContent = latexContent.replace(regex.list_item, "\\item ");
-		latexContent = latexContent.replace(regex.unordered_list_open, "\\begin{itemize}");
+		latexContent = latexContent.replace(regex.unordered_list_open, "\\begin{itemize}\n");
 		latexContent = latexContent.replace(regex.unordered_list_close, "\\end{itemize}\n");
-		latexContent = latexContent.replace(regex.ordered_list_open, "\\begin{enumerate}");
+		latexContent = latexContent.replace(regex.ordered_list_open, "\\begin{enumerate}\n");
 		latexContent = latexContent.replace(regex.ordered_list_close, "\\end{enumerate}\n");
-		latexContent = latexContent.replace(regex.endP, "\n\n");
-		latexContent = latexContent.replace(regex.allTags, "");
-		latexContent = latexContent.replace(regex.lessthan, "<");
-		latexContent = latexContent.replace(regex.greaterthan, ">");
-		latexContent = latexContent.replace(regex.trimSpaces, "");
+		latexContent = stripHTML(latexContent);
 		return latexContent;
 	},
 };

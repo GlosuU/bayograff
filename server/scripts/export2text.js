@@ -37,7 +37,7 @@ function reportermToText(reporterm) {
 // Transform the whole biography of a user to a .txt file
 // @return	The URL of the created .txt file, ready for download
 async function collectionToTxt(user, bayograff_app_url) {
-	const { reporterms } = await exportcollection.getCollection(user);
+	const { reporterms } = await exportcollection.getCollectionRaw(user);
 	const fileName = exportcollection.getFileName(user, "txt");
 
 	let lines = "";

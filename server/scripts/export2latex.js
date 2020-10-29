@@ -45,7 +45,7 @@ function anecdaynoteToLatex(anecdaynote) {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
-	})}
+	})}}
 \\end{center}
 \\vspace{3mm}
 \n${parsehtml.getLatexContent(anecdaynote.content)}\n\n`;

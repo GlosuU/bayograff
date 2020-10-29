@@ -257,8 +257,22 @@
 				// Save bayobject if validated
 				if (validated) {
 					this.saveImg();
-					this.$emit("save-bayobject", this.bayobject);
+					this.$emit("save-bayobject", this.fixDates(this.bayobject));
 				}
+			},
+			// Necessary to set the hour to 2 a.m. or new Date() will take the day before sometimes!!
+			fixDates(bayobject) {
+				let fixedBObj = { ...bayobject };
+				if (fixedBObj.startDate) {
+					fixedBObj.startDate = new Date(new Date(fixedBObj.startDate).setHours(2));
+				}
+				if (fixedBObj.endDate) {
+					fixedBObj.endDate = new Date(new Date(fixedBObj.endDate).setHours(2));
+				}
+				if (fixedBObj.date) {
+					fixedBObj.date = new Date(new Date(fixedBObj.date).setHours(2));
+				}
+				return fixedBObj;
 			},
 			saveImg() {
 				if (this.useExternalImg) {

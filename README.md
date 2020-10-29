@@ -4,7 +4,6 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Design Anecdayotes in Reporterm algorithm.
 -   Update exporter to export Anecdaynotes and Factales.
 -   Update Exporter Page.
 -   Add Profile Page. Add delete all data there.

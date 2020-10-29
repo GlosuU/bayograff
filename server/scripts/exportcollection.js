@@ -46,7 +46,7 @@ function insertAnecsInReps(reporterms, anecdaynotes) {
 					const aDate = new Date(a.date);
 					if (start <= aDate && aDate <= end) {
 						anecdaynotesInReporterm.push(a);
-						anecdaynotes.pop(a);
+						anecdaynotes.splice(anecdaynotes.indexOf(a), 1);
 					}
 				});
 				anecdaynotesLeft = anecdaynotes;

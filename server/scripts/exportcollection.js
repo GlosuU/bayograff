@@ -25,6 +25,7 @@ function insertAnecsInReps(reporterms, anecdaynotes) {
 				endDate: new Date(r.endDate),
 				title: r.title,
 				content: r.content,
+				image: r.image,
 				periodOfDays,
 			};
 		})
@@ -42,14 +43,26 @@ function insertAnecsInReps(reporterms, anecdaynotes) {
 			let anecdaynotesInReporterm = [];
 
 			if (anecdaynotesLeft.length > 0) {
+				let anecdaynotesAdded = [];
 				anecdaynotesLeft.forEach((a) => {
 					const aDate = new Date(a.date);
 					if (start <= aDate && aDate <= end) {
-						anecdaynotesInReporterm.push(a);
-						anecdaynotes.splice(anecdaynotes.indexOf(a), 1);
+						anecdaynotesInReporterm.push({
+							date: new Date(a.date),
+							title: a.title,
+							content: a.content,
+							image: a.image,
+						});
+						anecdaynotesAdded.push(a);
 					}
 				});
-				anecdaynotesLeft = anecdaynotes;
+
+				if (anecdaynotesAdded) {
+					// Eliminate added anecs from anecsLeft
+					anecdaynotesLeft = anecdaynotesLeft.filter(
+						(a) => !anecdaynotesAdded.includes(a)
+					);
+				}
 			}
 
 			return {
@@ -61,13 +74,21 @@ function insertAnecsInReps(reporterms, anecdaynotes) {
 
 	// 3. Anecdaynotes left without Reporterm are gathered into one generic Reporterm that goes last
 	if (anecdaynotesLeft.length > 0) {
+		console.log("alnoreps", anecdaynotesLeft);
 		repsWithAnecdaynotes.push({
 			startDate: new Date(anecdaynotesLeft[0].date),
 			endDate: new Date(anecdaynotesLeft[anecdaynotesLeft.length - 1].date),
 			title: "Other days worth remembering",
 			content: "",
 			image: "noImg",
-			anecdotes: anecdaynotesLeft,
+			anecdotes: anecdaynotesLeft.map((a) => {
+				return {
+					date: new Date(a.date),
+					title: a.title,
+					content: a.content,
+					image: a.image,
+				};
+			}),
 		});
 	}
 

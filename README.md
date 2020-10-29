@@ -4,7 +4,7 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Update exporter to export Anecdaynotes and Factales.
+-   Update Latex exporter to export Factales in Appendix.
 -   Update Exporter Page.
 -   Add Profile Page. Add delete all data there.
 -   Bayograff logo and change "Vue App" to Bayograff in HTML title

@@ -81,7 +81,7 @@ function insertAnecsInReps(reporterms, anecdaynotes) {
 			title: "Other days worth remembering",
 			content: "",
 			image: "noImg",
-			anecdotes: anecdaynotesLeft.map((a) => {
+			anecdaynotes: anecdaynotesLeft.map((a) => {
 				return {
 					date: new Date(a.date),
 					title: a.title,
@@ -106,8 +106,13 @@ module.exports = {
 	},
 	getCollectionRaw: async (user) => {
 		const reporterms = await Reporterm.find({ user }).sort({ startDate: 1 });
+		const anecdaynotes = await Anecdaynote.find({ user }).sort({ date: 1 });
+		const factales = await Factale.find({ user }).sort({ title: 1 });
+
 		return {
 			reporterms,
+			anecdaynotes,
+			factales,
 		};
 	},
 	getFileName: (user, extension) => {

@@ -99,9 +99,11 @@ module.exports = {
 	getCollectionOrganized: async (user) => {
 		const reporterms = await Reporterm.find({ user }).sort({ startDate: 1 });
 		const anecdaynotes = await Anecdaynote.find({ user }).sort({ date: 1 });
+		const factales = await Factale.find({ user }).sort({ title: 1 });
 
 		return {
 			reporterms: insertAnecsInReps(reporterms, anecdaynotes),
+			factales,
 		};
 	},
 	getCollectionRaw: async (user) => {

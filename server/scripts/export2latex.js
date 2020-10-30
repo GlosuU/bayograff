@@ -57,10 +57,22 @@ function anecdaynoteToLatex(anecdaynote) {
 	return anecLatex;
 }
 
+// Extract the whole content of a factale to LaTeX
+function factaleToLatex(factale) {
+	let factLatex = `\\section{${factale.title}}
+\n${parsehtml.getLatexContent(factale.content)}\n\n`;
+
+	// if (factale.image) {
+	// 	factLatex += `\n\n\\externalfigure[${factale.image}]`;
+	// }
+
+	return factLatex;
+}
+
 // Transform the whole biography of a user to a .tex file
 // @return	The URL of the created .tex file, ready for download
 async function collectionToLatex(user, bayograff_app_url) {
-	const { reporterms } = await exportcollection.getCollectionOrganized(user);
+	const { reporterms, factales } = await exportcollection.getCollectionOrganized(user);
 	const fileName = exportcollection.getFileName(user, "tex");
 
 	let lines = `\\documentclass[12pt, a4paper]{article}
@@ -80,6 +92,14 @@ async function collectionToLatex(user, bayograff_app_url) {
 	reporterms.forEach((r) => {
 		lines += `${reportermToLatex(r)}`;
 	});
+
+	if (factales) {
+		lines += `\\appendix\n\n`;
+		factales.forEach((f) => {
+			lines += `${factaleToLatex(f)}`;
+		});
+	}
+
 	lines += "\\end{document}";
 
 	await fs.writeFile(`./server/public/latex/${fileName}`, lines, (err) => {

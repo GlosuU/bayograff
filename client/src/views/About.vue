@@ -19,7 +19,8 @@
 				If you have questions, bug reports or wish to contact GlosuU, you can
 				<a href="mailto:bayograff.website@gmail.com">e-mail</a> him or contact him via
 				different social media: links can be found at the footer of the website. GlosuU
-				accepts donations too, you can donate via <strong>PayPal</strong>:
+				accepts donations for maintaining and improving Bayograff, you can donate via
+				<strong>PayPal</strong>:
 			</p>
 			<DonateButtonBig />
 

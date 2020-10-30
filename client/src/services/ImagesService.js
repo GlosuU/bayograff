@@ -5,6 +5,7 @@ const images = {
 	graduation: require("../../public/assets/img/graduation.jpg"),
 	heart: require("../../public/assets/img/heart.jpg"),
 	ball: require("../../public/assets/img/ball.jpg"),
+	export2pdf: require("../../public/assets/img/export2pdf.png"),
 };
 
 class ImagesService {

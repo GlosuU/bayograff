@@ -1,42 +1,56 @@
 <template>
-	<div id="export" class="routercontent margin10 alignlistitems bayobtns">
-		<h1>Export Biography</h1>
-		<p>Click on a button below to download the biography in the desired format.</p>
-		<p>If the biography is of another person, please enter their name here first:</p>
-		<b-form inline>
-			<b-form-group id="name-input-group" label="Name:" label-for="name-input">
-				<b-form-input id="name-input" class="margin5" v-model="name" required />
+	<div id="export" class="routercontent margin10 content-paragraph bayobtns">
+		<h1 class="centeraligned">Export Biography</h1>
+		<p class="centeraligned">
+			Biography ready? Or want to export what you have as a backup? You're in the right place.
+		</p>
+		<div class="fullpagetextview automargin alignlistitems">
+			<!-- <b-form inline> -->
+			<b-form-group
+				id="title-input-group"
+				label="Enter the title of the biography document:"
+				label-for="title-input"
+			>
+				<b-form-input id="title-input" class="margin5" v-model="title" />
 			</b-form-group>
-		</b-form>
-		<br />
-		<h2>Formats</h2>
-		<ul id="formats">
-			<li>
-				<b-button @click="export2pdf" target="_blank">PDF</b-button>
-				- Recommended format. Biography ready to print.
-			</li>
-			<li>
-				<b-button @click="export2tex" target="_blank">LaTeX</b-button>
-				- If you prefer the uncompiled .tex file.
-			</li>
-			<li>
-				<b-button @click="export2txt" target="_blank">Plain Text</b-button>
-				- Get all the data in a simple .txt file.
-			</li>
-		</ul>
+			<!-- </b-form> -->
+			<p>The standard format is a ready to print PDF document:</p>
+			<div class="centeraligned">
+				<a href="" @click="export2pdf" target="_blank">
+					<img :src="getImage('export2pdf')" class="buttonImg" />
+					Export to PDF
+				</a>
+			</div>
+			<hr />
+			<h2>Other formats:</h2>
+			<ul id="formats">
+				<li>
+					<b-button @click="export2tex" target="_blank">LaTeX</b-button>
+					- If you prefer the uncompiled .tex file that generates the above PDF.
+				</li>
+				<li>
+					<b-button @click="export2txt" target="_blank">Plain Text</b-button>
+					- Get all data in a simple .txt file. Anecdaynotes are included separate from
+					Reporterms.
+				</li>
+			</ul>
+		</div>
 	</div>
 </template>
 
 <script>
 	import ExporterService from "../services/ExporterService";
+	import ImagesService from "../services/ImagesService";
+
 	export default {
 		data() {
 			return {
-				name: "The author",
+				title: `The biography of ${this.$auth.user.name}`,
 				err: "",
 			};
 		},
 		methods: {
+			getImage: (img) => ImagesService.getImage(img),
 			async export2pdf() {
 				try {
 					const accessToken = await this.$auth.getTokenSilently();

@@ -13,10 +13,10 @@ class ExporterService {
 	}
 
 	// Template for Axios Promise
-	static axiosPromise(full_url, accessToken) {
+	static axiosPromise(full_url, title, accessToken) {
 		return new Promise((resolve, reject) => {
 			axios
-				.get(full_url, ExporterService.axios_config(accessToken))
+				.get(`${full_url}?title=${title}`, ExporterService.axios_config(accessToken))
 				.then((res) => {
 					resolve(window.open(res.data, "_blank"));
 				})
@@ -27,18 +27,18 @@ class ExporterService {
 	}
 
 	// Export to PDF
-	static export2pdf(accessToken) {
-		return ExporterService.axiosPromise(`${url}/pdf`, accessToken);
+	static export2pdf(title, accessToken) {
+		return ExporterService.axiosPromise(`${url}/pdf`, title, accessToken);
 	}
 
 	// Export to Latex
-	static export2tex(accessToken) {
-		return ExporterService.axiosPromise(`${url}/latex`, accessToken);
+	static export2tex(title, accessToken) {
+		return ExporterService.axiosPromise(`${url}/latex`, title, accessToken);
 	}
 
 	// Export to Text
-	static export2txt(accessToken) {
-		return ExporterService.axiosPromise(`${url}/txt`, accessToken);
+	static export2txt(title, accessToken) {
+		return ExporterService.axiosPromise(`${url}/txt`, title, accessToken);
 	}
 }
 

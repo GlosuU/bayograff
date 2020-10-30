@@ -64,11 +64,14 @@ function factaleToText(factale) {
 
 // Transform the whole biography of a user to a .txt file
 // @return	The URL of the created .txt file, ready for download
-async function collectionToTxt(user, bayograff_app_url) {
+async function collectionToTxt(user, title, bayograff_app_url) {
 	const { reporterms, anecdaynotes, factales } = await exportcollection.getCollectionRaw(user);
 	const fileName = exportcollection.getFileName(user, "txt");
 
 	let lines = "";
+	if (title) {
+		lines += `${title.toUpperCase()}\n\n`;
+	}
 
 	// Reporterms
 	if (reporterms) {

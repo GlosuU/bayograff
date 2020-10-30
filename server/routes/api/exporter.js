@@ -19,7 +19,9 @@ if (environment === "development") {
 // @route   GET /api/export/txt
 router.get("/txt", checkJWT, async (req, res) => {
 	try {
-		res.send(await export2text.collectionToTxt(req.user.sub, bayograff_app_url));
+		res.send(
+			await export2text.collectionToTxt(req.user.sub, req.query.title, bayograff_app_url)
+		);
 	} catch (err) {
 		console.error(err);
 		res.status(500).send();
@@ -30,7 +32,9 @@ router.get("/txt", checkJWT, async (req, res) => {
 // @route   GET /api/export/latex
 router.get("/latex", checkJWT, async (req, res) => {
 	try {
-		res.send(await export2latex.collectionToLatex(req.user.sub, bayograff_app_url));
+		res.send(
+			await export2latex.collectionToLatex(req.user.sub, req.query.title, bayograff_app_url)
+		);
 	} catch (err) {
 		console.error(err);
 		res.status(500).send();
@@ -41,7 +45,11 @@ router.get("/latex", checkJWT, async (req, res) => {
 // @route   GET /api/export/pdf
 router.get("/pdf", checkJWT, async (req, res) => {
 	try {
-		const texFileURL = await export2latex.collectionToLatex(req.user.sub, bayograff_app_url);
+		const texFileURL = await export2latex.collectionToLatex(
+			req.user.sub,
+			req.query.title,
+			bayograff_app_url
+		);
 		res.send(`${latex_online_url}${texFileURL}`);
 
 		// If you want this to work in development, upload the .tex file somewhere else in the cloud

@@ -71,7 +71,7 @@ function factaleToLatex(factale) {
 
 // Transform the whole biography of a user to a .tex file
 // @return	The URL of the created .tex file, ready for download
-async function collectionToLatex(user, bayograff_app_url) {
+async function collectionToLatex(user, title, bayograff_app_url) {
 	const { reporterms, factales } = await exportcollection.getCollectionOrganized(user);
 	const fileName = exportcollection.getFileName(user, "tex");
 
@@ -79,8 +79,7 @@ async function collectionToLatex(user, bayograff_app_url) {
 \\usepackage[utf8]{inputenc}
 \\usepackage{ulem}
 
-\\author{GlosuU}
-\\title{Bayograff - Latex Output}
+\\title{${title}}
 
 \\begin{document}
 \\maketitle

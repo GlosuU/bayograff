@@ -16,7 +16,7 @@ class FactaleService {
 	static getFactales(searchQuery, accessToken) {
 		let finalUrl = url;
 		if (searchQuery) {
-			finalUrl = url + "?search=" + searchQuery;
+			finalUrl = `${url}?search=${searchQuery}`;
 		}
 		return new Promise((resolve, reject) => {
 			axios

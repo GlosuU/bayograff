@@ -106,6 +106,9 @@ async function collectionToTxt(user, title, bayograff_app_url) {
 		});
 	}
 
+	lines += `This document has been generated with Bayograff. For more information visit the following link: 
+https://bayograff.herokuapp.com`;
+
 	await fs.writeFile(`./server/public/text/${fileName}`, lines, (err) => {
 		if (err) throw err;
 		console.log(`Saved successfully to ${fileName}`);

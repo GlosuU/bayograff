@@ -9,6 +9,12 @@ const images = {
 	logo: require("../../public/assets/img/logo.png"),
 };
 
+const socialIcons = {
+	gmail: require("../../public/assets/img/social/gmail-icon.png"),
+	github: require("../../public/assets/img/social/github-icon.png"),
+	twitter: require("../../public/assets/img/social/twitter-icon.png"),
+};
+
 class ImagesService {
 	static isLocal(imgProperty) {
 		return imgProperty in images;
@@ -24,6 +30,10 @@ class ImagesService {
 
 	static getAllImages() {
 		return images;
+	}
+
+	static getSocialIcons() {
+		return socialIcons;
 	}
 }
 

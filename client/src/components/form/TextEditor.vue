@@ -143,6 +143,8 @@
 			word-wrap: break-word;
 			word-break: break-word;
 			padding: 10px;
+			max-height: 300px;
+			overflow-y: auto;
 
 			* {
 				caret-color: currentColor;

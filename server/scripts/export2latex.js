@@ -80,6 +80,7 @@ async function collectionToLatex(user, title, bayograff_app_url) {
 \\usepackage{ulem}
 
 \\title{${title}}
+\\date{}
 
 \\begin{document}
 \\maketitle
@@ -99,7 +100,10 @@ async function collectionToLatex(user, title, bayograff_app_url) {
 		});
 	}
 
-	lines += "\\end{document}";
+	lines += `\\newpage
+\\textit{This document has been generated with Bayograff. For more information visit the following link:} 
+\\href{https://bayograff.herokuapp.com}{https://bayograff.herokuapp.com}
+\\end{document}`;
 
 	await fs.writeFile(`./server/public/latex/${fileName}`, lines, (err) => {
 		if (err) throw err;

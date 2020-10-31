@@ -142,9 +142,9 @@
 									height="125"
 								/>
 							</b-form-radio>
-							<b-form-radio value="ball" :disabled="useExternalImg">
+							<b-form-radio value="logo" :disabled="useExternalImg">
 								<b-img-lazy
-									:src="this.images.ball"
+									:src="this.images.logo"
 									alt="Default image"
 									height="125"
 								/>

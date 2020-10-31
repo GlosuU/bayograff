@@ -6,7 +6,7 @@
 		<input type="hidden" name="currency_code" value="EUR" />
 		<input
 			type="image"
-			src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif"
+			:src="buttonImg"
 			border="0"
 			name="submit"
 			title="PayPal - The safer, easier way to pay online!"
@@ -24,9 +24,13 @@
 
 <script>
 	export default {
+		props: ["big"],
 		data() {
 			return {
 				donationCode: process.env.VUE_APP_DONATION_CODE,
+				buttonImg: this.big
+					? "https://www.paypalobjects.com/en_US/ES/i/btn/btn_donateCC_LG.gif"
+					: "https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif",
 			};
 		},
 	};

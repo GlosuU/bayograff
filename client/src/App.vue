@@ -14,10 +14,23 @@
 	import Footer from "./components/Footer";
 
 	export default {
+		title: "Bayograff",
 		components: {
 			Header,
 			NavBar,
 			Footer,
+		},
+		created() {
+			// Should be a better way to fix title and icon
+			document.title = "Bayograff";
+			(function () {
+				var link =
+					document.querySelector("link[rel*='icon']") || document.createElement("link");
+				link.type = "image/png";
+				link.rel = "shortcut icon";
+				link.href = "https://bayograff.herokuapp.com/img/ball.030e5034.jpg";
+				document.getElementsByTagName("head")[0].appendChild(link);
+			})();
 		},
 	};
 </script>

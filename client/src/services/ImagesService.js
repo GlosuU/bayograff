@@ -1,5 +1,5 @@
 const images = {
-	noImg: require("../../public/assets/img/default-img.jpg"),
+	noImg: require("../../public/assets/img/default-red.png"),
 	beach: require("../../public/assets/img/beach.jpg"),
 	mountain: require("../../public/assets/img/mountain.jpg"),
 	graduation: require("../../public/assets/img/graduation.jpg"),

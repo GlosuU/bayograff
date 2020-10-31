@@ -2,7 +2,7 @@
 	<div id="bayoheader">
 		<div class="floatLeft">
 			<router-link to="/">
-				<h1><strong>Bayograff</strong></h1>
+				<h1><img :src="logo" alt="Logo" /> <strong>Bayograff</strong></h1>
 				<h2>- Jot down your memories. Fast and simple.</h2>
 			</router-link>
 		</div>
@@ -17,6 +17,11 @@
 	export default {
 		components: {
 			Login,
+		},
+		data() {
+			return {
+				logo: require("../../public/assets/img/logo.png"),
+			};
 		},
 	};
 </script>

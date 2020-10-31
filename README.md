@@ -4,12 +4,14 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Bayograff logo and change "Vue App" to "Bayograff" in HTML title
 -   Local Images same size, different images for Reps, Anecs and Facts
 -   Local Images in BayoForm should be displayed with v-for
 -   Add Footer. Fill the page?
+-   Text Editor max height
+-   Add watermark "Bayograff" in at least PDF. Delete Date from title page.
 -   Add Video
 
+-   Change title with route: https://dev.to/webhookrelay/a-simple-way-to-keep-your-vue-page-title-in-sync-with-the-router-ec0
 -   Add "delete all data" in Profile Page.
 -   Add 404 and 500 views
 -   Fix Header and NavBar from scrolling down

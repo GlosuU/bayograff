@@ -9,8 +9,8 @@
 				could benefit from it too.
 			</p>
 			<p>
-				Bayograff is <strong>open source</strong> and available in Github under an
-				<strong>MIT License</strong>:
+				Bayograff is <strong>free</strong>, <strong>open source</strong> and available in
+				Github under an <strong>MIT License</strong>:
 				<a href="https://github.com/GlosuU/bayograff" target="_new">
 					https://github.com/GlosuU/bayograff
 				</a>
@@ -22,8 +22,9 @@
 				accepts donations for maintaining and improving Bayograff, you can donate via
 				<strong>PayPal</strong>:
 			</p>
-			<DonateButtonBig />
-
+			<div class="centeraligned">
+				<DonateButton :big="true" />
+			</div>
 			<hr />
 			<p>Here are the <strong>major tools</strong> used to develop Bayograff:</p>
 			<ul>
@@ -85,10 +86,10 @@
 </template>
 
 <script>
-	import DonateButtonBig from "../components/buttons/DonateButtonBig";
+	import DonateButton from "../components/buttons/DonateButton";
 	export default {
 		components: {
-			DonateButtonBig,
+			DonateButton,
 		},
 	};
 </script>

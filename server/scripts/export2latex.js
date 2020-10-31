@@ -78,6 +78,7 @@ async function collectionToLatex(user, title, bayograff_app_url) {
 	let lines = `\\documentclass[12pt, a4paper]{article}
 \\usepackage[utf8]{inputenc}
 \\usepackage{ulem}
+\\usepackage{hyperref}
 
 \\title{${title}}
 \\date{}

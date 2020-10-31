@@ -7,6 +7,7 @@
 		<SingleView
 			v-if="ready"
 			:bayobject="reporterm"
+			bayobjecttype="reporterm"
 			backRoute="/reporterms"
 			:editRoute="`/reporterms/${this.$route.params.id}/edit`"
 			@delete-bayobject="deleteReporterm"

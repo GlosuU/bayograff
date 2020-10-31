@@ -26,6 +26,7 @@
 				<b-collapse id="lastUpdatedBayobject" v-model="lastUpdatedBayobjectVisible">
 					<BayoCard
 						:bayobject="lastUpdatedBayobject"
+						:bayobjecttype="bayobjectType.toLowerCase()"
 						:objectClass="bayobjectClass"
 						:objectViewURL="`${rootPath}${lastUpdatedBayobject._id}`"
 						@edit-object="editBayobject"
@@ -49,6 +50,7 @@
 			<div id="bayobjectslistitem" v-for="b in repsPag" :key="b._id">
 				<BayoCard
 					:bayobject="b"
+					:bayobjecttype="bayobjectType.toLowerCase()"
 					:objectClass="bayobjectClass"
 					:objectViewURL="`${rootPath}${b._id}`"
 					@edit-object="editBayobject"

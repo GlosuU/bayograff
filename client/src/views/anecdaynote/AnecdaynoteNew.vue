@@ -3,6 +3,7 @@
 		<BayoForm
 			:statusMsg="message"
 			:bayobject="newAnecdaynote"
+			bayobjecttype="anecdaynote"
 			@save-bayobject="addNewAnecdaynote"
 		/>
 	</div>

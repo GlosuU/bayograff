@@ -3,6 +3,7 @@
 		<BayoForm
 			:statusMsg="message"
 			:bayobject="newReporterm"
+			bayobjecttype="reporterm"
 			@save-bayobject="addNewReporterm"
 		/>
 	</div>

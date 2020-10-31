@@ -45,7 +45,7 @@
 				}
 				return str;
 			},
-			getImage: (img) => ImagesService.getImage(img),
+			getImage: (img) => ImagesService.getImage(img, "anecdaynote"),
 			// editObject(evt) {
 			// 	evt.preventDefault();
 			// 	this.$emit("edit-object", this.bayobject);

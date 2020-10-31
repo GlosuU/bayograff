@@ -90,9 +90,11 @@
 		components: {
 			SecondaryButtons,
 		},
-		props: ["bayobject", "backRoute", "editRoute"],
+		props: ["bayobject", "bayobjecttype", "backRoute", "editRoute"],
 		methods: {
-			getImage: (img) => ImagesService.getImage(img),
+			getImage(img) {
+				return ImagesService.getImage(img, this.bayobjecttype);
+			},
 			deleteBayobject() {
 				this.$emit("delete-bayobject");
 			},

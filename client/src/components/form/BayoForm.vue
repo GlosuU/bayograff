@@ -107,47 +107,13 @@
 					Use a preset image:
 					<div class="bayoformRadioOptions">
 						<b-form-radio-group id="local-image-radio-group" v-model="localImg">
-							<b-form-radio value="noImg" :disabled="useExternalImg">
-								<b-img-lazy
-									:src="this.images.noImg"
-									alt="Default image"
-									height="125"
-								/>
-							</b-form-radio>
-							<b-form-radio value="beach" :disabled="useExternalImg">
-								<b-img-lazy
-									:src="this.images.beach"
-									alt="Default image"
-									height="125"
-								/>
-							</b-form-radio>
-							<b-form-radio value="mountain" :disabled="useExternalImg">
-								<b-img-lazy
-									:src="this.images.mountain"
-									alt="Default image"
-									height="125"
-								/>
-							</b-form-radio>
-							<b-form-radio value="graduation" :disabled="useExternalImg">
-								<b-img-lazy
-									:src="this.images.graduation"
-									alt="Default image"
-									height="125"
-								/>
-							</b-form-radio>
-							<b-form-radio value="heart" :disabled="useExternalImg">
-								<b-img-lazy
-									:src="this.images.heart"
-									alt="Default image"
-									height="125"
-								/>
-							</b-form-radio>
-							<b-form-radio value="logo" :disabled="useExternalImg">
-								<b-img-lazy
-									:src="this.images.logo"
-									alt="Default image"
-									height="125"
-								/>
+							<b-form-radio
+								v-for="img in keys"
+								:key="keys.indexOf(img)"
+								:value="img"
+								:disabled="useExternalImg"
+							>
+								<b-img-lazy :src="images[img]" :alt="img" height="125" />
 							</b-form-radio>
 						</b-form-radio-group>
 					</div>
@@ -184,7 +150,7 @@
 
 	export default {
 		name: "BayoForm",
-		props: ["statusMsg", "bayobject"],
+		props: ["statusMsg", "bayobject", "bayobjecttype"],
 		components: {
 			TextEditor,
 		},
@@ -195,7 +161,8 @@
 				useExternalImg: false,
 				localImg: "",
 				externalImgURL: "",
-				images: ImagesService.getAllImages(),
+				images: ImagesService.getImages(this.bayobjecttype),
+				keys: [],
 				titleMissing: false,
 				contentMissing: false,
 				maxTitleLength: 150,
@@ -203,12 +170,14 @@
 			};
 		},
 		created() {
-			if (ImagesService.isLocal(this.bayobject.image)) {
+			if (ImagesService.isLocal(this.bayobject.image, this.bayobjecttype)) {
 				this.localImg = this.bayobject.image;
 			} else {
 				this.useExternalImg = true;
 				this.externalImgURL = this.bayobject.image;
 			}
+
+			this.keys = Object.keys(this.images);
 		},
 		methods: {
 			updateContent(content) {

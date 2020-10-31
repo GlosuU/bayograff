@@ -7,6 +7,7 @@
 			v-if="ready"
 			:statusMsg="message"
 			:bayobject="anecdaynote"
+			bayobjecttype="anecdaynote"
 			@save-bayobject="saveAnecdaynote"
 		/>
 	</div>

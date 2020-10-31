@@ -1,6 +1,11 @@
 <template>
 	<div id="factale-new" class="factale routercontent">
-		<BayoForm :statusMsg="message" :bayobject="newFactale" @save-bayobject="addNewFactale" />
+		<BayoForm
+			:statusMsg="message"
+			:bayobject="newFactale"
+			bayobjecttype="factale"
+			@save-bayobject="addNewFactale"
+		/>
 	</div>
 </template>
 

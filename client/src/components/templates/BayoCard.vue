@@ -105,7 +105,7 @@
 	import ProcessHTMLService from "../../services/ProcessHTMLService";
 
 	export default {
-		props: ["bayobject", "objectClass", "objectViewURL"],
+		props: ["bayobject", "bayobjecttype", "objectClass", "objectViewURL"],
 		data() {
 			return {
 				maxLength: 250,
@@ -139,7 +139,9 @@
 					hour12: false,
 				})}`;
 			},
-			getImage: (img) => ImagesService.getImage(img),
+			getImage(img) {
+				return ImagesService.getImage(img, this.bayobjecttype);
+			},
 			editObject(evt) {
 				evt.preventDefault();
 				this.$emit("edit-object", this.bayobject);

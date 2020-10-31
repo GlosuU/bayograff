@@ -4,8 +4,6 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Local Images same size, different images for Reps, Anecs and Facts
--   Local Images in BayoForm should be displayed with v-for
 -   Add Video
 
 -   Change title with route: https://dev.to/webhookrelay/a-simple-way-to-keep-your-vue-page-title-in-sync-with-the-router-ec0

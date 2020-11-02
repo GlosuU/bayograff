@@ -8,7 +8,7 @@
 			<b-embed
 				type="iframe"
 				aspect="16by9"
-				src="https://www.youtube.com/embed/a2GVxYfKSxA"
+				src="https://www.youtube.com/embed/owb0FbDNp_8"
 				allowfullscreen
 			/>
 		</div>

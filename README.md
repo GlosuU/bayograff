@@ -4,7 +4,7 @@ Write an autobiography, a journal or a chronology online
 
 ## TODOS
 
--   Add Video
+-   Remove extra images, prepare for release
 
 -   Change title with route: https://dev.to/webhookrelay/a-simple-way-to-keep-your-vue-page-title-in-sync-with-the-router-ec0
 -   Add "delete all data" in Profile Page.

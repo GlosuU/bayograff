@@ -36,7 +36,7 @@
 		},
 		data() {
 			return {
-				development: process.env.NODE_ENV == "development",
+				// development: process.env.NODE_ENV == "development",
 				google: this.$auth.user.name != this.$auth.user.email,
 				nReporterms: -1,
 				nAnecdaynotes: -1,
@@ -45,9 +45,9 @@
 			};
 		},
 		async created() {
-			if (this.development) {
-				console.log(JSON.stringify(this.$auth.user, null, 2));
-			}
+			// if (this.development) {
+			// 	console.log(JSON.stringify(this.$auth.user, null, 2));
+			// }
 
 			if (this.$nReporterms < 0) {
 				try {

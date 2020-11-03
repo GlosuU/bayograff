@@ -26,7 +26,7 @@ router.get("/", checkJWT, async (req, res) => {
 		}
 		return res.send(reporterms);
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 		return res.status(500).send();
 	}
 });
@@ -49,7 +49,7 @@ router.get("/:id", checkJWT, async (req, res) => {
 			return res.send(reporterm);
 		}
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 		res.status(500).send();
 	}
 });
@@ -68,13 +68,13 @@ router.post("/", checkJWT, async (req, res) => {
 			await Reporterm.create(req.body);
 			return res.status(201).send();
 		} else {
-			console.error(`Maximum number of reporterms exceeded for user: ${req.user.sub}`);
+			// console.error(`Maximum number of reporterms exceeded for user: ${req.user.sub}`);
 			return res
 				.status(409)
 				.send("Maximum number of reporterms reached. Can't create new reporterm.");
 		}
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 		return res.status(500).send();
 	}
 });
@@ -103,7 +103,7 @@ router.put("/:id", checkJWT, async (req, res) => {
 			return res.status(200).send();
 		}
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 		return res.status(500).send();
 	}
 });
@@ -127,7 +127,7 @@ router.delete("/:id", checkJWT, async (req, res) => {
 			return res.status(200).send();
 		}
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 		return res.status(500).send();
 	}
 });
@@ -142,7 +142,7 @@ router.get("/total/count", checkJWT, async (req, res) => {
 		});
 		return res.send(reporterms.length.toString());
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 		return res.status(500).send();
 	}
 });
@@ -167,7 +167,7 @@ module.exports = router;
 
 // // Get Reporterms
 // router.get("/", checkJWT, async (req, res) => {
-// 	// console.log("req.user.sub", req.user.sub);
+// 	// // console.log("req.user.sub", req.user.sub);
 // 	const reporterms = await loadReportermsCollection();
 // 	if (req.query.search != null) {
 // 		res.send(

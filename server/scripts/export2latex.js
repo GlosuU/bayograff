@@ -108,7 +108,7 @@ async function collectionToLatex(user, title, bayograff_app_url) {
 
 	await fs.writeFile(`./server/public/latex/${fileName}`, lines, (err) => {
 		if (err) throw err;
-		console.log(`Saved successfully to ${fileName}`);
+		// console.log(`Saved successfully to ${fileName}`);
 	});
 
 	return `${bayograff_app_url}/public/latex/${fileName}`;

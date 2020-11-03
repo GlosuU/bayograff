@@ -1,10 +1,5 @@
 const images = {
 	noImg: require("../../public/assets/img/default.png"),
-	beach: require("../../public/assets/img/beach.jpg"),
-	mountain: require("../../public/assets/img/mountain.jpg"),
-	graduation: require("../../public/assets/img/graduation.jpg"),
-	heart: require("../../public/assets/img/heart.jpg"),
-	ball: require("../../public/assets/img/ball.jpg"),
 	export2pdf: require("../../public/assets/img/export2pdf.png"),
 	logo: require("../../public/assets/img/logo.png"),
 };

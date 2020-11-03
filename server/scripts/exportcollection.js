@@ -74,7 +74,6 @@ function insertAnecsInReps(reporterms, anecdaynotes) {
 
 	// 3. Anecdaynotes left without Reporterm are gathered into one generic Reporterm that goes last
 	if (anecdaynotesLeft.length > 0) {
-		console.log("alnoreps", anecdaynotesLeft);
 		repsWithAnecdaynotes.push({
 			startDate: new Date(anecdaynotesLeft[0].date),
 			endDate: new Date(anecdaynotesLeft[anecdaynotesLeft.length - 1].date),

@@ -111,7 +111,7 @@ https://bayograff.herokuapp.com`;
 
 	await fs.writeFile(`./server/public/text/${fileName}`, lines, (err) => {
 		if (err) throw err;
-		console.log(`Saved successfully to ${fileName}`);
+		// console.log(`Saved successfully to ${fileName}`);
 	});
 
 	return `${bayograff_app_url}/public/text/${fileName}`;

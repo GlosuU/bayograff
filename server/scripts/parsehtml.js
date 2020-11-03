@@ -11,6 +11,7 @@ const regex = {
 	closetag: /(<\/(strong|em|u|s)>)/gi,
 	lessthan: /(&lt;)/gi,
 	greaterthan: /(&gt;)/gi,
+	nonblockingspace: /&nbsp;/gi,
 	endP: /(<\/p>)/gi,
 	allTags: /(<([^>]+)>)/gi,
 	trimSpaces: /^\s+|\s+$/g,
@@ -23,6 +24,7 @@ function stripHTML(html) {
 	strippedText = strippedText.replace(regex.allTags, "");
 	strippedText = strippedText.replace(regex.lessthan, "<");
 	strippedText = strippedText.replace(regex.greaterthan, ">");
+	strippedText = strippedText.replace(regex.nonblockingspace, " ");
 	strippedText = strippedText.replace(regex.trimSpaces, "");
 	return strippedText;
 }

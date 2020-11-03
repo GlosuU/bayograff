@@ -1,6 +1,7 @@
 const regex = {
 	lessthan: /(&lt;)/gi,
 	greaterthan: /(&gt;)/gi,
+	nonbreakingspace: /(&nbsp;)/gi,
 	endP: /(<\/p>)/gi,
 	l_item: /(<li>)/gi,
 	allTags: /(<([^>]+)>)/gi,
@@ -15,6 +16,7 @@ class ProcessHTMLService {
 		cardContent = cardContent.replace(regex.allTags, "");
 		cardContent = cardContent.replace(regex.lessthan, "<");
 		cardContent = cardContent.replace(regex.greaterthan, ">");
+		cardContent = cardContent.replace(regex.nonbreakingspace, " ");
 		cardContent = cardContent.replace(regex.trimSpaces, "");
 		return cardContent;
 	}
@@ -26,6 +28,7 @@ class ProcessHTMLService {
 		textContent = textContent.replace(regex.allTags, "");
 		textContent = textContent.replace(regex.lessthan, "<");
 		textContent = textContent.replace(regex.greaterthan, ">");
+		textContent = textContent.replace(regex.nonbreakingspace, " ");
 		textContent = textContent.replace(regex.trimSpaces, "");
 		return textContent;
 	}

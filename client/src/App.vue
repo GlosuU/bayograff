@@ -21,7 +21,7 @@
 			Footer,
 		},
 		created() {
-			// Should be a better way to fix title and icon
+			// There should be a better way to fix title and icon
 			document.title = "Bayograff";
 			(function () {
 				var link =

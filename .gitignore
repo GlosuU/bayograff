@@ -1,6 +1,9 @@
 # Dependency directories
 node_modules
 
+# Extra stuff directory
+extra
+
 # Client builds
 /client/dist
 /server/public/dist

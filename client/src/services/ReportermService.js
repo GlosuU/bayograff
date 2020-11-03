@@ -48,7 +48,7 @@ class ReportermService {
 					resolve(res.data);
 				})
 				.catch((err) => {
-					console.log("err", err);
+					// console.log("err", err);
 					reject(err);
 				});
 		});

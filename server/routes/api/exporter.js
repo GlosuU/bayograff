@@ -23,7 +23,7 @@ router.get("/txt", checkJWT, async (req, res) => {
 			await export2text.collectionToTxt(req.user.sub, req.query.title, bayograff_app_url)
 		);
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 		res.status(500).send();
 	}
 });
@@ -36,7 +36,7 @@ router.get("/latex", checkJWT, async (req, res) => {
 			await export2latex.collectionToLatex(req.user.sub, req.query.title, bayograff_app_url)
 		);
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 		res.status(500).send();
 	}
 });
@@ -55,7 +55,7 @@ router.get("/pdf", checkJWT, async (req, res) => {
 		// If you want this to work in development, upload the .tex file somewhere else in the cloud
 		// res.send(`${latex_online_url}$http://bayograff.herokuapp.com/api/export/sample`);
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 		res.status(500).send();
 	}
 });

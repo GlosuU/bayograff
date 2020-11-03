@@ -12,7 +12,11 @@
 			<a href="mailto:bayograff.website@gmail.com" class="btn btn-social btn-odnoklassniki">
 				<span class="fa fa-odnoklassniki"><img :src="icons.gmail" /></span>E-mail
 			</a>
-			<a href="https://github.com/GlosuU" target="_blank" class="btn btn-social btn-github">
+			<a
+				href="https://github.com/GlosuU/bayograff"
+				target="_blank"
+				class="btn btn-social btn-github"
+			>
 				<span class="fa fa-github"><img :src="icons.github" /></span>GitHub
 			</a>
 			<a href="https://twitter.com/GlosuU" target="_blank" class="btn btn-social btn-twitter">

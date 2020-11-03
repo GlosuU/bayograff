@@ -2,13 +2,6 @@
 
 Write an autobiography, a journal or a chronology online
 
-## TODOS
-
--   Add 404 and 500 views
--   Add "delete all data" in Profile Page.
--   Change page title and icon with router: https://dev.to/webhookrelay/a-simple-way-to-keep-your-vue-page-title-in-sync-with-the-router-ec0
--   Fix Header and NavBar from scrolling down
-
 ## Necessary external accounts (add private parameters to .env file)
 
 -   Auth0 (https://auth0.com/)
@@ -38,3 +31,10 @@ npm run server-dev
 npm run client-build
 npm run start
 ```
+
+## TODOS
+
+-   Add 404 and 500 views
+-   Add "delete all data" in Profile Page.
+-   Change page title and icon with router: https://dev.to/webhookrelay/a-simple-way-to-keep-your-vue-page-title-in-sync-with-the-router-ec0
+-   Fix Header and NavBar from scrolling down

@@ -38,3 +38,7 @@ npm run start
 -   Add "delete all data" in Profile Page.
 -   Change page title and icon with router: https://dev.to/webhookrelay/a-simple-way-to-keep-your-vue-page-title-in-sync-with-the-router-ec0
 -   Fix Header and NavBar from scrolling down
+
+## RELEASES
+
+-   v1.0.2: Updated some dependancies via dependabot

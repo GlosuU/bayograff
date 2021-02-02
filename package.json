@@ -26,7 +26,7 @@
 	"homepage": "https://github.com/GlosuU/bayograff#readme",
 	"dependencies": {
 		"@auth0/auth0-spa-js": "^1.12.1",
-		"axios": "^0.20.0",
+		"axios": "^0.21.1",
 		"bootstrap": "^4.5.2",
 		"bootstrap-social": "^5.1.1",
 		"bootstrap-vue": "^2.16.0",

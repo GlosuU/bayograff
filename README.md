@@ -41,4 +41,4 @@ npm run start
 
 ## RELEASES
 
--   v1.0.2: Updated some dependancies via dependabot
+-   v1.0.2: Updated some dependencies via dependabot

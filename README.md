@@ -13,6 +13,8 @@ Write an autobiography, a journal or a chronology online
 npm install
 ```
 
+NOTE: Requires Node version 12
+
 ### Run webapp in development mode
 
 ```

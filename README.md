@@ -13,6 +13,8 @@ Write an autobiography, a journal or a chronology online
 npm install
 ```
 
+NOTE: Requires Node version 12
+
 ### Run webapp in development mode
 
 ```
@@ -41,4 +43,5 @@ npm run start
 
 ## RELEASES
 
--   v1.0.3: Updated some dependencies via dependabot
+- v1.0.4: Dependabot + IntelliJ usage
+- v1.0.3: Updated some dependencies via dependabot

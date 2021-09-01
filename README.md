@@ -43,4 +43,5 @@ npm run start
 
 ## RELEASES
 
--   v1.0.3: Updated some dependencies via dependabot
+- v1.0.4: Dependabot + IntelliJ usage
+- v1.0.3: Updated some dependencies via dependabot

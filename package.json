@@ -1,6 +1,6 @@
 {
 	"name": "bayograff",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "online biographies, journals and chronologies",
 	"private": true,
 	"main": "index.js",
@@ -37,7 +37,7 @@
 		"jwks-rsa": "^1.10.1",
 		"mongoose": "^5.10.7",
 		"morgan": "^1.10.0",
-		"node-forge": ">=0.10.0",
+		"node-forge": ">=1.3.0",
 		"npm-run-all": "^4.1.5",
 		"tiptap": "^1.30.0",
 		"tiptap-extensions": "^1.33.2",

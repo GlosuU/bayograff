@@ -1,6 +1,6 @@
 {
 	"name": "bayograff",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "online biographies, journals and chronologies",
 	"private": true,
 	"main": "index.js",
@@ -12,7 +12,9 @@
 		"server-dev": "NODE_ENV=development nodemon server/index.js",
 		"client-dev": "vue-cli-service serve client/src/main.js",
 		"client-build": "vue-cli-service build client/src/main.js",
-		"client-lint": "vue-cli-service lint client/src/main.js"
+		"client-lint": "vue-cli-service lint client/src/main.js",
+		"clean": "rmdir /s /q node_modules",
+		"reinstall": "npm run clean && npm install"
 	},
 	"repository": {
 		"type": "git",
@@ -42,7 +44,7 @@
 		"tiptap": "^1.30.0",
 		"tiptap-extensions": "^1.33.2",
 		"vue": "^2.6.12",
-		"vue-confirm-dialog": "^1.0.2",
+		"vue-confirm-dialog": "1.0.2",
 		"vue-loading-spinner": "^1.0.11",
 		"vue-router": "^3.2.0"
 	},
@@ -52,12 +54,12 @@
 		"@vue/cli-plugin-router": "^4.5.4",
 		"@vue/cli-service": "~4.5.0",
 		"babel-eslint": "^10.1.0",
+		"dotenv": "^8.2.0",
 		"eslint": "^6.7.2",
 		"eslint-plugin-vue": "^6.2.2",
+		"nodemon": "^2.0.4",
 		"prettier": "^2.1.1",
-		"vue-template-compiler": "^2.6.12",
-		"dotenv": "^8.2.0",
-		"nodemon": "^2.0.4"
+		"vue-template-compiler": "^2.6.12"
 	},
 	"eslintConfig": {
 		"root": true,

@@ -1,6 +1,6 @@
 {
 	"name": "bayograff",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "online biographies, journals and chronologies",
 	"private": true,
 	"main": "index.js",
@@ -13,7 +13,7 @@
 		"client-dev": "vue-cli-service serve client/src/main.js",
 		"client-build": "vue-cli-service build client/src/main.js",
 		"client-lint": "vue-cli-service lint client/src/main.js",
-		"clean": "rmdir /s /q node_modules",
+		"clean": "rm -rf node_modules",
 		"reinstall": "npm run clean && npm install"
 	},
 	"repository": {
@@ -28,7 +28,7 @@
 	"homepage": "https://github.com/GlosuU/bayograff#readme",
 	"dependencies": {
 		"@auth0/auth0-spa-js": "^1.12.1",
-		"axios": "^0.21.1",
+		"axios": "^0.21.2",
 		"bootstrap": "^4.5.2",
 		"bootstrap-social": "^5.1.1",
 		"bootstrap-vue": "^2.16.0",

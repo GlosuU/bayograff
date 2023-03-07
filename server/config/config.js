@@ -9,7 +9,6 @@ module.exports = {
 	max_n_reporterms: process.env.VUE_APP_MAX_N_REPORTERMS,
 	max_n_anecdaynotes: process.env.VUE_APP_MAX_N_ANECDAYNOTES,
 	max_n_factales: process.env.VUE_APP_MAX_N_FACTALES,
-	db_name: process.env.DB_NAME,
 	// db_url:
 	// 	`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}` +
 	// 	`@${process.env.DB_CLUSTER}.2bhrc.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,

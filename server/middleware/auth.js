@@ -1,5 +1,5 @@
 // import dependencies
-const jwt = require("express-jwt");
+const { expressjwt : jwt } = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
 const { audience, domain } = require("../config/config");
 

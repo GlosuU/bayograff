@@ -68,12 +68,21 @@
 				And that's all you need to know! Simple, right? Log in with your Google account or
 				your e-mail address and get started right away! Happy writing!
 			</p>
+      <p>
+        DB_MESSAGE={{ db_msg }}
+      </p>
 		</div>
 	</div>
 </template>
 
 <script>
-	export default {};
+	export default {
+    data() {
+      return {
+        db_msg: process.env.VUE_APP_DB_MESSAGE,
+      };
+    }
+  };
 </script>
 
 <style />

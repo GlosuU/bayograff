@@ -11,12 +11,12 @@ const connectDB = async () => {
 			autoIndex: false, // Mongoose doc recommends autoindex=false in production...
 		});
 		console.log(`MongoDB Connected: ${conn.connection.host}`);
-		process.env.VUE_APP_DB_MESSAGE = `MongoDB Connected: ${conn.connection.host}`;
-		console.log(`DB_MESSAGE=${process.env.VUE_APP_DB_MESSAGE}`)
+		process.env.DB_MESSAGE = `MongoDB Connected: ${conn.connection.host}`;
+		console.log(`DB_MESSAGE=${process.env.DB_MESSAGE}`)
 	} catch (err) {
 		console.error(err);
-		process.env.VUE_APP_DB_MESSAGE= `${err}`;
-		console.log(`DB_MESSAGE=${process.env.VUE_APP_DB_MESSAGE}`)
+		process.env.DB_MESSAGE= `${err}`;
+		console.log(`DB_MESSAGE=${process.env.DB_MESSAGE}`)
 	}
 };
 

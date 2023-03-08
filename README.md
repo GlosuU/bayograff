@@ -43,6 +43,7 @@ npm run start
 
 ## RELEASES
 
+- v1.1.2: Preparing deployment in Render
 - v1.1.1: Updated Mongoose dependency
 - v1.1.0: Updated basic dependencies via dependabot
 - v1.0.6: Resurrected Bayograff 

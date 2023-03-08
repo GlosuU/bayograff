@@ -43,6 +43,7 @@ npm run start
 
 ## RELEASES
 
+- v1.1.4: Reverting Bayograff to Webapp
 - v1.1.3: Fix MongoDB connection in PROD
 - v1.1.2: Preparing deployment in Render
 - v1.1.1: Updated Mongoose dependency

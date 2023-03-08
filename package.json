@@ -53,13 +53,13 @@
 		"vue-router": "^3.2.0",
 		"eslint": "^6.7.2",
 		"eslint-plugin-vue": "^6.2.2",
-		"babel-eslint": "^10.1.0"
+		"babel-eslint": "^10.1.0",
+		"vue-template-compiler": "^2.6.12"
 	},
 	"devDependencies": {
 		"dotenv": "^8.2.0",
 		"nodemon": "^2.0.4",
-		"prettier": "^2.1.1",
-		"vue-template-compiler": "^2.6.12"
+		"prettier": "^2.1.1"
 	},
 	"eslintConfig": {
 		"root": true,

@@ -28,6 +28,7 @@
 	"homepage": "https://github.com/GlosuU/bayograff#readme",
 	"dependencies": {
 		"@auth0/auth0-spa-js": "^1.12.1",
+		"@vue/cli-service": "~4.5.0",
 		"axios": "^0.21.2",
 		"bootstrap": "^4.5.2",
 		"bootstrap-social": "^5.1.1",
@@ -46,8 +47,7 @@
 		"vue": "^2.6.12",
 		"vue-confirm-dialog": "1.0.2",
 		"vue-loading-spinner": "^1.0.11",
-		"vue-router": "^3.2.0",
-		"@vue/cli-service": "~4.5.0"
+		"vue-router": "^3.2.0"
 	},
 	"devDependencies": {
 		"@vue/cli-plugin-babel": "~4.5.0",

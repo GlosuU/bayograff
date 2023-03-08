@@ -12,7 +12,7 @@ let bayograff_app_url = "";
 if (environment === "development") {
 	bayograff_app_url = `https://localhost:${port}`;
 } else {
-	bayograff_app_url = "https://bayograff.onrender.com";
+	bayograff_app_url = "http://bayograff.onrender.com";
 }
 
 // @desc    Send the whole biography as a .txt file

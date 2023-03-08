@@ -13,7 +13,6 @@
 		"client-dev": "vue-cli-service serve client/src/main.js",
 		"client-build": "vue-cli-service build client/src/main.js",
 		"client-lint": "vue-cli-service lint client/src/main.js",
-		"postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run client-build ; fi ",
 		"reinstall": "npm run clean && npm install"
 	},
 	"repository": {

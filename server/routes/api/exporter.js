@@ -7,12 +7,12 @@ const { environment, port } = require("../../config/config");
 
 const router = express.Router();
 
-const latex_online_url = "https://latexonline.cc/compile?url=";
+const latex_online_url = "http://latexonline.cc/compile?url=";
 let bayograff_app_url = "";
 if (environment === "development") {
-	bayograff_app_url = `https://localhost:${port}`;
+	bayograff_app_url = `http://localhost:${port}`;
 } else {
-	bayograff_app_url = "https://bayograff.onrender.com";
+	bayograff_app_url = "http://bayograff.onrender.com";
 }
 
 // @desc    Send the whole biography as a .txt file

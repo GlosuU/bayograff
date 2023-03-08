@@ -66,4 +66,15 @@ router.get("/sample", async (req, res) => {
 	res.sendFile(path.resolve(__dirname, `../../public/latex/sample.tex`));
 });
 
+// @desc    Send the DB status
+// @route   GET /api/export/db
+router.get("/db", async (req, res) => {
+	try {
+		res.send(process.env.DB_MESSAGE);
+	} catch (err) {
+		// console.error(err);
+		res.status(500).send();
+	}
+});
+
 module.exports = router;

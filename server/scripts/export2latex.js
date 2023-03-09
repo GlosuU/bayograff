@@ -71,7 +71,7 @@ function factaleToLatex(factale) {
 
 // Transform the whole biography of a user to a .tex file
 // @return	The URL of the created .tex file, ready for download
-async function collectionToLatex(user, title, bayograff_app_url) {
+async function collectionToLatex(user, title, prod_domain_url) {
 	const { reporterms, factales } = await exportcollection.getCollectionOrganized(user);
 	const fileName = exportcollection.getFileName(user, "tex");
 
@@ -103,7 +103,7 @@ async function collectionToLatex(user, title, bayograff_app_url) {
 
 	lines += `\\newpage
 \\textit{This document has been generated with Bayograff. For more information visit the following link:} 
-\\url{https://bayograff.herokuapp.com}
+\\url{https://${prod_domain_url}}
 \\end{document}`;
 
 	await fs.writeFile(`./server/public/latex/${fileName}`, lines, (err) => {
@@ -111,7 +111,7 @@ async function collectionToLatex(user, title, bayograff_app_url) {
 		// console.log(`Saved successfully to ${fileName}`);
 	});
 
-	return `${bayograff_app_url}/public/latex/${fileName}`;
+	return `http://${prod_domain_url}/public/latex/${fileName}`;
 }
 
 module.exports = {

@@ -34,15 +34,16 @@ npm run client-build
 npm run start
 ```
 
-## TODOS
+## TODOs
 
 -   Add 404 and 500 views
--   Add "delete all data" in Profile Page.
+-   Add "delete all data" in Profile Page
 -   Change page title and icon with router: https://dev.to/webhookrelay/a-simple-way-to-keep-your-vue-page-title-in-sync-with-the-router-ec0
 -   Fix Header and NavBar from scrolling down
 
 ## RELEASES
 
+- v2.0.0: Polished deployment in Render
 - v1.2.0: Upped Node engine to v14
 - v1.1.4: Reverting Bayograff to Webapp
 - v1.1.3: Fix MongoDB connection in PROD

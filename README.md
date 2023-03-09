@@ -13,7 +13,7 @@ Write an autobiography, a journal or a chronology online
 npm install
 ```
 
-NOTE: Requires Node version 12
+NOTE: Requires Node version 14
 
 ### Run webapp in development mode
 
@@ -43,6 +43,7 @@ npm run start
 
 ## RELEASES
 
+- v1.2.0: Upped Node engine to v14
 - v1.1.4: Reverting Bayograff to Webapp
 - v1.1.3: Fix MongoDB connection in PROD
 - v1.1.2: Preparing deployment in Render

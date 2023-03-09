@@ -1,6 +1,6 @@
 {
 	"name": "bayograff",
-	"version": "1.2.0",
+	"version": "2.0.0",
 	"description": "online biographies, journals and chronologies",
 	"private": true,
 	"main": "index.js",

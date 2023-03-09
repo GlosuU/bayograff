@@ -1,10 +1,10 @@
 const express = require("express");
 const path = require("path");
 const { environment, port } = require("./config/config");
-// const mongoose = require('mongoose')
 const connectDB = require("./config/db");
 const cors = require("cors");
 const morgan = require("morgan");
+const health = require("./routes/api/health");
 const reporterms = require("./routes/api/reporterms");
 const anecdaynotes = require("./routes/api/anecdaynotes");
 const factales = require("./routes/api/factales");
@@ -29,6 +29,7 @@ if (environment === "development") {
 app.use("/public", express.static(path.resolve(__dirname, "./public")));
 
 //// ROUTES
+app.use("/api/health", health);
 app.use("/api/reporterms", reporterms);
 app.use("/api/anecdaynotes", anecdaynotes);
 app.use("/api/factales", factales);

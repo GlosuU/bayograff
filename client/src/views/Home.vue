@@ -32,7 +32,7 @@
 						These are intended to represent summaries or descriptions of a period of
 						time, hence the <em>report of a term</em>. Examples could be "my last year
 						at university", "my summer holidays in Paris", "my childhood"... Every
-						Reporterm has a start date and an end date to define the period of time it
+						reporterm has a start date and an end date to define the period of time it
 						covers. It is recommended for different reporterms not to overlap each
 						other.
 					</p>
@@ -45,11 +45,11 @@
 						These are intended to represent isolated days or events that deserve their
 						own details, hence an <em>anecdote</em> or a <em>day note</em>. Examples
 						could be "my graduation day", "the day I won a chess tournament", "my
-						wedding"... Every Anecdaynote has an associated date, which doesn't need to
+						wedding"... Every anecdaynote has an associated date, which doesn't need to
 						be exact (it only helps Bayograff place it in the timeline). If "the day I
 						won a chess tournament" happened sometime in summer of 2015, I could give it
-						the date June 15th, 2015. Bayograff can also show you which Anecdaynotes
-						happened in a given Reporterm.
+						the date June 15th, 2015. Bayograff can also show you which anecdaynotes
+						happened in a given reporterm.
 					</p>
 				</li>
 				<li>
@@ -60,7 +60,7 @@
 						<em>facts</em> or <em>tales</em> you'd like to include. Examples could be
 						"my top 10 favorite movies of all time", "all the places I have visited",
 						"how I learned to love the piano"... Factales will be included as appendices
-						at the end of your biography, after the Reporterms and Anecdaynotes.
+						at the end of your biography, after the reporterms and anecdaynotes.
 					</p>
 				</li>
 			</ol>

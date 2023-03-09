@@ -8,15 +8,13 @@ const connectDB = async () => {
 			useUnifiedTopology: true,
 			useFindAndModify: false,
 			useCreateIndex: true,
-			autoIndex: false, // Mongoose doc recommends autoindex=false in production...
+			// autoIndex: false, // Mongoose doc recommends autoindex=false in production...
 		});
 		console.log(`MongoDB Connected: ${conn.connection.host}`);
 		process.env.DB_MESSAGE = `MongoDB Connected: ${conn.connection.host}`;
-		console.log(`DB_MESSAGE=${process.env.DB_MESSAGE}`)
 	} catch (err) {
 		console.error(err);
 		process.env.DB_MESSAGE= `${err}`;
-		console.log(`DB_MESSAGE=${process.env.DB_MESSAGE}`)
 	}
 };
 

@@ -13,7 +13,7 @@ Write an autobiography, a journal or a chronology online
 npm install
 ```
 
-NOTE: Requires Node version 16
+NOTE: Requires Node version 18
 
 ### Run webapp in development mode
 
@@ -43,6 +43,7 @@ npm run start
 
 ## RELEASES
 
+- v2.2.0: Node engine 18.x
 - v2.1.0: Node engine 16.x
 - v2.0.0: Polished deployment in Render
 - v1.2.0: Upped Node engine to v14

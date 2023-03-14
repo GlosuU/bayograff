@@ -43,6 +43,7 @@ npm run start
 
 ## RELEASES
 
+- v2.3.0: Revert to Node engine 14.x for Render
 - v2.2.0: Node engine 18.x
 - v2.1.0: Node engine 16.x
 - v2.0.0: Polished deployment in Render

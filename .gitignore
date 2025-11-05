@@ -15,6 +15,9 @@ extra
 # local dotenv environment variables files
 .env
 
+# local NVM config file
+.nvmrc
+
 # Log files
 *.log
 npm-debug.log*

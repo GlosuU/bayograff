@@ -1,6 +1,6 @@
 # bayograff
 
-Write an autobiography, a journal or a chronology online
+Write an autobiography, a journal, or a chronology online
 
 ## Necessary external accounts (add private parameters to .env file)
 

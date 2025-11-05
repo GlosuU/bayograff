@@ -1,8 +1,8 @@
 <template>
 	<div id="bayofooter" class="centeraligned">
 		<h5>
-			Bayograff is built with Vue, Node.js and Express. It is free and open source. It is
-			developed and maintained by <strong>GlosuU</strong>.
+			Bayograff is built with Vue, Node.js, and Express. It is free and open source. It is
+			developed and maintained by <a href="https://christiangreciano.com" target="_blank">Christian Greciano</a>.
 		</h5>
 
 		<div class="footerlist automargin align-items-center">
@@ -19,8 +19,8 @@
 			>
 				<span class="fa fa-github"><img :src="icons.github" /></span>GitHub
 			</a>
-			<a href="https://twitter.com/GlosuU" target="_blank" class="btn btn-social btn-twitter">
-				<span class="fa fa-twitter"><img :src="icons.twitter" /></span>Twitter
+			<a href="https://x.com/cgrecianotech" target="_blank" class="btn btn-social btn-twitter">
+				<span class="fa fa-twitter"><img :src="icons.twitter" /></span>X/Twitter
 			</a>
 			<b-button variant="transparent">
 				<DonateButton :big="true" />
